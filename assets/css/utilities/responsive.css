@@ -1,0 +1,282 @@
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+   .nav-links {
+       display: none;
+   }
+   
+   .mobile-menu-btn {
+       display: block;
+   }
+   
+   .hero {
+       text-align: center;
+       padding: 2rem 1rem;
+       margin-top: 60px;
+   }
+   
+   .floating-element {
+       display: none;
+   }
+   
+   .cta-buttons {
+       flex-direction: column;
+       align-items: center;
+   }
+   
+   .about-grid,
+   .speakers-grid,
+   .tickets-grid {
+       grid-template-columns: 1fr;
+   }
+   
+   .timeline-item {
+       flex-direction: column;
+   }
+   
+   .timeline-time {
+       flex-direction: row;
+       align-items: center;
+       margin-right: 0;
+       margin-bottom: 1rem;
+   }
+   
+   .time-indicator {
+       margin-right: 1rem;
+       margin-bottom: 0;
+   }
+   
+   .modal-content {
+       width: 95%;
+       margin: 1rem;
+       max-height: 90vh;
+   }
+   
+   .modal-header {
+       flex-direction: column;
+       text-align: center;
+   }
+   
+   .speaker-avatar-large {
+       margin: 0 auto;
+   }
+   
+   .filter-buttons {
+       gap: 0.5rem;
+   }
+   
+   .filter-btn {
+       padding: 0.5rem 1rem;
+       font-size: 0.9rem;
+   }
+   
+   .session-meta {
+       flex-direction: column;
+       gap: 0.5rem;
+   }
+   
+   .speakers-list {
+       flex-direction: column;
+   }
+   
+   .ticket-quantity {
+       flex-direction: column;
+       align-items: flex-start;
+   }
+   
+   .summary-actions {
+       flex-direction: column;
+   }
+   
+   .providers-list {
+       flex-direction: column;
+       align-items: center;
+   }
+   
+   .provider-btn {
+       width: 100%;
+       max-width: 300px;
+   }
+   
+   .impact-stats {
+       grid-template-columns: repeat(2, 1fr);
+       gap: 2rem;
+   }
+   
+   .stat-number {
+       font-size: 2.5rem;
+   }
+   
+   .toast {
+       bottom: 1rem;
+       right: 1rem;
+       left: 1rem;
+       transform: translateY(100%);
+   }
+   
+   .toast.show {
+       transform: translateY(0);
+   }
+}
+
+@media (max-width: 480px) {
+   .container {
+       padding: 0 1rem;
+   }
+   
+   .hero h1 {
+       font-size: 2rem;
+   }
+   
+   .hero-subtitle {
+       font-size: 1.1rem;
+   }
+   
+   .hero-date {
+       font-size: 1.1rem;
+       padding: 0.8rem 1.5rem;
+   }
+   
+   .btn {
+       padding: 0.8rem 1.5rem;
+       font-size: 1rem;
+   }
+   
+   .section-title {
+       font-size: 1.8rem;
+   }
+   
+   .about,
+   .speakers,
+   .schedule,
+   .tickets,
+   .impact {
+       padding: 4rem 1rem;
+   }
+   
+   .about-card,
+   .speaker-card,
+   .ticket-card {
+       padding: 2rem 1.5rem;
+   }
+   
+   .ticket-card {
+       min-width: unset;
+   }
+   
+   .tickets-grid {
+       grid-template-columns: 1fr;
+       gap: 1.5rem;
+   }
+   
+   .modal-content {
+       padding: 1.5rem;
+   }
+   
+   .impact-stats {
+       grid-template-columns: 1fr;
+       gap: 1.5rem;
+   }
+   
+   .social-impact-banner {
+       flex-direction: column;
+       text-align: center;
+       padding: 1.5rem 2rem;
+   }
+   
+   .ticket-quantity {
+       gap: 0.5rem;
+   }
+   
+   .quantity-selector {
+       order: 2;
+   }
+   
+   .max-qty {
+       order: 3;
+   }
+}
+
+/* Print styles */
+@media print {
+   .animated-bg,
+   header,
+   .floating-element,
+   .cta-buttons,
+   .social-links,
+   .btn,
+   .modal-overlay,
+   .modal-content,
+   .toast {
+       display: none !important;
+   }
+   
+   body {
+       background: white !important;
+       color: black !important;
+   }
+   
+   .hero {
+       margin-top: 0;
+       min-height: auto;
+       padding: 2rem 0;
+   }
+   
+   .section-title,
+   .speaker-name,
+   .session-title {
+       color: black !important;
+   }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+   :root {
+       --primary-blue: #000080;
+       --accent-blue: #0000FF;
+       --light-blue: #4169E1;
+       --text-dark: #000000;
+       --text-light: #333333;
+       --shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+   }
+   
+   .btn {
+       border: 2px solid currentColor;
+   }
+   
+   .speaker-card,
+   .ticket-card,
+   .about-card {
+       border: 2px solid var(--primary-blue);
+   }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+   *,
+   *::before,
+   *::after {
+       animation-duration: 0.01ms !important;
+       animation-iteration-count: 1 !important;
+       transition-duration: 0.01ms !important;
+   }
+   
+   .animated-bg {
+       animation: none;
+       background: var(--primary-blue);
+   }
+   
+   .floating-element {
+       animation: none;
+   }
+}
+
+/* Focus styles for accessibility */
+.btn:focus,
+.filter-btn:focus,
+.provider-btn:focus,
+button:focus,
+input:focus,
+.social-link:focus {
+   outline: 3px solid var(--light-blue);
+   outline-offset: 2px;
+}

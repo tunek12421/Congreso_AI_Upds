@@ -1,0 +1,39 @@
+/* ===== FORMULARIOS ===== */
+input, textarea, select {
+    font-family: inherit;
+    border: 2px solid var(--bg-light);
+    border-radius: var(--border-radius-sm);
+    padding: 0.75rem 1rem;
+    transition: var(--transition);
+    background: var(--white);
+    color: var(--text-dark);
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--light-blue);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-error {
+    color: var(--error);
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+.form-success {
+    color: var(--success);
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
