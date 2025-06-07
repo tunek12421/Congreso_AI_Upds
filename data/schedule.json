@@ -1,0 +1,180 @@
+{
+  "event": {
+    "date": "2024-12-15",
+    "location": "Cochabamba, Bolivia",
+    "venue": "Universidad Privada Domingo Savio",
+    "duration": "12 horas"
+  },
+  "schedule": [
+    {
+      "id": 1,
+      "time": "08:00 - 09:00",
+      "type": "registration",
+      "title": "Registro y Acreditación",
+      "description": "Bienvenida a participantes y entrega de materiales",
+      "location": "Hall Principal",
+      "speakers": []
+    },
+    {
+      "id": 2,
+      "time": "09:00 - 09:30",
+      "type": "opening",
+      "title": "Ceremonia de Apertura",
+      "description": "Palabras de bienvenida y presentación del evento",
+      "location": "Auditorio Principal",
+      "speakers": []
+    },
+    {
+      "id": 3,
+      "time": "09:30 - 10:30",
+      "type": "keynote",
+      "title": "El Futuro de la IA en América Latina",
+      "description": "Conferencia magistral sobre las oportunidades y desafíos de la IA en la región",
+      "location": "Auditorio Principal",
+      "speakers": [1],
+      "category": "Keynote"
+    },
+    {
+      "id": 4,
+      "time": "10:30 - 11:00",
+      "type": "break",
+      "title": "Coffee Break",
+      "description": "Networking y refrigerio",
+      "location": "Terraza",
+      "speakers": []
+    },
+    {
+      "id": 5,
+      "time": "11:00 - 12:00",
+      "type": "panel",
+      "title": "Ética y Responsabilidad en IA",
+      "description": "Panel de discusión sobre los aspectos éticos del desarrollo de IA",
+      "location": "Auditorio Principal",
+      "speakers": [2, 3],
+      "category": "Panel"
+    },
+    {
+      "id": 6,
+      "time": "12:00 - 13:00",
+      "type": "presentation",
+      "title": "IA en Educación Superior: Casos de Éxito",
+      "description": "Experiencias prácticas de implementación de IA en universidades",
+      "location": "Sala A",
+      "speakers": [3],
+      "category": "Educación"
+    },
+    {
+      "id": 7,
+      "time": "13:00 - 14:00",
+      "type": "lunch",
+      "title": "Almuerzo",
+      "description": "Almuerzo y networking",
+      "location": "Comedor Universitario",
+      "speakers": []
+    },
+    {
+      "id": 8,
+      "time": "14:00 - 15:00",
+      "type": "presentation",
+      "title": "Ciudades Inteligentes: Transformación Urbana",
+      "description": "Cómo la IA está revolucionando la gestión urbana",
+      "location": "Auditorio Principal",
+      "speakers": [4],
+      "category": "Smart Cities"
+    },
+    {
+      "id": 9,
+      "time": "15:00 - 16:00",
+      "type": "workshop",
+      "title": "Marketing con IA: Estrategias Prácticas",
+      "description": "Taller práctico sobre implementación de IA en marketing",
+      "location": "Laboratorio",
+      "speakers": [5],
+      "category": "Marketing"
+    },
+    {
+      "id": 10,
+      "time": "16:00 - 16:30",
+      "type": "break",
+      "title": "Coffee Break",
+      "description": "Pausa y networking",
+      "location": "Terraza",
+      "speakers": []
+    },
+    {
+      "id": 11,
+      "time": "16:30 - 17:30",
+      "type": "presentation",
+      "title": "Ciberseguridad en la Era de la IA",
+      "description": "Desafíos y soluciones de seguridad en sistemas de IA",
+      "location": "Sala B",
+      "speakers": [6],
+      "category": "Ciberseguridad"
+    },
+    {
+      "id": 12,
+      "time": "17:30 - 18:30",
+      "type": "demo",
+      "title": "Demostración: Maestro Humanoide",
+      "description": "Presentación interactiva de asistente educativo con IA",
+      "location": "Auditorio Principal",
+      "speakers": [],
+      "category": "Demo"
+    },
+    {
+      "id": 13,
+      "time": "18:30 - 19:00",
+      "type": "closing",
+      "title": "Ceremonia de Clausura",
+      "description": "Reflexiones finales y entrega de certificados",
+      "location": "Auditorio Principal",
+      "speakers": []
+    },
+    {
+      "id": 14,
+      "time": "19:00 - 21:00",
+      "type": "networking",
+      "title": "Cóctel de Networking",
+      "description": "Evento social para establecer conexiones profesionales",
+      "location": "Jardín Universitario",
+      "speakers": []
+    }
+  ],
+  "categories": [
+    {
+      "id": "keynote",
+      "name": "Conferencias Magistrales",
+      "color": "#1e3c72"
+    },
+    {
+      "id": "panel",
+      "name": "Paneles de Discusión",
+      "color": "#2a5298"
+    },
+    {
+      "id": "presentation",
+      "name": "Presentaciones",
+      "color": "#4a90e2"
+    },
+    {
+      "id": "workshop",
+      "name": "Talleres",
+      "color": "#74b9ff"
+    },
+    {
+      "id": "demo",
+      "name": "Demostraciones",
+      "color": "#00b894"
+    }
+  ],
+  "topics": [
+    "IA en Educación Superior",
+    "Ciudades Digitales",
+    "Desafíos Legales",
+    "Marketing con IA",
+    "Alfabetización Digital",
+    "Ciberseguridad",
+    "Ética en IA",
+    "Innovación Tecnológica"
+  ]
+}

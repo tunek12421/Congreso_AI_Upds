@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1er Congreso de Inteligencia Artificial - UPDS</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="animated-bg"></div>
+    
+    <header>
+        <nav>
+            <div class="logo">UPDS</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#congreso">Congreso</a></li>
+                <li><a href="#ponentes">Ponentes</a></li>
+                <li><a href="#programa">Programa</a></li>
+                <li><a href="#tickets">Tickets</a></li>
+                <li><a href="#impacto">Impacto</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="floating-element floating-1"></div>
+            <div class="floating-element floating-2"></div>
+            <div class="floating-element floating-3"></div>
+            
+            <div class="hero-content">
+                <h1>1er Congreso de Inteligencia Artificial</h1>
+                <p class="hero-subtitle">Un enlace entre innovación y solidaridad</p>
+                <div class="hero-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span id="event-date">Cargando fecha...</span>
+                </div>
+                <div class="cta-buttons">
+                    <a href="#tickets" class="btn btn-primary">
+                        <i class="fas fa-ticket-alt"></i>
+                        Obtener Tickets
+                    </a>
+                    <a href="#ponentes" class="btn btn-secondary">
+                        <i class="fas fa-users"></i>
+                        Ver Ponentes
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="congreso" class="about">
+            <div class="container">
+                <h2 class="section-title fade-in">Un Evento Transformador</h2>
+                <p class="fade-in" style="text-align: center; font-size: 1.2rem; color: var(--text-light); max-width: 800px; margin: 0 auto;">
+                    La Universidad Privada Domingo Savio y el Gobierno Autónomo Municipal de Cochabamba presentaron el primer Congreso de Inteligencia Artificial, reuniendo a visionarios, líderes de la industria y académicos para explorar el futuro de la tecnología.
+                </p>
+                
+                <div class="about-grid">
+                    <div class="about-card fade-in">
+                        <div class="card-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="card-title">Innovación Tecnológica</h3>
+                        <p class="card-text">Explorando las últimas tendencias en IA, desde ciudades digitales hasta aplicaciones educativas revolucionarias.</p>
+                    </div>
+                    
+                    <div class="about-card fade-in">
+                        <div class="card-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="card-title">Alcance Internacional</h3>
+                        <p class="card-text">Panelistas de Brasil, Estados Unidos y Bolivia compartiendo perspectivas globales sobre el impacto de la IA.</p>
+                    </div>
+                    
+                    <div class="about-card fade-in">
+                        <div class="card-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3 class="card-title">Compromiso Social</h3>
+                        <p class="card-text">100% de las entradas destinadas a la Casa de Acogida Mujer Águila, combinando tecnología con humanidad.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ponentes" class="speakers">
+            <div class="container">
+                <h2 class="section-title fade-in">Ponentes Destacados</h2>
+                <div class="speakers-grid" id="speakers-container">
+                    <!-- Los ponentes se cargarán dinámicamente -->
+                </div>
+            </div>
+        </section>
+
+        <section id="programa" class="schedule">
+            <div class="container">
+                <h2 class="section-title fade-in">Programa del Evento</h2>
+                <div class="schedule-container" id="schedule-container">
+                    <!-- El programa se cargará dinámicamente -->
+                </div>
+            </div>
+        </section>
+
+        <section id="tickets" class="tickets">
+            <div class="container">
+                <h2 class="section-title fade-in">Obtén tu Entrada</h2>
+                <div class="tickets-container" id="tickets-container">
+                    <!-- Los tickets se cargarán dinámicamente -->
+                </div>
+            </div>
+        </section>
+
+        <section id="impacto" class="impact">
+            <div class="container">
+                <h2 class="section-title fade-in">Impacto del Evento</h2>
+                <div class="impact-stats">
+                    <div class="stat-card fade-in">
+                        <span class="stat-number" data-target="11">0</span>
+                        <p class="stat-label">Panelistas Expertos</p>
+                    </div>
+                    <div class="stat-card fade-in">
+                        <span class="stat-number" data-target="12">0</span>
+                        <p class="stat-label">Horas de Contenido</p>
+                    </div>
+                    <div class="stat-card fade-in">
+                        <span class="stat-number" data-target="3">0</span>
+                        <p class="stat-label">Países Participantes</p>
+                    </div>
+                    <div class="stat-card fade-in">
+                        <span class="stat-number" data-target="100">0</span>
+                        <p class="stat-label">% Apoyo Social</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 4rem;" class="fade-in">
+                    <h3 style="color: var(--primary-blue); font-size: 1.8rem; margin-bottom: 2rem;">Temas Abordados</h3>
+                    <div id="topics-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+                        <!-- Los temas se cargarán dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <div class="footer-content">
+            <h3 class="footer-logo">Universidad Privada Domingo Savio</h3>
+            <p class="footer-text">
+                Generar cambios en las personas para desarrollar emprendedores socialmente responsables capaces de responder a desafíos emergentes.
+            </p>
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <p class="copyright">
+                © 2024 Universidad Privada Domingo Savio. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="src/services/dataService.js"></script>
+    <script src="src/services/ticketService.js"></script>
+    <script src="src/components/Speaker.js"></script>
+    <script src="src/components/Schedule.js"></script>
+    <script src="src/components/TicketSection.js"></script>
+    <script src="src/utils/animations.js"></script>
+    <script src="src/utils/helpers.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

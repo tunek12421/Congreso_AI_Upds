@@ -1,0 +1,96 @@
+{
+  "speakers": [
+    {
+      "id": 1,
+      "name": "Dr. Ana María Silva",
+      "title": "Especialista en IA Aplicada",
+      "country": "Brasil",
+      "flag": "🇧🇷",
+      "expertise": ["Machine Learning", "Computer Vision", "Healthcare AI"],
+      "bio": "Doctora en Ciencias de la Computación con 15 años de experiencia en aplicaciones de IA en el sector salud.",
+      "photo": "assets/images/speakers/ana-silva.jpg",
+      "social": {
+        "linkedin": "https://linkedin.com/in/ana-silva",
+        "twitter": "@ana_silva_ai"
+      },
+      "sessions": [1, 3]
+    },
+    {
+      "id": 2,
+      "name": "Prof. Michael Johnson",
+      "title": "Director de IA Ética - MIT",
+      "country": "Estados Unidos",
+      "flag": "🇺🇸",
+      "expertise": ["AI Ethics", "Policy", "Governance"],
+      "bio": "Profesor del MIT especializado en ética de la inteligencia artificial y políticas públicas tecnológicas.",
+      "photo": "assets/images/speakers/michael-johnson.jpg",
+      "social": {
+        "linkedin": "https://linkedin.com/in/mjohnson",
+        "twitter": "@mike_ai_ethics"
+      },
+      "sessions": [2, 5]
+    },
+    {
+      "id": 3,
+      "name": "Dra. Carmen Rodríguez",
+      "title": "Investigadora Senior UPDS",
+      "country": "Bolivia",
+      "flag": "🇧🇴",
+      "expertise": ["Educational AI", "Digital Literacy", "Innovation"],
+      "bio": "Investigadora líder en aplicaciones de IA para educación superior en Latinoamérica.",
+      "photo": "assets/images/speakers/carmen-rodriguez.jpg",
+      "social": {
+        "linkedin": "https://linkedin.com/in/carmen-rodriguez",
+        "email": "carmen.rodriguez@upds.edu.bo"
+      },
+      "sessions": [4, 6]
+    },
+    {
+      "id": 4,
+      "name": "Dr. Roberto Santos",
+      "title": "CTO - TechnoCity Brasil",
+      "country": "Brasil",
+      "flag": "🇧🇷",
+      "expertise": ["Smart Cities", "IoT", "Urban AI"],
+      "bio": "Líder en implementación de ciudades inteligentes y tecnologías urbanas innovadoras.",
+      "photo": "assets/images/speakers/roberto-santos.jpg",
+      "social": {
+        "linkedin": "https://linkedin.com/in/roberto-santos",
+        "twitter": "@roberto_smart"
+      },
+      "sessions": [7]
+    },
+    {
+      "id": 5,
+      "name": "Sarah Williams",
+      "title": "AI Marketing Strategist",
+      "country": "Estados Unidos",
+      "flag": "🇺🇸",
+      "expertise": ["Marketing AI", "Consumer Behavior", "Digital Strategy"],
+      "bio": "Estratega de marketing con IA para Fortune 500, especializada en comportamiento del consumidor digital.",
+      "photo": "assets/images/speakers/sarah-williams.jpg",
+      "social": {
+        "linkedin": "https://linkedin.com/in/sarah-williams",
+        "twitter": "@sarah_ai_marketing"
+      },
+      "sessions": [8]
+    },
+    {
+      "id": 6,
+      "name": "Ing. Luis Mamani",
+      "title": "Especialista en Ciberseguridad",
+      "country": "Bolivia",
+      "flag": "🇧🇴",
+      "expertise": ["Cybersecurity", "AI Security", "Risk Management"],
+      "bio": "Experto en seguridad informática y aplicaciones de IA para la protección de datos.",
+      "photo": "assets/images/speakers/luis-mamani.jpg",
+      "social": {
+        "linkedin": "https://linkedin.com/in/luis-mamani",
+        "email": "luis.mamani@cybersec.bo"
+      },
+      "sessions": [9]
+    }
+  ],
+  "featured_speakers": [1, 2, 3],
+  "keynote_speakers": [1, 2]
+}

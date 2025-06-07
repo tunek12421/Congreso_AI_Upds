@@ -1,0 +1,79 @@
+/* ===== CONGRESO IA - UPDS ===== */
+/* Archivo principal de estilos */
+
+/* Base */
+@import url('./base/reset.css');
+@import url('./base/variables.css');
+@import url('./base/typography.css');
+
+/* Layout */
+@import url('./layout/header.css');
+@import url('./layout/footer.css');
+@import url('./layout/grid.css');
+
+/* Components */
+@import url('./components/buttons.css');
+@import url('./components/cards.css');
+@import url('./components/modals.css');
+@import url('./components/forms.css');
+@import url('./components/animations.css');
+
+/* Sections */
+@import url('./sections/hero.css');
+@import url('./sections/speakers.css');
+@import url('./sections/schedule.css');
+@import url('./sections/tickets.css');
+@import url('./sections/impact.css');
+
+/* Utilities */
+@import url('./utilities/helpers.css');
+@import url('./utilities/responsive.css');
+
+/* ===== GLOBAL STYLES ===== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: var(--transition-slow);
+}
+
+.fade-in.visible,
+.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animated Background */
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(-45deg, #1e3c72, #2a5298, #4a90e2, #74b9ff);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

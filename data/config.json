@@ -1,0 +1,55 @@
+{
+  "event": {
+    "name": "1er Congreso de Inteligencia Artificial",
+    "subtitle": "Un enlace entre innovación y solidaridad",
+    "date": "2024-12-15",
+    "time": "08:00 - 21:00",
+    "location": {
+      "city": "Cochabamba",
+      "country": "Bolivia",
+      "venue": "Universidad Privada Domingo Savio",
+      "address": "Av. Beni y 3er Anillo, Cochabamba, Bolivia"
+    },
+    "organizers": [
+      "Universidad Privada Domingo Savio",
+      "Gobierno Autónomo Municipal de Cochabamba"
+    ],
+    "beneficiary": "Casa de Acogida Mujer Águila",
+    "social_commitment": "100% de las entradas destinadas a la Casa de Acogida Mujer Águila"
+  },
+  "registration": {
+    "status": "open",
+    "deadline": "2024-12-10",
+    "capacity": 500,
+    "current_registrations": 0
+  },
+  "contact": {
+    "email": "congreso@upds.edu.bo",
+    "phone": "+591 4 123-4567",
+    "website": "https://upds.edu.bo",
+    "social": {
+      "facebook": "https://facebook.com/upds.bolivia",
+      "twitter": "https://twitter.com/upds_bolivia",
+      "linkedin": "https://linkedin.com/company/upds",
+      "instagram": "https://instagram.com/upds_bolivia"
+    }
+  },
+  "ticket_platforms": {
+    "primary": "eventbrite",
+    "secondary": "stripe",
+    "backup": "manual"
+  },
+  "features": {
+    "live_streaming": true,
+    "certificates": true,
+    "networking": true,
+    "materials": true,
+    "recording": true
+  },
+  "statistics": {
+    "speakers": 11,
+    "hours": 12,
+    "countries": 3,
+    "social_support": 100
+  }
+}
