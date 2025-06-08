@@ -176,37 +176,6 @@ function setupGlobalEvents() {
         });
     });
 
-    // Header scroll effect
-    let lastScrollY = window.scrollY;
-    window.addEventListener('scroll', throttle(() => {
-        const header = document.querySelector('header');
-        const currentScrollY = window.scrollY;
-        
-        if (currentScrollY > 100) {
-            header.style.background = 'rgba(255, 255, 255, 0.98)';
-            header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
-        } else {
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
-            header.style.boxShadow = 'none';
-        }
-        
-        // Hide/show header on scroll
-        if (currentScrollY > lastScrollY && currentScrollY > 200) {
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            header.style.transform = 'translateY(0)';
-        }
-        
-        lastScrollY = currentScrollY;
-        
-        // Update parallax elements
-        updateParallaxElements(currentScrollY);
-        
-        // Update animated background speed
-        updateAnimatedBackground(currentScrollY);
-        
-    }, 16)); // ~60fps
-
     // Mobile menu toggle (future enhancement)
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     if (mobileMenuBtn) {

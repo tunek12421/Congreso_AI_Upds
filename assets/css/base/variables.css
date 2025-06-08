@@ -5,11 +5,15 @@
     --accent-blue: #2a5298;
     --light-blue: #4a90e2;
     
+    --dark-background: #131313;
+    --dark-background-hover:rgb(49, 49, 49);
     /* Gradientes */
     --gradient-primary: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     --gradient-accent: linear-gradient(135deg, #4a90e2 0%, #74b9ff 100%);
     
     /* Colores de texto */
+    --text-primary: #ebebeb;
+    --text-primary-hover: #4a90e2;
     --text-dark: #2c3e50;
     --text-light: #7f8c8d;
     --white: #ffffff;
@@ -21,8 +25,8 @@
     --error: #e17055;
     
     /* Sombras */
-    --shadow: 0 20px 60px rgba(30, 60, 114, 0.1);
-    --shadow-hover: 0 30px 80px rgba(30, 60, 114, 0.15);
+    --shadow: 0 20px 60px rgba(30, 60, 114, 0.2);
+    --shadow-hover: 0 30px 80px rgba(30, 60, 114, 0.45);
     
     /* Tipografía */
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
