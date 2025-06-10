@@ -30,17 +30,6 @@
 
     <main>
         <section id="inicio" class="hero">
-            <!-- Video Background -->
-            <div class="video-background">
-                <video autoplay muted loop playsinline>
-                    <source src="assets/videos/hero-background.mp4" type="video/mp4">
-                    <source src="assets/videos/hero-background.webm" type="video/webm">
-                    <!-- Fallback para navegadores sin soporte -->
-                </video>
-                <div class="video-overlay"></div>
-            </div>
-            
-            <!-- Contenido existente -->
             <div class="floating-element floating-1"></div>
             <div class="floating-element floating-2"></div>
             <div class="floating-element floating-3"></div>
