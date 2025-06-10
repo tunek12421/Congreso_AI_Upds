@@ -1,4 +1,4 @@
-/* ===== SECCIÓN HERO CON VIDEO ===== */
+/* ===== SECCIÓN HERO CON VIDEO (ACTUALIZADO) ===== */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -9,6 +9,7 @@
     padding: 0 2rem;
     margin-top: 80px;
     overflow: hidden;
+    background-color: var(--dark-bg); /* AGREGADO: Fallback importante */
 }
 
 /* Video Background */
@@ -33,6 +34,14 @@
     transform: translate(-50%, -50%);
     object-fit: cover;
     z-index: -2;
+    /* AGREGADO: Transición suave */
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+/* AGREGADO: Video cargado */
+.video-background video.loaded {
+    opacity: 1;
 }
 
 /* Video Overlay */
@@ -64,10 +73,36 @@
     animation: gradientShift 15s ease infinite;
 }
 
+/* AGREGADO: Animación del gradiente */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 .hero-content {
     max-width: 900px;
     z-index: 2;
     position: relative;
+}
+
+/* AGREGADO: Estilos para el título */
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-out 0.2s both;
+}
+
+/* AGREGADO: Estilos para el subtítulo */
+.hero-subtitle {
+    font-size: 1.8rem;
+    color: var(--light-gray);
+    margin-bottom: 3rem;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-out 0.3s both;
 }
 
 .hero-date {
@@ -101,6 +136,8 @@
     backdrop-filter: blur(10px);
     animation: float 6s ease-in-out infinite;
     border: 1px solid rgba(255,255,255,0.2);
+    z-index: 1; /* AGREGADO: z-index para asegurar visibilidad */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); /* AGREGADO */
 }
 
 .floating-1 {
@@ -132,12 +169,42 @@
     50% { transform: translateY(-20px); }
 }
 
+/* AGREGADO: Animaciones que faltaban */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Mejoras para botones sobre video */
 .btn-primary {
     background: rgba(255, 255, 255, 0.95);
     color: var(--primary-blue);
     box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     backdrop-filter: blur(10px);
+    transition: all 0.3s ease; /* AGREGADO */
+}
+
+.btn-primary:hover {
+    background: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.3);
 }
 
 .btn-secondary {
@@ -146,6 +213,13 @@
     border: 2px solid rgba(255,255,255,0.4);
     backdrop-filter: blur(15px);
     box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    transition: all 0.3s ease; /* AGREGADO */
+}
+
+.btn-secondary:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
 }
 
 /* Control de video (opcional) */
@@ -177,10 +251,39 @@
     transform: scale(1.1);
 }
 
+/* AGREGADO: Loading indicator */
+.loading-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 1s ease;
+    pointer-events: none;
+}
+
+.loading-indicator.hidden {
+    opacity: 0;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top: 3px solid var(--white);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* Responsive para video */
 @media (max-width: 768px) {
     .video-background video {
-        /* En móviles, el video puede ser más pesado, usa imagen como fallback */
         display: none;
     }
     
@@ -195,6 +298,30 @@
     .video-controls {
         display: none;
     }
+
+    /* AGREGADO: Responsive para contenido */
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.4rem;
+    }
+    
+    .hero-date {
+        font-size: 1.2rem;
+        padding: 0.8rem 1.5rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
 }
 
 /* Optimización para dispositivos de bajo rendimiento */
@@ -205,5 +332,17 @@
     
     .floating-element {
         animation: none;
+    }
+
+    .animated-bg {
+        animation: none;
+        background: var(--primary-blue);
+    }
+}
+
+/* AGREGADO: Para conexiones lentas */
+@media (max-width: 768px) and (max-resolution: 150dpi) {
+    .video-background video {
+        display: none !important;
     }
 }

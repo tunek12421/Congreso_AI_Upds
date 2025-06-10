@@ -30,20 +30,27 @@
 
     <main>
         <section id="inicio" class="hero">
+            <!-- Fondo animado (fallback) -->
+            <div class="animated-bg"></div>
+            
             <!-- Video Background -->
             <div class="video-background">
                 <video autoplay muted loop playsinline>
                     <source src="assets/videos/hero-background.mp4" type="video/mp4">
-                    Tu Navegador no soporta el video.
+                    <source src="assets/videos/hero-background.webm" type="video/webm">
+                    <!-- Fallback temporal para pruebas -->
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                    Tu navegador no soporta el video.
                 </video>
                 <div class="video-overlay"></div>
             </div>
             
-            <!-- Contenido existente -->
+            <!-- Elementos flotantes -->
             <div class="floating-element floating-1"></div>
             <div class="floating-element floating-2"></div>
             <div class="floating-element floating-3"></div>
             
+            <!-- Contenido principal -->
             <div class="hero-content">
                 <h1>1er Congreso de Inteligencia Artificial</h1>
                 <p class="hero-subtitle">Un enlace entre innovación y solidaridad</p>
@@ -61,6 +68,13 @@
                         Ver Ponentes
                     </a>
                 </div>
+            </div>
+            
+            <!-- Controles de video -->
+            <div class="video-controls">
+                <button class="video-toggle" id="videoToggle" title="Pausar/Reproducir video">
+                    <i class="fas fa-pause" id="playIcon"></i>
+                </button>
             </div>
         </section>
 
