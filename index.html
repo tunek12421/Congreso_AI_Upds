@@ -29,54 +29,105 @@
     </header>
 
     <main>
-        <section id="inicio" class="hero">
-            <!-- Fondo animado (fallback) -->
-            <div class="animated-bg"></div>
-            
-            <!-- Video Background -->
-            <div class="video-background">
-                <video autoplay muted loop playsinline>
-                    <source src="assets/videos/hero-background.mp4" type="video/mp4">
-                    <source src="assets/videos/hero-background.webm" type="video/webm">
-                    <!-- Fallback temporal para pruebas -->
-                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-                    Tu navegador no soporta el video.
-                </video>
-                <div class="video-overlay"></div>
-            </div>
-            
-            <!-- Elementos flotantes -->
-            <div class="floating-element floating-1"></div>
-            <div class="floating-element floating-2"></div>
-            <div class="floating-element floating-3"></div>
-            
-            <!-- Contenido principal -->
-            <div class="hero-content">
-                <h1>1er Congreso de Inteligencia Artificial</h1>
-                <p class="hero-subtitle">Un enlace entre innovación y solidaridad</p>
-                <div class="hero-date">
-                    <i class="fas fa-calendar-alt"></i>
-                    <span id="event-date">Cargando fecha...</span>
-                </div>
-                <div class="cta-buttons">
-                    <a href="#tickets" class="btn btn-primary">
-                        <i class="fas fa-ticket-alt"></i>
-                        Obtener Tickets
-                    </a>
-                    <a href="#ponentes" class="btn btn-secondary">
-                        <i class="fas fa-users"></i>
-                        Ver Ponentes
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Controles de video -->
-            <div class="video-controls">
-                <button class="video-toggle" id="videoToggle" title="Pausar/Reproducir video">
-                    <i class="fas fa-pause" id="playIcon"></i>
-                </button>
-            </div>
-        </section>
+<section id="inicio" class="hero">
+    <!-- Video de fondo -->
+    <video 
+        class="hero-video" 
+        autoplay 
+        muted 
+        loop 
+        playsinline
+        poster="assets/images/backgrounds/c.png">
+        <!-- Múltiples formatos para compatibilidad -->
+        <source src="assets/images/backgrounds/hero-background.mp4" type="video/mp4">
+        <source src="assets/videos/hero-background.webm" type="video/webm">
+        <!-- Fallback para navegadores que no soportan video -->
+        Tu navegador no soporta video HTML5.
+    </video>
+
+    <!-- Elementos flotantes -->
+    <div class="floating-element floating-1"></div>
+    <div class="floating-element floating-2"></div>
+    <div class="floating-element floating-3"></div>
+    
+    <!-- Contenido principal -->
+    <div class="hero-content">
+        <h1>1er Congreso de Inteligencia Artificial</h1>
+        <p class="hero-subtitle">Un enlace entre innovación y solidaridad</p>
+        <div class="hero-date">
+            <i class="fas fa-calendar-alt"></i>
+            <span id="event-date">Cargando fecha...</span>
+        </div>
+        <div class="cta-buttons">
+            <a href="#tickets" class="btn btn-primary">
+                <i class="fas fa-ticket-alt"></i>
+                Obtener Tickets
+            </a>
+            <a href="#ponentes" class="btn btn-secondary">
+                <i class="fas fa-users"></i>
+                Ver Ponentes
+            </a>
+        </div>
+    </div>
+
+    <!-- Controles opcionales del video (opcional - puedes removerlos si no los necesitas) -->
+    <div class="video-controls">
+        <button class="video-control-btn" id="playPauseBtn" title="Play/Pause">
+            ⏸️
+        </button>
+        <button class="video-control-btn" id="muteBtn" title="Mute/Unmute">
+            🔊
+        </button>
+    </div>
+</section>
+
+<script>
+// JavaScript opcional para controlar el video
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('.hero-video');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const muteBtn = document.getElementById('muteBtn');
+
+    // Control de reproducción/pausa
+    if (playPauseBtn) {
+        playPauseBtn.addEventListener('click', function() {
+            if (video.paused) {
+                video.play();
+                playPauseBtn.textContent = '⏸️';
+            } else {
+                video.pause();
+                playPauseBtn.textContent = '▶️';
+            }
+        });
+    }
+
+    // Control de sonido
+    if (muteBtn) {
+        muteBtn.addEventListener('click', function() {
+            if (video.muted) {
+                video.muted = false;
+                muteBtn.textContent = '🔊';
+            } else {
+                video.muted = true;
+                muteBtn.textContent = '🔇';
+            }
+        });
+    }
+
+    // Pausar video cuando no está visible (optimización de rendimiento)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+    });
+
+    observer.observe(video);
+});
+</script>
 
         <section id="congreso" class="about">
             <div class="container">

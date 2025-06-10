@@ -1,4 +1,4 @@
-/* ===== SECCIÓN HERO CON VIDEO (ACTUALIZADO) ===== */
+/* ===== SECCIÓN HERO ===== */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -8,76 +8,34 @@
     position: relative;
     padding: 0 2rem;
     margin-top: 80px;
-    overflow: hidden;
-    background-color: var(--dark-bg); /* AGREGADO: Fallback importante */
+    overflow: hidden; /* Importante para que el video no se desborde */
+    background-color: var(--dark-bg); /* Fallback */
 }
 
-/* Video Background */
-.video-background {
+/* Video de fondo */
+.hero-video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -2;
-    overflow: hidden;
-}
-
-.video-background video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    object-fit: cover;
+    z-index: 0;
+    /* Asegurar que el video cubra toda la sección */
     min-width: 100%;
     min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
-    z-index: -2;
-    /* AGREGADO: Transición suave */
-    opacity: 0;
-    transition: opacity 2s ease-in-out;
 }
 
-/* AGREGADO: Video cargado */
-.video-background video.loaded {
-    opacity: 1;
-}
-
-/* Video Overlay */
-.video-overlay {
+/* Overlay oscuro para mejor legibilidad */
+.hero::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        135deg,
-        rgba(30, 60, 114, 0.8) 0%,
-        rgba(42, 82, 152, 0.7) 50%,
-        rgba(74, 144, 226, 0.6) 100%
-    );
-    z-index: -1;
-}
-
-/* Fallback: Animated Background (si no hay video) */
-.animated-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -3;
-    background: linear-gradient(-45deg, #1e3c72, #2a5298, #4a90e2, #74b9ff);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-}
-
-/* AGREGADO: Animación del gradiente */
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 .hero-content {
@@ -86,7 +44,6 @@
     position: relative;
 }
 
-/* AGREGADO: Estilos para el título */
 .hero-content h1 {
     font-size: 3.5rem;
     font-weight: 700;
@@ -96,7 +53,6 @@
     animation: fadeIn 1s ease-out 0.2s both;
 }
 
-/* AGREGADO: Estilos para el subtítulo */
 .hero-subtitle {
     font-size: 1.8rem;
     color: var(--light-gray);
@@ -111,33 +67,31 @@
     color: var(--white);
     margin-bottom: 3rem;
     padding: 1rem 2rem;
-    background: rgba(255,255,255,0.15);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 50px;
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     display: inline-block;
     animation: slideInUp 1s ease-out 0.4s both;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
 }
 
 .cta-buttons {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
     flex-wrap: wrap;
-    animation: slideInUp 1s ease-out 0.6s both;
+    animation: fadeIn 1s ease-out 0.6s both;
 }
 
-/* Floating Elements con mejor contraste */
+/* Floating Elements */
 .floating-element {
     position: absolute;
     border-radius: 50%;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     animation: float 6s ease-in-out infinite;
-    border: 1px solid rgba(255,255,255,0.2);
-    z-index: 1; /* AGREGADO: z-index para asegurar visibilidad */
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); /* AGREGADO */
+    z-index: 1;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .floating-1 {
@@ -164,12 +118,16 @@
     animation-delay: 4s;
 }
 
+/* Animaciones */
 @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
 }
 
-/* AGREGADO: Animaciones que faltaban */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -192,114 +150,8 @@
     }
 }
 
-/* Mejoras para botones sobre video */
-.btn-primary {
-    background: rgba(255, 255, 255, 0.95);
-    color: var(--primary-blue);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease; /* AGREGADO */
-}
-
-.btn-primary:hover {
-    background: var(--white);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(0,0,0,0.3);
-}
-
-.btn-secondary {
-    background: rgba(255,255,255,0.1);
-    color: var(--white);
-    border: 2px solid rgba(255,255,255,0.4);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-    transition: all 0.3s ease; /* AGREGADO */
-}
-
-.btn-secondary:hover {
-    background: rgba(255,255,255,0.2);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
-}
-
-/* Control de video (opcional) */
-.video-controls {
-    position: absolute;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 10;
-}
-
-.video-toggle {
-    background: rgba(255,255,255,0.2);
-    border: 1px solid rgba(255,255,255,0.3);
-    color: var(--white);
-    padding: 0.75rem;
-    border-radius: 50%;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.video-toggle:hover {
-    background: rgba(255,255,255,0.3);
-    transform: scale(1.1);
-}
-
-/* AGREGADO: Loading indicator */
-.loading-indicator {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    opacity: 1;
-    transition: opacity 1s ease;
-    pointer-events: none;
-}
-
-.loading-indicator.hidden {
-    opacity: 0;
-}
-
-.spinner {
-    width: 40px;
-    height: 40px;
-    border: 3px solid rgba(255,255,255,0.3);
-    border-top: 3px solid var(--white);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Responsive para video */
+/* Responsive */
 @media (max-width: 768px) {
-    .video-background video {
-        display: none;
-    }
-    
-    .hero {
-        margin-top: 60px;
-    }
-    
-    .floating-element {
-        display: none;
-    }
-    
-    .video-controls {
-        display: none;
-    }
-
-    /* AGREGADO: Responsive para contenido */
     .hero-content h1 {
         font-size: 2.5rem;
     }
@@ -312,37 +164,47 @@
         font-size: 1.2rem;
         padding: 0.8rem 1.5rem;
     }
-
-    .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .btn {
-        width: 100%;
-        max-width: 300px;
-    }
-}
-
-/* Optimización para dispositivos de bajo rendimiento */
-@media (prefers-reduced-motion: reduce) {
-    .video-background video {
-        display: none;
-    }
     
     .floating-element {
-        animation: none;
+        display: none; /* Ocultar elementos flotantes en móviles */
     }
-
-    .animated-bg {
-        animation: none;
-        background: var(--primary-blue);
+    
+    /* Optimización del video en móviles */
+    .hero-video {
+        /* En móviles, puedes considerar pausar el video o usar una imagen como fallback */
+        object-position: center;
     }
 }
 
-/* AGREGADO: Para conexiones lentas */
-@media (max-width: 768px) and (max-resolution: 150dpi) {
-    .video-background video {
-        display: none !important;
+/* Media queries para dispositivos con conexión lenta */
+@media (prefers-reduced-motion: reduce) {
+    .hero-video {
+        animation-play-state: paused;
     }
+}
+
+/* Controles opcionales para el video (si quieres que sean visibles) */
+.video-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 3;
+    display: flex;
+    gap: 10px;
+}
+
+.video-control-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: white;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: background 0.3s ease;
+}
+
+.video-control-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
 }
