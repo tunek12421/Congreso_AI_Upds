@@ -52,11 +52,15 @@
     
     <!-- Contenido principal -->
     <div class="hero-content">
-        <h1>2° Congreso internacional Inteligencia Artificial 2025</h1>
-        <div class="hero-date">
-            <i class="fas fa-calendar-alt"></i>
-            <span id="event-date">Cargando fecha...</span>
+        <div class="hero-logo">
+            <span class="logo-text">cii<span class="logo-a">A</span></span>
+            <div class="logo-dots">
+                <span class="dot dot-1"></span>
+                <span class="dot dot-2"></span>
+            </div>
         </div>
+        <div class="hero-divider"></div>
+        <h1>2° Congreso internacional Inteligencia Artificial 2025</h1>
         <div class="cta-buttons">
             <a href="#tickets" class="btn btn-primary">
                 <i class="fas fa-ticket-alt"></i>
@@ -69,49 +73,13 @@
         </div>
     </div>
 
-    <!-- Controles opcionales del video (opcional - puedes removerlos si no los necesitas) -->
-    <div class="video-controls">
-        <button class="video-control-btn" id="playPauseBtn" title="Play/Pause">
-            ⏸️
-        </button>
-        <button class="video-control-btn" id="muteBtn" title="Mute/Unmute">
-            🔊
-        </button>
-    </div>
+
 </section>
 
 <script>
 // JavaScript opcional para controlar el video
 document.addEventListener('DOMContentLoaded', function() {
     const video = document.querySelector('.hero-video');
-    const playPauseBtn = document.getElementById('playPauseBtn');
-    const muteBtn = document.getElementById('muteBtn');
-
-    // Control de reproducción/pausa
-    if (playPauseBtn) {
-        playPauseBtn.addEventListener('click', function() {
-            if (video.paused) {
-                video.play();
-                playPauseBtn.textContent = '⏸️';
-            } else {
-                video.pause();
-                playPauseBtn.textContent = '▶️';
-            }
-        });
-    }
-
-    // Control de sonido
-    if (muteBtn) {
-        muteBtn.addEventListener('click', function() {
-            if (video.muted) {
-                video.muted = false;
-                muteBtn.textContent = '🔊';
-            } else {
-                video.muted = true;
-                muteBtn.textContent = '🔇';
-            }
-        });
-    }
 
     // Pausar video cuando no está visible (optimización de rendimiento)
     const observer = new IntersectionObserver((entries) => {
