@@ -70,8 +70,64 @@
         </div>
     </div>
 
+    <!-- Controles opcionales del video (opcional - puedes removerlos si no los necesitas) -->
+    <div class="video-controls">
+        <button class="video-control-btn" id="playPauseBtn" title="Play/Pause">
+            ⏸️
+        </button>
+        <button class="video-control-btn" id="muteBtn" title="Mute/Unmute">
+            🔊
+        </button>
+    </div>
 </section>
 
+<script>
+// JavaScript opcional para controlar el video
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('.hero-video');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const muteBtn = document.getElementById('muteBtn');
+
+    // Control de reproducción/pausa
+    if (playPauseBtn) {
+        playPauseBtn.addEventListener('click', function() {
+            if (video.paused) {
+                video.play();
+                playPauseBtn.textContent = '⏸️';
+            } else {
+                video.pause();
+                playPauseBtn.textContent = '▶️';
+            }
+        });
+    }
+
+    // Control de sonido
+    if (muteBtn) {
+        muteBtn.addEventListener('click', function() {
+            if (video.muted) {
+                video.muted = false;
+                muteBtn.textContent = '🔊';
+            } else {
+                video.muted = true;
+                muteBtn.textContent = '🔇';
+            }
+        });
+    }
+
+    // Pausar video cuando no está visible (optimización de rendimiento)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+    });
+
+    observer.observe(video);
+});
+</script>
 
         <section id="congreso" class="about">
             <div class="container">
