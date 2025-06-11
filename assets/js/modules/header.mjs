@@ -13,24 +13,7 @@ const updateHeader = ()=>{
         }
     }
 }
-function init(){
-    /*const target = document.querySelector('header');
-    console.log(`[${cssVariable("primary-blue")}]`); // "#3498db"
-    const observer = new IntersectionObserver((entries) => {
-        console.log(entries);
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-            // Elemento visible (cima de la página)
-            target.classList.add('en-cima');
-            //efectoAlSubir();
-            } else {
-            target.classList.remove('en-cima');
-            }
-        });
-    }, {threshold: }); // 10% del elemento visible
-
-    observer.observe(document.body);*/
-    // Header scroll effect
+async function init(){
     window.addEventListener('scroll',updateHeader);
     updateHeader();
 }

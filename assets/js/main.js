@@ -1,7 +1,7 @@
 // Main application initialization
 document.addEventListener('DOMContentLoaded', async function() {
     console.log('🚀 Inicializando Congreso IA - UPDS');
-    
+
     // Initialize global components
     await initializeApp();
     
@@ -75,7 +75,8 @@ async function initializeComponents() {
         throw error;
     }
 }
-
+async function loadEventDate(){
+}
 // Load dynamic content
 async function loadDynamicContent() {
     try {
@@ -166,7 +167,7 @@ function setupGlobalEvents() {
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 const headerHeight = document.querySelector('header').offsetHeight;
-                const targetPosition = target.offsetTop + headerHeight - 20;                
+                const targetPosition = target.offsetTop - headerHeight;
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
@@ -398,11 +399,11 @@ function handleKeyboardNavigation(e) {
 // Focus management for accessibility
 function setupFocusManagement() {
     // Skip link functionality
-    const skipLink = document.createElement('a');
+    /*const skipLink = document.createElement('a');
     skipLink.href = '#main';
     skipLink.className = 'skip-link';
     skipLink.textContent = 'Saltar al contenido principal';
-    document.body.insertBefore(skipLink, document.body.firstChild);
+    document.body.insertBefore(skipLink, document.body.firstChild);*/
     
     // Add main landmark if not exists
     const main = document.querySelector('main');

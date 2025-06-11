@@ -65,7 +65,7 @@
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    background: var(--white);
+    background: var(--dark-background);
     border-radius: 10px;
     box-shadow: var(--shadow);
     z-index: 3000;
@@ -95,7 +95,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 1rem 1.5rem;
-    color: var(--text-dark);
+    color: var(--text-light);
 }
 
 .toast-success .toast-content i {

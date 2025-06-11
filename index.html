@@ -12,7 +12,9 @@
     
     <header>
         <nav>
-            <div class="logo">UPDS</div>
+            <div class="logo">
+                <img src="/assets/images/logos/CiiA1.png" height="70"></img>
+            </div>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#congreso">Congreso</a></li>
@@ -29,73 +31,50 @@
     </header>
 
     <main>
-<section id="inicio" class="hero">
-    <!-- Video de fondo -->
-    <video 
-        class="hero-video" 
-        autoplay 
-        muted 
-        loop 
-        playsinline
-        poster="assets/images/backgrounds/c.png">
-        <!-- Múltiples formatos para compatibilidad -->
-        <source src="assets/videos/hero-background.mp4" type="video/mp4">
-        <source src="assets/videos/hero-background.webm" type="video/webm">
-        <!-- Fallback para navegadores que no soportan video -->
-        Tu navegador no soporta video HTML5.
-    </video>
-
-    <!-- Elementos flotantes -->
-    <div class="floating-element floating-1"></div>
-    <div class="floating-element floating-2"></div>
-    <div class="floating-element floating-3"></div>
-    
-    <!-- Contenido principal -->
-    <div class="hero-content">
-        <div class="hero-logo">
-            <span class="logo-text">cii<span class="logo-a">A</span></span>
-            <div class="logo-dots">
-                <span class="dot dot-1"></span>
-                <span class="dot dot-2"></span>
+        <section id="inicio" class="hero">
+            <!-- Video de fondo -->
+            <video 
+                class="hero-video" 
+                autoplay 
+                muted 
+                loop 
+                >
+                <!--playsinline
+                poster="assets/images/backgrounds/c.png"-->
+                <!-- Múltiples formatos para compatibilidad -->
+                <source src="assets/videos/hero-background.mp4" type="video/mp4">
+                <source src="assets/videos/hero-background.webm" type="video/webm">
+                <!-- Fallback para navegadores que no soportan video -->
+                Tu navegador no soporta video HTML5.
+            </video>
+            <!-- Elementos flotantes -->
+            <div class="floating-element floating-1"></div>
+            <div class="floating-element floating-2"></div>
+            <div class="floating-element floating-3"></div>
+            <!-- Contenido principal -->
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <span class="logo-text">cii<span class="logo-a">A</span></span>
+                    <div class="logo-dots">
+                        <span class="dot dot-1"></span>
+                        <span class="dot dot-2"></span>
+                    </div>
+                </div>
+                <div class="hero-divider"></div>
+                <h1>2° Congreso internacional Inteligencia Artificial 2025</h1>
+                <div class="cta-buttons">
+                    <a href="#tickets" class="btn btn-primary">
+                        <i class="fas fa-ticket-alt"></i>
+                        Comprar tickets
+                    </a>
+                    <a href="#congreso" class="btn btn-secondary">
+                        <i class="fas fa-play"></i>
+                        Explorar
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="hero-divider"></div>
-        <h1>2° Congreso internacional Inteligencia Artificial 2025</h1>
-        <div class="cta-buttons">
-            <a href="#tickets" class="btn btn-primary">
-                <i class="fas fa-ticket-alt"></i>
-                Obtener Tickets
-            </a>
-            <a href="#ponentes" class="btn btn-secondary">
-                <i class="fas fa-users"></i>
-                Ver Ponentes
-            </a>
-        </div>
-    </div>
-
-
-</section>
-
-<script>
-// JavaScript opcional para controlar el video
-document.addEventListener('DOMContentLoaded', function() {
-    const video = document.querySelector('.hero-video');
-
-    // Pausar video cuando no está visible (optimización de rendimiento)
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                video.play();
-            } else {
-                video.pause();
-            }
-        });
-    });
-
-    observer.observe(video);
-});
-</script>
-
+        </section>
+        <hr class="section-hr">
         <section id="congreso" class="about">
             <div class="container">
                 <h2 class="section-title fade-in">Congreso</h2>
@@ -126,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div-->
             </div>
         </section>
-
+        <hr class="section-hr">
         <section id="ponentes" class="speakers">
             <div class="container">
                 <h2 class="section-title fade-in">Ponentes Destacados</h2>
@@ -135,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         </section>
-
+        <hr class="section-hr">
         <section id="programa" class="schedule">
             <div class="container">
                 <h2 class="section-title fade-in">Programa del Evento</h2>
@@ -144,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         </section>
-
+        <hr class="section-hr">
         <section id="tickets" class="tickets">
             <div class="container">
                 <h2 class="section-title fade-in">Obtén tu Entrada</h2>
@@ -153,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         </section>
-
+        <hr class="section-hr">
         <section id="impacto" class="impact">
             <div class="container">
                 <h2 class="section-title fade-in">Impacto del Evento</h2>
@@ -213,6 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </footer>
 
     <!-- Scripts -->
+    <script src="assets/js/modules.mjs" type="module"></script>
     <script src="src/services/dataService.js"></script>
     <script src="src/services/ticketService.js"></script>
     <script src="src/components/Speaker.js"></script>
@@ -221,6 +201,5 @@ document.addEventListener('DOMContentLoaded', function() {
     <script src="src/utils/animations.js"></script>
     <script src="src/utils/helpers.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/modules.mjs" type="module"></script>
 </body>
 </html>

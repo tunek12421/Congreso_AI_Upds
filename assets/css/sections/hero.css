@@ -6,8 +6,8 @@
     justify-content: center;
     text-align: center;
     position: relative;
-    padding: 0 2rem;
-    margin-top: 80px;
+    padding: 2rem;
+    padding-top: 70px;
     overflow: hidden; /* Importante para que el video no se desborde */
     background-color: var(--dark-bg); /* Fallback */
 }
@@ -60,6 +60,7 @@
     letter-spacing: -0.1em;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1;
+    user-select: none;
 }
 
 .logo-a {
@@ -189,7 +190,7 @@
 /* Eliminado @keyframes slideInUp ya que no se usa */
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 850px) {
     .hero-content h1 {
         font-size: 2.5rem;
     }
@@ -213,7 +214,7 @@
     }
 
     .hero-divider {
-        width: 380px;
+        width: 80%;
         height: 2px;
         margin: 0.3rem auto 1.5rem auto;
     }

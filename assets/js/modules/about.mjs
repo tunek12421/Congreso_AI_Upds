@@ -28,7 +28,7 @@ async function start(){
     await sleep(info.startDelay);
     about.innerHTML=
     `<h3></h3>
-    <p class="card-text"></p>`;
+    <p></p>`;
     await speak(about.querySelector("h3"),info.title);
     await speak(about.querySelector("p"),info.desc);
     about.innerHTML=`${about.innerHTML}

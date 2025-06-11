@@ -1,8 +1,8 @@
 /* ===== SECCIÓN SPEAKERS ===== */
-.speakers {
-    padding: 8rem 2rem;
-    background: var(--bg-light);
-}
+/*.speakers {
+    padding: 2rem;
+    background: var(--main-background);
+}*/
 
 .speaker-card {
     background: var(--white);

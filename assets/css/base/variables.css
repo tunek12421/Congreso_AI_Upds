@@ -1,15 +1,22 @@
 /* ===== VARIABLES CSS ===== */
 :root {
     /* Colores principales */
-    --primary-blue: #1e3c72;
+    --main-background: linear-gradient(135deg, #1d7c9f 0%, #000612 100%);
+    /*#001024;*/
+    
+    --primary-blue: #02193f;
     --accent-blue: #2a5298;
     --light-blue: #4a90e2;
     
-    --dark-background: #131313;
+    --primary-color: #39c6d0;
+    --primary-color-text: #ffffff;
+
+
+    --dark-background: #0f0f0f;
     --dark-background-hover:rgb(49, 49, 49);
     /* Gradientes */
-    --gradient-primary: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    --gradient-accent: linear-gradient(135deg, #4a90e2 0%, #74b9ff 100%);
+    --gradient-primary: linear-gradient(135deg, #1d7c9f 0%, #000612 100%);
+    --gradient-accent: linear-gradient(135deg, #1d7c9f 0%, #000612 100%);
     
     /* Colores de texto */
     --text-primary: #ebebeb;
@@ -48,4 +55,6 @@
     --transition: all 0.3s ease;
     --transition-fast: all 0.15s ease;
     --transition-slow: all 0.6s ease;
+
+    --responsive-min-width: 850px;
 }

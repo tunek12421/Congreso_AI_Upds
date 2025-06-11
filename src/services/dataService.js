@@ -124,10 +124,11 @@ class DataService {
     // Método para validar integridad de datos
     async validateData() {
         try {
-            const speakers = await this.getSpeakers();
-            const schedule = await this.getSchedule();
-            const config = await this.getEventInfo();
-
+            const [speakers, schedule, config] = await Promise.all([
+                this.getSpeakers(),
+                this.getSchedule(),
+                this.getEventInfo()
+            ]);
             const issues = [];
 
             // Validar que todos los speakers referenciados existen

@@ -61,7 +61,7 @@
 }
 
 .modal-close:hover {
-    background: var(--bg-light);
+    background: var(--main-background);
     color: var(--primary-blue);
 }
 
@@ -123,7 +123,7 @@
 }
 
 .session-item {
-    background: var(--bg-light);
+    background: var(--main-background);
     padding: 1rem;
     border-radius: 10px;
     border-left: 4px solid var(--light-blue);
@@ -150,7 +150,7 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-    background: var(--bg-light);
+    background: var(--main-background);
     border-radius: 10px;
     margin-bottom: 1rem;
 }

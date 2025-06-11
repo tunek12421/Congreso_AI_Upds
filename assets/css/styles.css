@@ -19,6 +19,7 @@
 @import url('./components/animations.css');
 
 /* Sections */
+@import url('./sections/common.css');
 @import url('./sections/hero.css');
 @import url('./sections/about.css');
 @import url('./sections/speakers.css');
@@ -47,19 +48,6 @@
 .fade-in-visible {
     opacity: 1;
     transform: translateY(0);
-}
-
-/* Animated Background */
-.animated-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: linear-gradient(-45deg, #1e3c72, #2a5298, #4a90e2, #74b9ff);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
 }
 
 @keyframes gradientShift {

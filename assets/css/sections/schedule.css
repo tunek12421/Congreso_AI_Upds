@@ -1,8 +1,6 @@
 /* ===== SECCIÓN SCHEDULE ===== */
-.schedule {
-    padding: 8rem 2rem;
-    background: var(--white);
-}
+/*.schedule {
+}*/
 
 .schedule-filters {
     margin-bottom: 3rem;
@@ -146,7 +144,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    background: var(--bg-light);
+    background: var(--main-background);
     padding: 0.5rem 1rem;
     border-radius: 20px;
     cursor: pointer;

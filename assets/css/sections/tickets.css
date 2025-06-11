@@ -1,8 +1,6 @@
 /* ===== SECCIÓN TICKETS ===== */
-.tickets {
-    padding: 8rem 2rem;
-    background: var(--bg-light);
-}
+/*.tickets {
+}*/
 
 .tickets-header {
     text-align: center;
@@ -168,7 +166,7 @@
 .quantity-selector {
     display: flex;
     align-items: center;
-    border: 2px solid var(--bg-light);
+    border: 2px solid var(--main-background);
     border-radius: 25px;
     overflow: hidden;
 }
@@ -210,7 +208,7 @@
     align-items: center;
     margin-bottom: 2rem;
     padding: 1rem;
-    background: var(--bg-light);
+    background: var(--main-background);
     border-radius: 10px;
 }
 
@@ -259,7 +257,7 @@
 .availability-bar {
     width: 100%;
     height: 6px;
-    background: var(--bg-light);
+    background: var(--main-background);
     border-radius: 3px;
     overflow: hidden;
     margin-bottom: 0.5rem;
@@ -366,7 +364,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem 0;
-    border-bottom: 1px solid var(--bg-light);
+    border-bottom: 1px solid var(--main-background);
 }
 
 .item-name {
@@ -389,7 +387,7 @@
     display: flex;
     justify-content: space-between;
     padding: 1rem 0;
-    border-top: 2px solid var(--bg-light);
+    border-top: 2px solid var(--main-background);
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--primary-blue);

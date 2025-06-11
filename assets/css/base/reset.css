@@ -14,7 +14,9 @@ body {
     line-height: var(--line-height);
     color: var(--text-dark);
     overflow-x: hidden;
-    background: var(--bg-light);
+    background-image: url('/assets/images/backgrounds/bg-1.png');
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 img {

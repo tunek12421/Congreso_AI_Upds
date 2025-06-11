@@ -1,6 +1,6 @@
 /* ===== FOOTER ===== */
 footer {
-    background: var(--gradient-primary);
+    background: var(--primary-blue);
     color: var(--white);
     padding: 4rem 2rem 2rem;
     text-align: center;

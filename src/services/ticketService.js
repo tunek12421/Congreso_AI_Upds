@@ -7,7 +7,8 @@ class TicketService {
                 available: true,
                 maxQuantity: 5
             },
-            {
+        };
+        this.ticketTypes=[{
                 id: 'student',
                 name: 'Entrada Estudiante',
                 description: 'Tarifa especial para estudiantes',
@@ -218,7 +219,7 @@ Saludos cordiales,
 }
 
 // Instancia global del servicio
-const ticketService = new TicketService(); true,
+const ticketService = new TicketService();/* true,
                 primary: true
             },
             stripe: {
@@ -249,4 +250,4 @@ const ticketService = new TicketService(); true,
                     'Coffee breaks incluidos',
                     'Almuerzo incluido'
                 ],
-                available:
+                available:*/
