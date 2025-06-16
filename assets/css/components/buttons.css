@@ -16,8 +16,8 @@
 }
 
 .btn-primary {
-    background: var(--white);
-    color: var(--primary-blue);
+    background: var(--primary-color);
+    color: var(--primary-color-text);
     box-shadow: var(--shadow);
 }
 
@@ -28,8 +28,8 @@
 
 .btn-secondary {
     background: transparent;
-    color: var(--white);
-    border: 2px solid rgba(255,255,255,0.3);
+    color: var(--primary-color-text);
+    border: 2px solid var(--primary-color);
     backdrop-filter: blur(10px);
 }
 
@@ -59,7 +59,7 @@
 }
 
 .btn-view-details {
-    background: var(--white);
+    background: var(--dark-background);
     color: var(--primary-blue);
     border: none;
     padding: 0.75rem 1.5rem;

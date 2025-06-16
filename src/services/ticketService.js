@@ -10,10 +10,12 @@ class TicketService {
         };
         this.ticketTypes=[{
                 id: 'student',
-                name: 'Entrada Estudiante',
-                description: 'Tarifa especial para estudiantes',
+                name: 'Externos',
+                description: '',
                 price: 25,
-                currency: 'BOB',
+                price_profesional: 120,
+                price_student: 80,
+                currency: 'Bs',
                 benefits: [
                     'Acceso a todas las conferencias',
                     'Material del evento',
@@ -29,7 +31,31 @@ class TicketService {
                 name: 'Entrada VIP',
                 description: 'Experiencia premium con acceso exclusivo',
                 price: 100,
-                currency: 'BOB',
+                price_profesional: 80,
+                price_student: 50,
+                currency: 'Bs',
+                benefits: [
+                    'Acceso a todas las conferencias',
+                    'Material premium del evento',
+                    'Certificado especial',
+                    'Todas las comidas incluidas',
+                    'Acceso al cóctel de networking',
+                    'Meet & greet con ponentes',
+                    'Grabaciones de las sesiones'
+                ],
+                available: true,
+                maxQuantity: 2,
+                limited: true,
+                quantity: 50
+            },
+            {
+                id: 'vip2',
+                name: 'Entrada VIP',
+                description: 'Experiencia premium con acceso exclusivo',
+                price: 100,
+                price_profesional: 20,
+                price_student: 10,
+                currency: 'Usd',
                 benefits: [
                     'Acceso a todas las conferencias',
                     'Material premium del evento',

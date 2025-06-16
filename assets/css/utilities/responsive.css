@@ -1,17 +1,5 @@
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 850px) {
-   .nav-links {
-       display: none;
-   }
-   
-   .mobile-menu-btn {
-       display: block;
-   }
-   
-   .hero {
-       text-align: center;
-       padding: 2rem 1rem;
-   }
    
    .floating-element {
        display: none;
@@ -122,7 +110,7 @@
        padding: 0 1rem;
    }
    
-   .hero h1 {
+   .hero-card h1 {
        font-size: 2rem;
    }
    
@@ -214,7 +202,7 @@
        color: black !important;
    }
    
-   .hero {
+   .hero-card {
        margin-top: 0;
        min-height: auto;
        padding: 2rem 0;
@@ -233,8 +221,8 @@
        --primary-blue: #000080;
        --accent-blue: #0000FF;
        --light-blue: #4169E1;
-       --text-dark: #000000;
-       --text-light: #333333;
+       --dark-background-text: #000000;
+       --dark-background-text: #333333;
        --shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
    }
    

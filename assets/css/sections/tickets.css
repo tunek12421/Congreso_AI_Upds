@@ -38,13 +38,16 @@
 }
 
 .ticket-card {
-    background: var(--white);
+    background: var(--dark-background);
     border-radius: 20px;
-    padding: 2.5rem;
+    padding: 2rem;
     box-shadow: var(--shadow);
     transition: var(--transition);
     position: relative;
     border: 2px solid transparent;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .ticket-card:hover {
@@ -77,7 +80,7 @@
 
 .limited-badge {
     background: var(--warning);
-    color: var(--text-dark);
+    color: var(--white);
 }
 
 .ticket-header {
@@ -88,7 +91,7 @@
 .ticket-name {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary-blue);
+    color: var(--primary-color-text);
     margin-bottom: 1rem;
 }
 
@@ -96,19 +99,32 @@
     margin-bottom: 1rem;
 }
 
+.ticket-price h4{
+    text-align: left;
+}
+
+.ticket-group{
+    display: flex;
+    justify-content: space-around;
+    border-radius: 20px;
+    background: var(--dark-background-hover);
+    border: 3px solid var(--dark-background-text);
+    padding: 4rem 1rem
+    
+}
 .currency {
     font-size: 1.2rem;
-    color: var(--text-light);
+    color: var(--secondary-color-text);
 }
 
 .amount {
     font-size: 3rem;
     font-weight: 800;
-    color: var(--primary-blue);
+    color: var(--secondary-color-text);
 }
 
 .ticket-description {
-    color: var(--text-light);
+    color: var(--dark-background-text);
     font-size: 0.9rem;
 }
 
@@ -117,7 +133,7 @@
 }
 
 .ticket-benefits h4 {
-    color: var(--primary-blue);
+    color: var(--secondary-color-text);
     margin-bottom: 1rem;
     font-weight: 600;
 }
@@ -131,7 +147,7 @@
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 0.5rem;
-    color: var(--text-light);
+    color: var(--dark-background-text);
     font-size: 0.9rem;
 }
 
@@ -149,7 +165,7 @@
 }
 
 .ticket-requirements p {
-    color: var(--text-dark);
+    color: var(--dark-background-text);
     font-size: 0.8rem;
     margin: 0;
 }
@@ -193,12 +209,12 @@
     width: 50px;
     text-align: center;
     font-weight: 600;
-    background: var(--white);
+    background: var(--dark-background);
     height: 35px;
 }
 
 .max-qty {
-    color: var(--text-light);
+    color: var(--dark-background-text);
     font-size: 0.8rem;
 }
 
@@ -214,7 +230,7 @@
 
 .total-label {
     font-weight: 600;
-    color: var(--text-dark);
+    color: var(--dark-background-text);
 }
 
 .total-amount {
@@ -225,12 +241,13 @@
 
 .btn-select-ticket {
     width: 100%;
-    background: var(--gradient-primary);
-    color: var(--white);
+    background: var(--primary-color);
+    color: var(--primary-color-text);
     border: none;
     padding: 1rem;
     border-radius: 25px;
     font-weight: 600;
+    font-size: 1.2rem;
     cursor: pointer;
     transition: var(--transition);
     display: flex;
@@ -241,12 +258,12 @@
 }
 
 .btn-select-ticket:hover:not(.disabled) {
-    background: var(--gradient-accent);
+    background: var(--primary-color-hover);
     transform: translateY(-2px);
 }
 
 .btn-select-ticket.disabled {
-    background: var(--text-light);
+    background: var(--dark-background-text);
     cursor: not-allowed;
 }
 
@@ -271,7 +288,7 @@
 
 .availability-text {
     font-size: 0.8rem;
-    color: var(--text-light);
+    color: var(--dark-background-text);
     text-align: center;
     display: block;
 }
@@ -295,7 +312,7 @@
 }
 
 .provider-btn {
-    background: var(--white);
+    background: var(--dark-background);
     border: 2px solid var(--light-blue);
     color: var(--light-blue);
     padding: 1rem 2rem;
@@ -343,7 +360,7 @@
 }
 
 .purchase-summary {
-    background: var(--white);
+    background: var(--dark-background);
     border-radius: 20px;
     padding: 2rem;
     box-shadow: var(--shadow);
@@ -372,7 +389,7 @@
 }
 
 .item-quantity {
-    color: var(--text-light);
+    color: var(--dark-background-text);
 }
 
 .summary-subtotal,
@@ -380,7 +397,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 0;
-    color: var(--text-light);
+    color: var(--dark-background-text);
 }
 
 .summary-total {
@@ -410,7 +427,7 @@
 
 .social-impact-reminder span {
     font-size: 0.9rem;
-    color: var(--text-dark);
+    color: var(--dark-background-text);
 }
 
 .summary-actions {

@@ -39,7 +39,7 @@
 }
 .about-button button{
     font-size: 1.5rem;
-    color: var(--text-light);
+    color: var(--dark-background-text);
     border-radius: 20%;
     padding:8px;
     padding-top:4px;
@@ -55,13 +55,13 @@
     color: var(--white);
 }
 .about-card p{
-    color: var(--text-light);
+    color: var(--dark-background-text);
     line-height: 1.5;
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
 }
 .about-card h3{
-    color: var(--text-light);
+    color: var(--dark-background-text);
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
 }

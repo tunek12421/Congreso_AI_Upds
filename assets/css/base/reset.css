@@ -12,7 +12,7 @@ html {
 body {
     font-family: var(--font-family);
     line-height: var(--line-height);
-    color: var(--text-dark);
+    color: var(--dark-background-text);
     overflow-x: hidden;
     background-image: url('/assets/images/backgrounds/bg-1.png');
     background-attachment: fixed;

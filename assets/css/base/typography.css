@@ -39,6 +39,6 @@
 }
 
 .card-text {
-    color: var(--text-light);
+    color: var(--dark-background-text);
     line-height: 1.7;
 }

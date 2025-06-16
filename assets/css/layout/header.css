@@ -57,7 +57,9 @@ nav {
     transition: var(--transition);
     position: relative;
 }
-
+.nav-links li a:focus{
+    outline:none;
+}
 .nav-links a:hover {
     color: var(--text-primary-hover);
 }
@@ -85,14 +87,31 @@ nav {
     color: var(--text-primary);
     cursor: pointer;
 }
-
+.mobile-menu-btn:focus{
+    outline:none;
+}
 /* Mobile Navigation */
 @media (max-width: 850px) {
     .nav-links {
         display: none;
     }
-    
+
     .mobile-menu-btn {
         display: block;
     }
+}
+.mobile-open {
+    display: flex;
+    gap:1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 70%;
+    top:70px;
+    right: 0px;
+    background: var(--dark-background);
+    position: absolute;
+    padding: 1rem;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: var(--shadow);
 }

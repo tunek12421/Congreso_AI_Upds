@@ -33,7 +33,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--white);
+    background: var(--dark-background);
     border-radius: 20px;
     padding: 2rem;
     max-width: 800px;
@@ -49,7 +49,7 @@
     background: none;
     border: none;
     font-size: 1.5rem;
-    color: var(--text-light);
+    color: var(--dark-background-text);
     cursor: pointer;
     transition: var(--transition);
     width: 40px;
@@ -108,7 +108,7 @@
 }
 
 .speaker-bio-full p {
-    color: var(--text-light);
+    color: var(--dark-background-text);
     margin-bottom: 1rem;
 }
 
@@ -141,7 +141,7 @@
 }
 
 .session-location {
-    color: var(--text-light);
+    color: var(--dark-background-text);
     font-size: 0.9rem;
 }
 
@@ -185,7 +185,7 @@
 }
 
 .modal-speaker p {
-    color: var(--text-light);
+    color: var(--dark-background-text);
     font-size: 0.9rem;
     margin-bottom: 0.3rem;
 }
@@ -214,7 +214,7 @@
     display: flex;
     gap: 2rem;
     margin-bottom: 1rem;
-    color: var(--text-light);
+    color: var(--dark-background-text);
 }
 
 .session-time-location .time,

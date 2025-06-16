@@ -22,7 +22,7 @@ class TicketSectionComponent {
         if (!this.container) return;
 
         const ticketsHTML = `
-            <div class="tickets-header">
+            <!--div class="tickets-header">
                 <div class="social-impact-banner">
                     <div class="impact-icon">
                         <i class="fas fa-heart"></i>
@@ -32,11 +32,11 @@ class TicketSectionComponent {
                         <p>Todas las entradas apoyan a la Casa de Acogida Mujer Águila</p>
                     </div>
                 </div>
-            </div>
+            </div-->
             <div class="tickets-grid">
                 ${this.ticketTypes.map(ticket => this.createTicketCard(ticket)).join('')}
             </div>
-            <div class="payment-providers">
+            <!--div class="payment-providers">
                 <h3>Métodos de Pago Disponibles</h3>
                 <div class="providers-list">
                     ${this.createProvidersButtons()}
@@ -44,7 +44,7 @@ class TicketSectionComponent {
             </div>
             <div class="purchase-summary" id="purchase-summary" style="display: none;">
                 ${this.createPurchaseSummary()}
-            </div>
+            </div-->
         `;
 
         this.container.innerHTML = ticketsHTML;
@@ -66,10 +66,22 @@ class TicketSectionComponent {
                 
                 <div class="ticket-header">
                     <h3 class="ticket-name">${ticket.name}</h3>
-                    <div class="ticket-price">
+                    <div class="ticket-group">
+                        <div class="ticket-price">
+                            <h4>Profesional:</h4>
+                            <span class="currency">${ticket.currency}</span>
+                            <span class="amount">${ticket.price_profesional}</span>
+                        </div>
+                        <div class="ticket-price">
+                            <h4>Estudiante:</h4>
+                            <span class="currency">${ticket.currency}</span>
+                            <span class="amount">${ticket.price_student}</span>
+                        </div>
+                    </div>
+                    <!--div class="ticket-price">
                         <span class="currency">Bs</span>
                         <span class="amount">${ticket.price}</span>
-                    </div>
+                    </div-->
                     <p class="ticket-description">${ticket.description}</p>
                 </div>
 
@@ -86,7 +98,7 @@ class TicketSectionComponent {
                     </div>
                 ` : ''}
 
-                <div class="ticket-quantity">
+                <!--div class="ticket-quantity">
                     <label>Cantidad:</label>
                     <div class="quantity-selector">
                         <button class="qty-btn minus" data-ticket-id="${ticket.id}">-</button>
@@ -101,24 +113,24 @@ class TicketSectionComponent {
                 <div class="ticket-total">
                     <span class="total-label">Total:</span>
                     <span class="total-amount" data-ticket-id="${ticket.id}">Bs ${ticket.price}</span>
-                </div>
+                </div-->
 
                 <button class="btn-select-ticket ${ticket.available ? '' : 'disabled'}" 
                         data-ticket-id="${ticket.id}"
                         ${!ticket.available ? 'disabled' : ''}>
                     ${ticket.available ? 
-                        '<i class="fas fa-ticket-alt"></i> Seleccionar' : 
+                        '<i class="fas fa-ticket-alt"></i> Comprar aquí' : 
                         '<i class="fas fa-times"></i> No Disponible'
                     }
                 </button>
 
                 ${isLimited && ticket.quantity ? `
-                    <div class="availability-indicator">
+                    <!--div class="availability-indicator">
                         <div class="availability-bar">
                             <div class="availability-fill" style="width: ${(ticket.quantity / 50) * 100}%"></div>
                         </div>
                         <span class="availability-text">Quedan ${ticket.quantity} entradas</span>
-                    </div>
+                    </div-->
                 ` : ''}
             </div>
         `;
@@ -245,8 +257,11 @@ class TicketSectionComponent {
             totalElement.textContent = `Bs ${total}`;
         }
     }
-
-    selectTicket(ticketId) {
+    selectTicket(id){
+        if(!window.open("https://clicket.bo/"))
+            window.location.href = "https://clicket.bo";
+    }
+    /*selectTicket(ticketId) {
         // Remover selección previa
         this.container.querySelectorAll('.ticket-card').forEach(card => {
             card.classList.remove('selected');
@@ -258,7 +273,7 @@ class TicketSectionComponent {
 
         this.selectedTicket = ticketId;
         this.showPurchaseSummary();
-    }
+    }*/
 
     showPurchaseSummary() {
         if (!this.selectedTicket) return;

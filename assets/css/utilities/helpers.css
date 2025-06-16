@@ -95,7 +95,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 1rem 1.5rem;
-    color: var(--text-light);
+    color: var(--dark-background-text);
 }
 
 .toast-success .toast-content i {
@@ -114,7 +114,7 @@
 .error-message {
     text-align: center;
     padding: 4rem 2rem;
-    color: var(--text-light);
+    color: var(--dark-background-text);
 }
 
 .error-message i {
@@ -138,7 +138,7 @@
 
 .no-results {
     text-align: center;
-    color: var(--text-light);
+    color: var(--dark-background-text);
     font-style: italic;
     padding: 2rem;
 }

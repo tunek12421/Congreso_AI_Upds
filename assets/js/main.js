@@ -173,6 +173,7 @@ function setupGlobalEvents() {
                     behavior: 'smooth'
                 });
             }
+            if(document.querySelector(".mobile-open"))toggleMobileMenu();
         });
     });
 
@@ -496,7 +497,7 @@ function showGlobalError(message, type = 'error') {
         }
         .error-banner.error-warning {
             background: var(--warning);
-            color: var(--text-dark);
+            color: var(--dark-background-text);
         }
         .error-content {
             display: flex;
