@@ -2,13 +2,15 @@
 footer {
     background: var(--primary-blue);
     color: var(--white);
-    padding: 4rem 2rem 2rem;
+    padding: 2rem;
     text-align: center;
 }
-
+.footer-card{
+    display: flex;
+    justify-content: space-between;
+}
 .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
 }
 
 .footer-logo {
@@ -25,7 +27,7 @@ footer {
     margin-right: auto;
 }
 
-.footer .social-links {
+.footer-links {
     display: flex;
     justify-content: center;
     gap: 1rem;

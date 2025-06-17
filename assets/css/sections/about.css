@@ -58,7 +58,10 @@
     color: var(--dark-background-text);
     line-height: 1.5;
     font-size: 1.3rem;
-    margin-bottom: 1rem;
+    margin: 0.5rem 0rem;
+}
+.about-card hr{
+    color: var(--dark-background-text);
 }
 .about-card h3{
     color: var(--white);
