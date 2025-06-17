@@ -2,61 +2,122 @@ class SpeakerComponent {
     constructor(container) {
         this.container = container;
         this.speakers = [];
+        this.internationalSpeakers = [];
+        this.nationalSpeakers = [];
+        this.currentSlides = {
+            international: 0,
+            national: 0
+        };
+        this.slidesToShow = 3; // Por defecto mostrar 3 cards
+        this.autoPlayInterval = null;
     }
 
     async init() {
         try {
             this.speakers = await dataService.getSpeakers();
+            this.categorizeSpakers();
             this.render();
             this.bindEvents();
+            this.setupResponsive();
+            this.startAutoPlay();
         } catch (error) {
             console.error('Error initializing speakers:', error);
             this.renderError();
         }
     }
 
+    categorizeSpakers() {
+        // Separar speakers por categoría (internacional vs nacional)
+        this.internationalSpeakers = this.speakers.filter(speaker => 
+            speaker.country !== 'Bolivia'
+        );
+        this.nationalSpeakers = this.speakers.filter(speaker => 
+            speaker.country === 'Bolivia'
+        );
+    }
+
     render() {
         if (!this.container) return;
 
-        const speakersHTML = this.speakers.map(speaker => this.createSpeakerCard(speaker)).join('');
-        this.container.innerHTML = speakersHTML;
+        this.container.innerHTML = `
+            <div class="speakers-carousels">
+                ${this.createCarouselSection('international', 'Ponentes Internacionales', this.internationalSpeakers)}
+                ${this.createCarouselSection('national', 'Ponentes Nacionales', this.nationalSpeakers)}
+            </div>
+        `;
         
-        // Aplicar animaciones
         this.applyAnimations();
+    }
+
+    createCarouselSection(type, title, speakers) {
+        if (!speakers.length) return '';
+
+        const speakersHTML = speakers.map(speaker => this.createSpeakerCard(speaker)).join('');
+        
+        return `
+            <div class="speaker-carousel-section fade-in" data-type="${type}">
+                <div class="carousel-header">
+                    <h3 class="carousel-title">${title}</h3>
+                    <div class="carousel-indicators">
+                        ${this.createIndicators(speakers.length, type)}
+                    </div>
+                </div>
+                <div class="carousel-container" data-type="${type}">
+                    <button class="carousel-btn carousel-prev" data-type="${type}" aria-label="Anterior">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn carousel-next" data-type="${type}" aria-label="Siguiente">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="carousel-track" data-type="${type}">
+                        ${speakersHTML}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    createIndicators(totalSlides, type) {
+        const totalPages = Math.ceil(totalSlides / this.slidesToShow);
+        let indicators = '';
+        
+        for (let i = 0; i < totalPages; i++) {
+            indicators += `<button class="carousel-indicator ${i === 0 ? 'active' : ''}" 
+                data-type="${type}" data-slide="${i}" aria-label="Ir a página ${i + 1}"></button>`;
+        }
+        
+        return indicators;
     }
 
     createSpeakerCard(speaker) {
         const socialLinks = this.createSocialLinks(speaker.social || {});
-        const expertiseTagsHTML = speaker.expertise.map(skill => 
-            `<span class="expertise-tag">${skill}</span>`
-        ).join('');
 
         return `
-            <div class="speaker-card fade-in" data-speaker-id="${speaker.id}">
+            <div class="speaker-card" data-speaker-id="${speaker.id}">
                 <div class="speaker-avatar">
                     ${speaker.photo ? 
                         `<img src="${speaker.photo}" alt="${speaker.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                          <div class="avatar-fallback" style="display:none;"><i class="fas fa-user-tie"></i></div>` :
                         `<div class="avatar-fallback"><i class="fas fa-user-tie"></i></div>`
                     }
-                    <div class="speaker-overlay">
-                        <button class="btn-view-details" data-speaker-id="${speaker.id}">
-                            <i class="fas fa-info-circle"></i>
-                            Ver Detalles
-                        </button>
+                    <div class="speaker-country-sash">
+                        <div class="sash-content">
+                            <span class="flag">${speaker.flag || '🌎'}</span>
+                        </div>
                     </div>
                 </div>
+                <div class="speaker-overlay">
+                    <button class="btn-view-details" data-speaker-id="${speaker.id}">
+                        <i class="fas fa-info-circle"></i>
+                        Ver Detalles
+                    </button>
+                </div>
                 <div class="speaker-info">
-                    <h3 class="speaker-name">${speaker.name}</h3>
+                    <h4 class="speaker-name">${speaker.name}</h4>
                     <p class="speaker-title">${speaker.title}</p>
                     <div class="speaker-country">
-                        <span class="flag">${speaker.flag || '🌎'}</span>
                         ${speaker.country}
                     </div>
-                    <div class="expertise-tags">
-                        ${expertiseTagsHTML}
-                    </div>
-                    <p class="speaker-bio">${this.truncateBio(speaker.bio)}</p>
                     <div class="social-links">
                         ${socialLinks}
                     </div>
@@ -69,13 +130,13 @@ class SpeakerComponent {
         const links = [];
         
         if (social.linkedin) {
-            links.push(`<a href="${social.linkedin}" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>`);
+            links.push(`<a href="${social.linkedin}" target="_blank" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>`);
         }
         if (social.twitter) {
-            links.push(`<a href="https://twitter.com/${social.twitter.replace('@', '')}" target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>`);
+            links.push(`<a href="https://twitter.com/${social.twitter.replace('@', '')}" target="_blank" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>`);
         }
         if (social.email) {
-            links.push(`<a href="mailto:${social.email}" class="social-link"><i class="fas fa-envelope"></i></a>`);
+            links.push(`<a href="mailto:${social.email}" class="social-link" aria-label="Email"><i class="fas fa-envelope"></i></a>`);
         }
         
         return links.join('');
@@ -93,22 +154,196 @@ class SpeakerComponent {
                 const speakerId = parseInt(e.target.closest('.btn-view-details').dataset.speakerId);
                 this.showSpeakerModal(speakerId);
             }
+
+            // Controles del carrusel
+            if (e.target.closest('.carousel-prev')) {
+                const type = e.target.closest('.carousel-prev').dataset.type;
+                this.prevSlide(type);
+            }
+
+            if (e.target.closest('.carousel-next')) {
+                const type = e.target.closest('.carousel-next').dataset.type;
+                this.nextSlide(type);
+            }
+
+            // Indicadores del carrusel
+            if (e.target.closest('.carousel-indicator')) {
+                const indicator = e.target.closest('.carousel-indicator');
+                const type = indicator.dataset.type;
+                const slideIndex = parseInt(indicator.dataset.slide);
+                this.goToSlide(type, slideIndex);
+            }
         });
 
-        // Hover effects
-        this.container.addEventListener('mouseenter', (e) => {
-            if (e.target.closest('.speaker-card')) {
-                const card = e.target.closest('.speaker-card');
-                card.style.transform = 'translateY(-10px) scale(1.02)';
-            }
-        }, true);
+        // Touch/swipe support
+        this.setupTouchEvents();
 
-        this.container.addEventListener('mouseleave', (e) => {
-            if (e.target.closest('.speaker-card')) {
-                const card = e.target.closest('.speaker-card');
-                card.style.transform = 'translateY(0) scale(1)';
+        // Hover effects para pausar autoplay
+        this.container.addEventListener('mouseenter', () => {
+            this.pauseAutoPlay();
+        });
+
+        this.container.addEventListener('mouseleave', () => {
+            this.startAutoPlay();
+        });
+    }
+
+    setupTouchEvents() {
+        const carousels = this.container.querySelectorAll('.carousel-container');
+        
+        carousels.forEach(carousel => {
+            let startX = 0;
+            let currentX = 0;
+            let isDragging = false;
+            const type = carousel.dataset.type;
+
+            carousel.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                isDragging = true;
+                this.pauseAutoPlay();
+            });
+
+            carousel.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                currentX = e.touches[0].clientX;
+            });
+
+            carousel.addEventListener('touchend', () => {
+                if (!isDragging) return;
+                isDragging = false;
+                
+                const diffX = startX - currentX;
+                const threshold = 50;
+                
+                if (Math.abs(diffX) > threshold) {
+                    if (diffX > 0) {
+                        this.nextSlide(type);
+                    } else {
+                        this.prevSlide(type);
+                    }
+                }
+                
+                this.startAutoPlay();
+            });
+        });
+    }
+
+    setupResponsive() {
+        const updateSlidesToShow = () => {
+            const width = window.innerWidth;
+            
+            if (width <= 768) {
+                this.slidesToShow = 1;
+            } else if (width <= 1024) {
+                this.slidesToShow = 2;
+            } else {
+                this.slidesToShow = 3;
             }
-        }, true);
+            
+            this.updateCarouselDisplay();
+        };
+
+        window.addEventListener('resize', updateSlidesToShow);
+        updateSlidesToShow();
+    }
+
+    updateCarouselDisplay() {
+        const tracks = this.container.querySelectorAll('.carousel-track');
+        
+        tracks.forEach(track => {
+            const type = track.dataset.type;
+            const cards = track.querySelectorAll('.speaker-card');
+            
+            // Actualizar ancho de las cards
+            cards.forEach(card => {
+                card.style.minWidth = `${100 / this.slidesToShow}%`;
+            });
+            
+            // Actualizar posición actual
+            this.goToSlide(type, this.currentSlides[type]);
+            
+            // Actualizar indicadores
+            this.updateIndicators(type);
+        });
+    }
+
+    nextSlide(type) {
+        const speakers = type === 'international' ? this.internationalSpeakers : this.nationalSpeakers;
+        const maxSlides = Math.ceil(speakers.length / this.slidesToShow) - 1;
+        
+        this.currentSlides[type] = this.currentSlides[type] >= maxSlides ? 0 : this.currentSlides[type] + 1;
+        this.updateCarousel(type);
+    }
+
+    prevSlide(type) {
+        const speakers = type === 'international' ? this.internationalSpeakers : this.nationalSpeakers;
+        const maxSlides = Math.ceil(speakers.length / this.slidesToShow) - 1;
+        
+        this.currentSlides[type] = this.currentSlides[type] <= 0 ? maxSlides : this.currentSlides[type] - 1;
+        this.updateCarousel(type);
+    }
+
+    goToSlide(type, slideIndex) {
+        const speakers = type === 'international' ? this.internationalSpeakers : this.nationalSpeakers;
+        const maxSlides = Math.ceil(speakers.length / this.slidesToShow) - 1;
+        
+        this.currentSlides[type] = Math.max(0, Math.min(slideIndex, maxSlides));
+        this.updateCarousel(type);
+    }
+
+    updateCarousel(type) {
+        const track = this.container.querySelector(`.carousel-track[data-type="${type}"]`);
+        if (!track) return;
+
+        const translateX = -(this.currentSlides[type] * (100 / this.slidesToShow) * this.slidesToShow);
+        track.style.transform = `translateX(${translateX}%)`;
+        
+        this.updateIndicators(type);
+        this.updateControls(type);
+    }
+
+    updateIndicators(type) {
+        const indicators = this.container.querySelectorAll(`.carousel-indicator[data-type="${type}"]`);
+        
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === this.currentSlides[type]);
+        });
+    }
+
+    updateControls(type) {
+        const speakers = type === 'international' ? this.internationalSpeakers : this.nationalSpeakers;
+        const maxSlides = Math.ceil(speakers.length / this.slidesToShow) - 1;
+        
+        const prevBtn = this.container.querySelector(`.carousel-prev[data-type="${type}"]`);
+        const nextBtn = this.container.querySelector(`.carousel-next[data-type="${type}"]`);
+        
+        if (prevBtn && nextBtn) {
+            prevBtn.disabled = this.currentSlides[type] === 0;
+            nextBtn.disabled = this.currentSlides[type] === maxSlides;
+        }
+    }
+
+    startAutoPlay() {
+        this.pauseAutoPlay(); // Limpiar cualquier intervalo existente
+        
+        this.autoPlayInterval = setInterval(() => {
+            // Alternar entre carruseles
+            const types = ['international', 'national'];
+            const randomType = types[Math.floor(Math.random() * types.length)];
+            
+            // Solo avanzar si hay suficientes speakers
+            const speakers = randomType === 'international' ? this.internationalSpeakers : this.nationalSpeakers;
+            if (speakers.length > this.slidesToShow) {
+                this.nextSlide(randomType);
+            }
+        }, 5000); // Cambiar cada 5 segundos
+    }
+
+    pauseAutoPlay() {
+        if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+            this.autoPlayInterval = null;
+        }
     }
 
     async showSpeakerModal(speakerId) {
@@ -142,7 +377,7 @@ class SpeakerComponent {
         modal.innerHTML = `
             <div class="modal-overlay"></div>
             <div class="modal-content">
-                <button class="modal-close">
+                <button class="modal-close" aria-label="Cerrar modal">
                     <i class="fas fa-times"></i>
                 </button>
                 <div class="modal-header">
@@ -197,7 +432,9 @@ class SpeakerComponent {
         const closeModal = () => {
             modal.classList.remove('active');
             setTimeout(() => {
-                document.body.removeChild(modal);
+                if (modal.parentElement) {
+                    document.body.removeChild(modal);
+                }
             }, 300);
         };
 
@@ -215,9 +452,9 @@ class SpeakerComponent {
     }
 
     applyAnimations() {
-        const cards = this.container.querySelectorAll('.speaker-card');
-        cards.forEach((card, index) => {
-            card.style.animationDelay = `${index * 0.1}s`;
+        const sections = this.container.querySelectorAll('.speaker-carousel-section');
+        sections.forEach((section, index) => {
+            section.style.animationDelay = `${index * 0.2}s`;
         });
     }
 
@@ -237,34 +474,9 @@ class SpeakerComponent {
         `;
     }
 
-    // Método para filtrar ponentes
-    filterSpeakers(criteria) {
-        const filteredSpeakers = this.speakers.filter(speaker => {
-            if (criteria.country && speaker.country !== criteria.country) return false;
-            if (criteria.expertise && !speaker.expertise.some(skill => 
-                skill.toLowerCase().includes(criteria.expertise.toLowerCase())
-            )) return false;
-            if (criteria.search && !speaker.name.toLowerCase().includes(criteria.search.toLowerCase()) &&
-                !speaker.title.toLowerCase().includes(criteria.search.toLowerCase())) return false;
-            
-            return true;
-        });
-
-        const filteredHTML = filteredSpeakers.map(speaker => this.createSpeakerCard(speaker)).join('');
-        this.container.innerHTML = filteredHTML || '<p class="no-results">No se encontraron ponentes con estos criterios.</p>';
-        this.applyAnimations();
-    }
-
-    // Método para destacar ponentes principales
-    async renderFeatured() {
-        try {
-            const featuredSpeakers = await dataService.getFeaturedSpeakers();
-            const featuredHTML = featuredSpeakers.map(speaker => this.createSpeakerCard(speaker)).join('');
-            this.container.innerHTML = featuredHTML;
-            this.applyAnimations();
-        } catch (error) {
-            console.error('Error loading featured speakers:', error);
-            this.renderError();
-        }
+    // Cleanup method
+    destroy() {
+        this.pauseAutoPlay();
+        window.removeEventListener('resize', this.setupResponsive);
     }
 }
