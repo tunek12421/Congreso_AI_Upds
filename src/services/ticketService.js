@@ -11,63 +11,60 @@ class TicketService {
         this.ticketTypes=[{
                 id: 'student',
                 name: 'Externos',
-                description: '',
-                price: 25,
+                description: 'Personas o instituciones ajenas a la UPDS',
+                //price: 25,
                 price_profesional: 120,
                 price_student: 80,
                 currency: 'Bs',
-                benefits: [
-                    'Acceso a todas las conferencias',
-                    'Material del evento',
-                    'Certificado de participación',
-                    'Coffee breaks incluidos'
+                ticketListTitle: 'Ejemplos',
+                ticketList: [
+                    'Proveedores, contratistas o colaboradores externos',
+                    'Padres de familia',
+                    'Empresas o organizaciones que solicitan servicios o información',
                 ],
                 available: true,
                 maxQuantity: 3,
-                requirements: 'Presentar carnet estudiantil vigente'
             },
             {
-                id: 'vip',
-                name: 'Entrada VIP',
-                description: 'Experiencia premium con acceso exclusivo',
-                price: 100,
+                id: 'upds',
+                name: 'Comunidad UPDS',
+                description: 'Miembros activos de la universidad con acceso a beneficios o servicios internos.',
+                //price: 100,
                 price_profesional: 80,
                 price_student: 50,
                 currency: 'Bs',
-                benefits: [
-                    'Acceso a todas las conferencias',
-                    'Material premium del evento',
-                    'Certificado especial',
-                    'Todas las comidas incluidas',
-                    'Acceso al cóctel de networking',
-                    'Meet & greet con ponentes',
-                    'Grabaciones de las sesiones'
+                ticketListTitle: 'Incluye',
+                ticketList: [
+                    'Estudiantes',
+                    'Docentes y personal administrativo',
+                    'Egresados',
+                    'Investigadores o becarios asociados',
                 ],
+                
                 available: true,
                 maxQuantity: 2,
-                limited: true,
-                quantity: 50
+                //limited: true,
+                quantity: 50,
+                requirements: 'Presentar carnet estudiantil vigente'
             },
             {
-                id: 'vip2',
-                name: 'Entrada VIP',
-                description: 'Experiencia premium con acceso exclusivo',
+                id: 'extranjeros',
+                name: 'Extranjeros',
+                description: 'Usuarios internacionales que interactúan con la UPDS',
                 price: 100,
                 price_profesional: 20,
                 price_student: 10,
-                currency: 'Usd',
-                benefits: [
-                    'Acceso a todas las conferencias',
-                    'Material premium del evento',
-                    'Certificado especial',
-                    'Todas las comidas incluidas',
-                    'Acceso al cóctel de networking',
-                    'Meet & greet con ponentes',
-                    'Grabaciones de las sesiones'
+                currency: 'USD',
+                ticketListTitle: 'Casos de uso',
+                ticketList: [
+                    'Estudiantes de intercambio',
+                    'Profesores visitantes o investigadores foráneos',
+                    'Postulantes a matrícula desde el exterior',
+                    'Trámites de visa o documentación para extranjeros',
                 ],
                 available: true,
                 maxQuantity: 2,
-                limited: true,
+                //limited: true,
                 quantity: 50
             }
         ];

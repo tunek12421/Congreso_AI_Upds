@@ -52,7 +52,7 @@ class TicketSectionComponent {
     }
 
     createTicketCard(ticket) {
-        const benefitsHTML = ticket.benefits.map(benefit => 
+        const benefitsHTML = ticket.ticketList.map(benefit => 
             `<li><i class="fas fa-check"></i> ${benefit}</li>`
         ).join('');
 
@@ -86,7 +86,7 @@ class TicketSectionComponent {
                 </div>
 
                 <div class="ticket-benefits">
-                    <h4>Incluye:</h4>
+                    <h4>${ticket.ticketListTitle}:</h4>
                     <ul>
                         ${benefitsHTML}
                     </ul>
@@ -162,11 +162,10 @@ class TicketSectionComponent {
 
     createPurchaseSummary() {
         return `
-            <div class="summary-header">
+            <!--div class="summary-header">
                 <h3><i class="fas fa-shopping-cart"></i> Resumen de Compra</h3>
             </div>
             <div class="summary-details" id="summary-details">
-                <!-- Se llenará dinámicamente -->
             </div>
             <div class="summary-actions">
                 <button class="btn btn-secondary" id="btn-clear-selection">
@@ -175,7 +174,7 @@ class TicketSectionComponent {
                 <button class="btn btn-primary" id="btn-proceed-payment">
                     <i class="fas fa-credit-card"></i> Proceder al Pago
                 </button>
-            </div>
+            </div-->
         `;
     }
 

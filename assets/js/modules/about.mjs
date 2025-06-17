@@ -1,7 +1,7 @@
 import { sleep, cssVariable } from "./common.mjs";
 const info={
     title: "Un Evento Transformador",
-    desc:`Explorando las últimas tendencias en IA, desde ciudades digitales hasta aplicaciones educativas revolucionarias. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic architecto facere veritatis, harum excepturi a. Sequi alias nisi velit eum ea tempora, aspernatur consectetur minus soluta? Nihil maiores illo delectus!`,
+    desc:`La revolución tecnológica impulsada por la Inteligencia Artificial (IA) está transformando radicalmente la educación, la industria, las finanzas y la forma de interacción con el  conocimiento. En este contexto, la Universidad Privada Domingo Savio presenta el 2o Congreso Internacional de Inteligencia Artificial 2025, un espacio que se presenta como un espacio multidisciplinario de encuentro, reflexión y difusión de experiencias, investigaciones y desarrollos vinculados al uso de la IA en distintos sectores.`,
     delay:0.001,
     startDelay:0.5,
 }

@@ -1,4 +1,4 @@
-const files = ["header.mjs","about.mjs","hero.mjs"];//agregar nombres de modulos
+const files = ["header.mjs","about.mjs","hero.mjs","sponsors.mjs"];//agregar nombres de modulos
 
 document.addEventListener('DOMContentLoaded',async ()=>{
     Promise.all(
