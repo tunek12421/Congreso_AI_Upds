@@ -117,9 +117,6 @@ class SpeakerComponent {
                 <div class="speaker-info">
                     <h4 class="speaker-name">${speaker.name}</h4>
                     <p class="speaker-title">${speaker.title}</p>
-                    <div class="speaker-country">
-                        ${speaker.country}
-                    </div>
                     <div class="social-links">
                         ${socialLinks}
                     </div>
@@ -564,9 +561,8 @@ class SpeakerComponent {
                     <div class="speaker-details">
                         <h2>${speaker.name}</h2>
                         <p class="speaker-title">${speaker.title}</p>
-                        <div class="speaker-country">
+                        <div class="speaker-flag">
                             <span class="flag">${speaker.flag || '🌎'}</span>
-                            ${speaker.country}
                         </div>
                     </div>
                 </div>
