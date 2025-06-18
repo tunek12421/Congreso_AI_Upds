@@ -8,10 +8,23 @@ class SpeakerComponent {
             international: 0,
             national: 0
         };
-        this.slidesToShow = 3; // Por defecto mostrar 3 cards
+        this.actualPositions = {
+            international: 0,
+            national: 0
+        };
+        this.slidesToShow = 3;
         this.autoPlayInterval = null;
         this.isMobile = false;
         this.resizeHandler = null;
+        this.isTransitioning = {
+            international: false,
+            national: false
+        };
+        // Buffer para posiciones iniciales (comenzar en el medio del loop)
+        this.initialOffset = {
+            international: 0,
+            national: 0
+        };
     }
 
     async init() {
@@ -49,12 +62,27 @@ class SpeakerComponent {
         `;
         
         this.applyAnimations();
+        
+        // Inicializar posiciones después de renderizar
+        setTimeout(() => {
+            ['international', 'national'].forEach(type => {
+                if (this.container.querySelector(`.carousel-track[data-type="${type}"]`)) {
+                    this.updateCarouselInfinite(type, false);
+                }
+            });
+        }, 50); // Pequeño delay para asegurar que el DOM esté listo
     }
 
     createCarouselSection(type, title, speakers) {
         if (!speakers.length) return '';
 
-        const speakersHTML = speakers.map(speaker => this.createSpeakerCard(speaker)).join('');
+        // Para carrusel infinito, duplicamos las cards y establecemos posición inicial
+        const extendedSpeakers = this.createInfiniteLoop(speakers);
+        const speakersHTML = extendedSpeakers.map(speaker => this.createSpeakerCard(speaker)).join('');
+        
+        // Calcular offset inicial para comenzar en el medio del loop
+        this.initialOffset[type] = Math.floor(speakers.length * 1.5); // Comenzar en el medio
+        this.actualPositions[type] = this.initialOffset[type];
         
         return `
             <div class="speaker-carousel-section fade-in" data-type="${type}">
@@ -71,12 +99,27 @@ class SpeakerComponent {
                     <button class="carousel-btn carousel-next" data-type="${type}" aria-label="Siguiente">
                         <i class="fas fa-chevron-right"></i>
                     </button>
-                    <div class="carousel-track" data-type="${type}">
-                        ${speakersHTML}
+                    <div class="carousel-wrapper" data-type="${type}">
+                        <div class="carousel-track" data-type="${type}">
+                            ${speakersHTML}
+                        </div>
                     </div>
                 </div>
             </div>
         `;
+    }
+
+    createInfiniteLoop(speakers) {
+        // Para carrusel verdaderamente infinito, necesitamos más duplicaciones
+        const minItems = Math.max(this.slidesToShow * 6, speakers.length * 3); // Más elementos para evitar gaps
+        let extendedSpeakers = [...speakers];
+        
+        // Duplicar speakers hasta tener suficientes elementos para movimiento continuo
+        while (extendedSpeakers.length < minItems) {
+            extendedSpeakers = [...extendedSpeakers, ...speakers, ...speakers]; // Triple duplicación
+        }
+        
+        return extendedSpeakers;
     }
 
     createIndicators(totalSlides, type) {
@@ -224,18 +267,19 @@ class SpeakerComponent {
         // Touch/swipe support mejorado
         this.setupTouchEvents();
 
-        // Hover effects para pausar autoplay (solo en desktop)
+        // Hover effects para pausar autoplay con transiciones suaves (solo en desktop)
         if (!this.isMobile) {
             this.container.addEventListener('mouseenter', () => {
                 this.pauseAutoPlay();
             });
 
             this.container.addEventListener('mouseleave', () => {
-                this.startAutoPlay();
+                // Delay antes de reanudar para evitar activaciones bruscas
+                setTimeout(() => this.startAutoPlay(), 1000);
             });
         }
 
-        // Focus management para accesibilidad
+        // Focus management para accesibilidad con timing suave
         this.container.addEventListener('focusin', () => {
             this.pauseAutoPlay();
         });
@@ -243,7 +287,7 @@ class SpeakerComponent {
         this.container.addEventListener('focusout', () => {
             setTimeout(() => {
                 if (!this.container.contains(document.activeElement)) {
-                    this.startAutoPlay();
+                    setTimeout(() => this.startAutoPlay(), 800);
                 }
             }, 100);
         });
@@ -289,7 +333,7 @@ class SpeakerComponent {
                     return;
                 }
                 
-                // Si es swipe horizontal, prevenir scroll
+                // Si es swipe horizontal, prevenir scroll con suavidad
                 if (diffX > diffY && diffX > 10) {
                     e.preventDefault();
                 }
@@ -298,7 +342,8 @@ class SpeakerComponent {
             carousel.addEventListener('touchend', (e) => {
                 if (!isDragging || isVerticalScroll) {
                     isDragging = false;
-                    this.startAutoPlay();
+                    // Restart autoplay con delay suave
+                    setTimeout(() => this.startAutoPlay(), 300);
                     return;
                 }
                 
@@ -314,14 +359,15 @@ class SpeakerComponent {
                     }
                 }
                 
-                this.startAutoPlay();
+                // Restart autoplay con delay más largo después de interacción
+                setTimeout(() => this.startAutoPlay(), 2000);
             }, { passive: true });
 
             // Cancelar en caso de cancelación del touch
             carousel.addEventListener('touchcancel', () => {
                 isDragging = false;
                 isVerticalScroll = false;
-                this.startAutoPlay();
+                setTimeout(() => this.startAutoPlay(), 300);
             }, { passive: true });
         });
     }
@@ -376,16 +422,16 @@ class SpeakerComponent {
                 card.style.width = `${100 / this.slidesToShow}%`;
             });
             
-            // Resetear posición si es necesario
+            // Mantener posición relativa al redimensionar, no resetear completamente
             const speakers = type === 'international' ? this.internationalSpeakers : this.nationalSpeakers;
-            const maxSlides = Math.ceil(speakers.length / this.slidesToShow) - 1;
             
-            if (this.currentSlides[type] > maxSlides) {
-                this.currentSlides[type] = maxSlides;
+            // Solo ajustar si la posición actual es problemática
+            if (this.actualPositions[type] === 0) {
+                this.actualPositions[type] = this.initialOffset[type];
             }
             
-            // Actualizar posición actual
-            this.updateCarousel(type);
+            // Actualizar posición actual sin transición
+            this.updateCarouselInfinite(type, false);
             
             // Actualizar indicadores
             this.updateIndicatorsDisplay(type);
@@ -412,41 +458,96 @@ class SpeakerComponent {
     }
 
     nextSlide(type) {
+        if (this.isTransitioning[type]) return;
+        
         const speakers = type === 'international' ? this.internationalSpeakers : this.nationalSpeakers;
-        const maxSlides = Math.ceil(speakers.length / this.slidesToShow) - 1;
+        if (speakers.length <= this.slidesToShow) return;
         
-        if (speakers.length <= this.slidesToShow) return; // No hay suficientes cards para navegar
-        
-        this.currentSlides[type] = this.currentSlides[type] >= maxSlides ? 0 : this.currentSlides[type] + 1;
-        this.updateCarousel(type);
+        this.isTransitioning[type] = true;
+        this.actualPositions[type]++;
+        this.updateCarouselInfinite(type, true);
     }
 
     prevSlide(type) {
+        if (this.isTransitioning[type]) return;
+        
         const speakers = type === 'international' ? this.internationalSpeakers : this.nationalSpeakers;
-        const maxSlides = Math.ceil(speakers.length / this.slidesToShow) - 1;
+        if (speakers.length <= this.slidesToShow) return;
         
-        if (speakers.length <= this.slidesToShow) return; // No hay suficientes cards para navegar
-        
-        this.currentSlides[type] = this.currentSlides[type] <= 0 ? maxSlides : this.currentSlides[type] - 1;
-        this.updateCarousel(type);
+        this.isTransitioning[type] = true;
+        this.actualPositions[type]--;
+        this.updateCarouselInfinite(type, true);
     }
 
     goToSlide(type, slideIndex) {
+        if (this.isTransitioning[type]) return;
+        
         const speakers = type === 'international' ? this.internationalSpeakers : this.nationalSpeakers;
         const maxSlides = Math.ceil(speakers.length / this.slidesToShow) - 1;
         
-        this.currentSlides[type] = Math.max(0, Math.min(slideIndex, maxSlides));
-        this.updateCarousel(type);
+        this.actualPositions[type] = Math.max(0, Math.min(slideIndex, maxSlides));
+        this.currentSlides[type] = this.actualPositions[type];
+        this.updateCarouselInfinite(type, true);
     }
 
-    updateCarousel(type) {
+    updateCarouselInfinite(type, withTransition = false) {
         const track = this.container.querySelector(`.carousel-track[data-type="${type}"]`);
         if (!track) return;
 
-        const translateX = -(this.currentSlides[type] * 100);
-        track.style.transform = `translateX(${translateX}%)`;
+        const speakers = type === 'international' ? this.internationalSpeakers : this.nationalSpeakers;
+        const originalLength = speakers.length;
         
-        this.updateIndicators(type);
+        // Aplicar transición ultra suave con hardware acceleration
+        if (withTransition) {
+            track.style.transition = 'transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            track.style.willChange = 'transform'; // Optimización de hardware
+        } else {
+            track.style.transition = 'none';
+            track.style.willChange = 'auto';
+        }
+
+        // Calcular posición con mayor precisión
+        const slideWidth = 100 / this.slidesToShow;
+        const translateX = -(this.actualPositions[type] * slideWidth);
+        track.style.transform = `translate3d(${translateX}%, 0, 0)`; // Usar translate3d para hardware acceleration
+        
+        // Sistema de reseteo continuo y invisible
+        if (withTransition) {
+            // Verificar reseteo durante la transición, no después
+            setTimeout(() => {
+                const currentPos = this.actualPositions[type];
+                const resetThreshold = originalLength * 2; // Umbral más alto
+                
+                if (currentPos >= resetThreshold) {
+                    // Reset hacia atrás sin interrupción visual
+                    track.style.transition = 'none';
+                    this.actualPositions[type] = currentPos - originalLength;
+                    const newTranslateX = -(this.actualPositions[type] * slideWidth);
+                    track.style.transform = `translate3d(${newTranslateX}%, 0, 0)`;
+                } else if (currentPos < originalLength) {
+                    // Reset hacia adelante sin interrupción visual
+                    track.style.transition = 'none';
+                    this.actualPositions[type] = currentPos + originalLength;
+                    const newTranslateX = -(this.actualPositions[type] * slideWidth);
+                    track.style.transform = `translate3d(${newTranslateX}%, 0, 0)`;
+                }
+                
+                // Limpiar optimizaciones después de la transición
+                track.style.willChange = 'auto';
+                this.isTransitioning[type] = false;
+                
+                // Actualizar indicadores basados en posición lógica
+                this.currentSlides[type] = this.actualPositions[type] % originalLength;
+                this.updateIndicators(type);
+                
+            }, 1400); // Matching transition duration
+        } else {
+            this.isTransitioning[type] = false;
+            this.currentSlides[type] = this.actualPositions[type] % originalLength;
+            this.updateIndicators(type);
+            track.style.willChange = 'auto';
+        }
+        
         this.updateControls(type);
     }
 
@@ -486,17 +587,25 @@ class SpeakerComponent {
         this.pauseAutoPlay(); // Limpiar cualquier intervalo existente
         
         this.autoPlayInterval = setInterval(() => {
-            // Alternar entre carruseles
-            const types = ['international', 'national'].filter(type => {
+            // Filtrar carruseles que tienen suficientes slides
+            const availableTypes = ['international', 'national'].filter(type => {
                 const speakers = type === 'international' ? this.internationalSpeakers : this.nationalSpeakers;
-                return speakers.length > this.slidesToShow;
+                return speakers.length > this.slidesToShow && !this.isTransitioning[type];
             });
             
-            if (types.length === 0) return;
+            if (availableTypes.length === 0) return;
             
-            const randomType = types[Math.floor(Math.random() * types.length)];
-            this.nextSlide(randomType);
-        }, 6000); // Cambiar cada 6 segundos
+            // Mover los carruseles en direcciones opuestas
+            availableTypes.forEach(type => {
+                if (type === 'international') {
+                    // Carrusel internacional va hacia adelante
+                    this.nextSlide(type);
+                } else {
+                    // Carrusel nacional va hacia atrás
+                    this.prevSlide(type);
+                }
+            });
+        }, 4200); // Timing optimizado para fluidez visual
     }
 
     pauseAutoPlay() {
