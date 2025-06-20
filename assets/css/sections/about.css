@@ -1,70 +1,195 @@
 /* ===== SECCIÓN ABOUT ===== */
 .about {
-    position: relative;
+  position: relative;
 }
 
 .about-card {
-    display: flex;
-    /*align-items: center;*/
-    justify-content: space-between;
-    background: var(--dark-background);
-    padding: 3rem 2rem;
-    border-radius: 20px;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    border: 1px solid rgba(30, 60, 114, 0.1);
+  display: flex;
+  justify-content: space-between;
+  background: var(--dark-background);
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  border: 1px solid rgba(30, 60, 114, 0.1);
 }
 
 .about-text {
-    width: 100%;
-    margin-left: var(--spacing-sm);
+  width: 100%;
+  margin-left: var(--spacing-sm);
 }
+
 .about-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-hover);
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-hover);
 }
+
 .about-icon {
-    width: 50px;
-    height: 50px;
-    aspect-ratio: 1/1;
-    background: var(--gradient-accent);
-    border-radius: 50%;
-    margin-bottom: 2rem;
-    color: var(--white);
+  width: 50px;
+  height: 50px;
+  aspect-ratio: 1/1;
+  background: var(--gradient-accent);
+  border-radius: 50%;
+  margin-bottom: 2rem;
+  color: var(--white);
 }
-.about-icon img{
-    border-radius: 50%;
-    padding:5px;
-    filter: brightness(10);
+
+.about-icon img {
+  border-radius: 50%;
+  padding: 5px;
+  filter: brightness(10);
 }
-.about-button button{
+
+.about-button button {
+  font-size: 1.5rem;
+  color: var(--dark-background-text);
+  border-radius: 20%;
+  padding: 8px;
+  padding-top: 4px;
+  aspect-ratio: 1/1;
+}
+
+.about-button button:focus {
+  outline: none;
+}
+
+.about-button button:hover {
+  background-color: var(--dark-background-hover);
+}
+
+.about-button button:active {
+  color: var(--white);
+}
+
+.about-card p {
+  color: var(--dark-background-text);
+  line-height: 1.5;
+  font-size: 1.3rem;
+  margin: 0.5rem 0rem;
+}
+
+.about-card hr {
+  color: var(--dark-background-text);
+}
+
+.about-card h3 {
+  color: var(--white);
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablets grandes (1024px y menos) */
+@media screen and (max-width: 1024px) {
+  .about-card {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .about-card h3 {
+    font-size: 1.6rem;
+  }
+  
+  .about-card p {
+    font-size: 1.2rem;
+  }
+  
+  .about-button button {
+    font-size: 1.4rem;
+  }
+}
+
+/* Tablets (768px y menos) */
+@media screen and (max-width: 768px) {
+  .about-card {
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .about-text {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+  
+  .about-icon {
+    margin-bottom: 1.5rem;
+  }
+  
+  .about-card h3 {
     font-size: 1.5rem;
-    color: var(--dark-background-text);
-    border-radius: 20%;
-    padding:8px;
-    padding-top:4px;
-    aspect-ratio: 1/1;
-}
-.about-button button:focus{
-    outline:none;
-}
-.about-button button:hover{
-    background-color: var(--dark-background-hover);
-}
-.about-button button:active{
-    color: var(--white);
-}
-.about-card p{
-    color: var(--dark-background-text);
-    line-height: 1.5;
+  }
+  
+  .about-card p {
+    font-size: 1.1rem;
+  }
+  
+  .about-button button {
     font-size: 1.3rem;
-    margin: 0.5rem 0rem;
+    padding: 7px;
+  }
 }
-.about-card hr{
-    color: var(--dark-background-text);
+
+/* Móviles grandes (480px y menos) */
+@media screen and (max-width: 480px) {
+  .about-card {
+    padding: 1.5rem 1rem;
+    border-radius: 15px;
+  }
+  
+  .about-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1rem;
+  }
+  
+  .about-icon img {
+    padding: 3px;
+  }
+  
+  .about-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .about-card p {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 0.4rem 0rem;
+  }
+  
+  .about-button button {
+    font-size: 1.2rem;
+    padding: 6px;
+    padding-top: 3px;
+  }
 }
-.about-card h3{
-    color: var(--white);
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
+
+/* Móviles pequeños (320px y menos) */
+@media screen and (max-width: 320px) {
+  .about-card {
+    padding: 1rem 0.8rem;
+    border-radius: 12px;
+  }
+  
+  .about-icon {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .about-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .about-card p {
+    font-size: 0.9rem;
+  }
+  
+  .about-button button {
+    font-size: 1.1rem;
+    padding: 5px;
+    padding-top: 2px;
+  }
 }
