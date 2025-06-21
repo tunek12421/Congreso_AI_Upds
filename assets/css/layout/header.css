@@ -1,28 +1,32 @@
-/* ===== HEADER Y NAVEGACIÓN ===== */
-/*header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    
-    /*backdrop-filter: blur(20px);
-    z-index: 1000;
-    padding: 1rem 0;
-    transition: var(--transition);
-    /*border-bottom: 1px solid rgba(30, 60, 114, 0.1);
-}*/
+/* Header y navegación */
 header {
     position: fixed;
     top: 0;
     width: 100%;
-    height:70px;
+    height: 70px;
     z-index: 1000;
     transition: var(--transition);
     display: flex;
     justify-content: space-between;
+    backdrop-filter: blur(10px);
 }
 
-header img{
+header img {
     height: 50px;
+    max-width: 200px;
+    width: auto;
+    object-fit: contain;
+    transition: var(--transition);
+}
+
+header img[src*="CiiA"] {
+    height: 50px;
+    max-width: 150px;
+}
+
+header img[src*="UPDS"] {
+    height: 40px;
+    max-width: 120px;
 }
 
 nav {
@@ -32,36 +36,45 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
+    padding: 0 clamp(1rem, 4vw, 2rem);
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
     font-weight: bold;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    display: flex;
+    align-items: center;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: clamp(1rem, 3vw, 2rem);
 }
 
 .nav-links a {
     text-decoration: none;
     color: var(--text-primary);
     font-weight: 500;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     transition: var(--transition);
     position: relative;
+    white-space: nowrap;
 }
-.nav-links li a:focus{
-    outline:none;
+
+.nav-links li a:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--text-primary-hover);
+    border-radius: 4px;
 }
+
 .nav-links a:hover {
     color: var(--text-primary-hover);
+    transform: translateY(-1px);
 }
 
 .nav-links a::after {
@@ -83,35 +96,300 @@ nav {
     display: none;
     background: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
     color: var(--text-primary);
     cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: var(--transition);
 }
-.mobile-menu-btn:focus{
-    outline:none;
+
+.mobile-menu-btn:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
 }
-/* Mobile Navigation */
-@media (max-width: 850px) {
+
+.mobile-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
+.mobile-menu-btn:active {
+    transform: scale(0.95);
+}
+
+/* Desktop Large (1200px+) */
+@media (min-width: 1200px) {
+    nav {
+        padding: 0 3rem;
+    }
+    
+    .nav-links {
+        gap: 2.5rem;
+    }
+    
+    header img[src*="CiiA"] {
+        height: 55px;
+        max-width: 160px;
+    }
+    
+    header img[src*="UPDS"] {
+        height: 45px;
+        max-width: 130px;
+    }
+}
+
+/* Desktop (1024px - 1199px) */
+@media (max-width: 1199px) and (min-width: 1024px) {
+    nav {
+        padding: 0 2rem;
+    }
+    
+    .nav-links {
+        gap: 1.8rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.95rem;
+    }
+}
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+    header {
+        height: 65px;
+    }
+    
+    nav {
+        padding: 0 1.5rem;
+    }
+    
+    .nav-links {
+        gap: 1.5rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+    
+    header img[src*="CiiA"] {
+        height: 45px;
+        max-width: 140px;
+    }
+    
+    header img[src*="UPDS"] {
+        height: 38px;
+        max-width: 110px;
+    }
+}
+
+/* Mobile Large (481px - 767px) */
+@media (max-width: 767px) and (min-width: 481px) {
+    header {
+        height: 60px;
+    }
+    
+    nav {
+        padding: 0 1rem;
+    }
+    
     .nav-links {
         display: none;
     }
-
+    
     .mobile-menu-btn {
         display: block;
     }
+    
+    header img[src*="CiiA"] {
+        height: 42px;
+        max-width: 130px;
+    }
+    
+    header img[src*="UPDS"] {
+        height: 35px;
+        max-width: 100px;
+    }
 }
+
+/* Mobile Small (320px - 480px) */
+@media (max-width: 480px) {
+    header {
+        height: 55px;
+    }
+    
+    nav {
+        padding: 0 0.75rem;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+        font-size: 1.2rem;
+        padding: 0.4rem;
+    }
+    
+    header img[src*="CiiA"] {
+        height: 38px;
+        max-width: 110px;
+    }
+    
+    header img[src*="UPDS"] {
+        height: 32px;
+        max-width: 90px;
+    }
+}
+
+/* Mobile Extra Small (hasta 319px) */
+@media (max-width: 319px) {
+    header {
+        height: 50px;
+    }
+    
+    nav {
+        padding: 0 0.5rem;
+    }
+    
+    .mobile-menu-btn {
+        font-size: 1.1rem;
+        padding: 0.3rem;
+    }
+    
+    header img[src*="CiiA"] {
+        height: 35px;
+        max-width: 100px;
+    }
+    
+    header img[src*="UPDS"] {
+        height: 30px;
+        max-width: 80px;
+    }
+}
+
+/* Mobile menu */
 .mobile-open {
     display: flex;
-    gap:1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 70%;
-    top:70px;
-    right: 0px;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 80%;
+    min-width: 200px;
+    top: var(--header-height, 60px);
+    right: 0;
     background: var(--dark-background);
     position: absolute;
-    padding: 1rem;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    padding: 1.5rem 1rem;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
     box-shadow: var(--shadow);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-open.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.mobile-open a {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: var(--transition);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    margin-bottom: 0.25rem;
+}
+
+.mobile-open a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-5px);
+}
+
+/* Landscape mode */
+@media (max-height: 500px) and (orientation: landscape) {
+    header {
+        height: 50px;
+    }
+    
+    header img[src*="CiiA"] {
+        height: 35px;
+        max-width: 100px;
+    }
+    
+    header img[src*="UPDS"] {
+        height: 30px;
+        max-width: 80px;
+    }
+    
+    .mobile-menu-btn {
+        font-size: 1.1rem;
+        padding: 0.3rem;
+    }
+    
+    .mobile-open {
+        max-height: calc(100vh - 50px);
+        overflow-y: auto;
+        padding: 1rem;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    header img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .mobile-open {
+        background: rgba(0, 0, 0, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    header img,
+    .nav-links a,
+    .mobile-menu-btn,
+    .mobile-open {
+        transition: none;
+    }
+    
+    .nav-links a:hover {
+        transform: none;
+    }
+    
+    .mobile-menu-btn:hover {
+        transform: none;
+    }
+}
+
+/* Print styles */
+@media print {
+    header {
+        position: static;
+        background: white !important;
+        box-shadow: none !important;
+        height: auto;
+        padding: 1rem 0;
+    }
+    
+    .mobile-menu-btn,
+    .nav-links {
+        display: none !important;
+    }
+    
+    header img {
+        height: 40px;
+        filter: grayscale(1);
+    }
 }
