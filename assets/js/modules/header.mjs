@@ -1,10 +1,7 @@
 import { cssVariable } from "./common.mjs";
 
-const header = document.querySelector('header');
-const logo = document.querySelector('header .logo img');
-const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-const navLinks = document.querySelector('.nav-links');
-
+// Variables globales
+let header, logo, mobileMenuBtn, navLinks;
 let state = false;
 
 const updateHeader = () => {
@@ -29,24 +26,20 @@ const updateHeader = () => {
 }
 
 const toggleMobileMenu = () => {
+    if (!navLinks || !mobileMenuBtn) {
+        return;
+    }
+    
     const isOpen = navLinks.classList.contains('mobile-open');
     const icon = mobileMenuBtn.querySelector('i');
     
     if (isOpen) {
-        navLinks.classList.remove('show');
-        setTimeout(() => {
-            navLinks.classList.remove('mobile-open');
-        }, 300);
-        
+        navLinks.classList.remove('mobile-open');
         if (icon) {
             icon.className = 'fas fa-bars';
         }
     } else {
         navLinks.classList.add('mobile-open');
-        setTimeout(() => {
-            navLinks.classList.add('show');
-        }, 10);
-        
         if (icon) {
             icon.className = 'fas fa-times';
         }
@@ -54,13 +47,13 @@ const toggleMobileMenu = () => {
 }
 
 const closeMobileMenuOnLinkClick = (e) => {
-    if (e.target.tagName === 'A' && navLinks.classList.contains('mobile-open')) {
+    if (e.target.tagName === 'A' && navLinks && navLinks.classList.contains('mobile-open')) {
         toggleMobileMenu();
     }
 }
 
 const closeMobileMenuOnOutsideClick = (e) => {
-    if (navLinks.classList.contains('mobile-open') &&
+    if (navLinks && navLinks.classList.contains('mobile-open') &&
         !navLinks.contains(e.target) &&
         !mobileMenuBtn.contains(e.target)) {
         toggleMobileMenu();
@@ -68,17 +61,41 @@ const closeMobileMenuOnOutsideClick = (e) => {
 }
 
 const closeMobileMenuOnEscape = (e) => {
-    if (e.key === 'Escape' && navLinks.classList.contains('mobile-open')) {
+    if (e.key === 'Escape' && navLinks && navLinks.classList.contains('mobile-open')) {
         toggleMobileMenu();
     }
 }
 
 async function init(){
+    // Esperar a que el DOM esté listo
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    // Asignar variables globales
+    header = document.querySelector('header');
+    logo = document.querySelector('header .logo img');
+    mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    navLinks = document.querySelector('.nav-links');
+    
+    // Reset inicial del menú móvil
+    if (navLinks) {
+        navLinks.classList.remove('mobile-open', 'show', 'active');
+        navLinks.removeAttribute('style');
+        navLinks.className = 'nav-links';
+    }
+    
+    // Scroll header functionality
     window.addEventListener('scroll', updateHeader);
     updateHeader();
     
+    // Mobile menu functionality
     if (mobileMenuBtn) {
+        mobileMenuBtn.removeEventListener('click', toggleMobileMenu);
         mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        
+        const icon = mobileMenuBtn.querySelector('i');
+        if (icon) {
+            icon.className = 'fas fa-bars';
+        }
     }
     
     if (navLinks) {
@@ -89,9 +106,9 @@ async function init(){
     document.addEventListener('keydown', closeMobileMenuOnEscape);
     
     window.addEventListener('resize', () => {
-        if (window.innerWidth > 850 && navLinks.classList.contains('mobile-open')) {
-            navLinks.classList.remove('mobile-open', 'show');
-            const icon = mobileMenuBtn.querySelector('i');
+        if (window.innerWidth > 850 && navLinks && navLinks.classList.contains('mobile-open')) {
+            navLinks.classList.remove('mobile-open');
+            const icon = mobileMenuBtn?.querySelector('i');
             if (icon) {
                 icon.className = 'fas fa-bars';
             }
