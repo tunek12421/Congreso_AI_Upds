@@ -4,12 +4,42 @@ class SpeakerComponent {
         this.speakers = [];
         this.internationalSpeakers = [];
         this.nationalSpeakers = [];
-        this.currentSlides = {
+        this.slidesToShow = 3;
+        this.autoPlayInterval = null;
+        this.resumeTimeout = null; //  PARA CONTROLAR RESUME PENDIENTES
+        
+        //  SISTEMA INFINITO VERDADERO
+        this.currentPosition = {
             international: 0,
             national: 0
         };
-        this.slidesToShow = 3; // Por defecto mostrar 3 cards
-        this.autoPlayInterval = null;
+        this.originalSpeakersCount = {
+            international: 0,
+            national: 0
+        };
+        
+        //  CONFIGURACIÓN DE TIMING ULTRA-PAUSADO
+        this.DURATION_BASE = {
+            AUTO: 2000,     // Muy contemplativo
+            MANUAL: 1200,   // Pausado y controlado
+            TOUCH: 900,     // Suave y predecible
+            SNAP: 700,      // Snap pausado
+            PREVIEW: 400    // Preview suave
+        };
+        
+        // 🎯 EASING ULTRA-SUAVE
+        this.EASING_CURVES = {
+            AUTO: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+            MANUAL: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            TOUCH: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            SNAP: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+            PREVIEW: 'cubic-bezier(0.25, 0.1, 0.25, 1)'
+        };
+        
+        //  CONTROL DE MOVIMIENTO
+        this.isTransitioning = false;
+        this.lastInteractionType = 'AUTO';
+        this.lastMoveDistance = 1;
     }
 
     async init() {
@@ -19,7 +49,6 @@ class SpeakerComponent {
             this.render();
             this.bindEvents();
             this.setupResponsive();
-            this.startAutoPlay();
         } catch (error) {
             console.error('Error initializing speakers:', error);
             this.renderError();
@@ -27,13 +56,15 @@ class SpeakerComponent {
     }
 
     categorizeSpakers() {
-        // Separar speakers por categoría (internacional vs nacional)
         this.internationalSpeakers = this.speakers.filter(speaker => 
             speaker.country !== 'Bolivia'
         );
         this.nationalSpeakers = this.speakers.filter(speaker => 
             speaker.country === 'Bolivia'
         );
+        
+        this.originalSpeakersCount.international = this.internationalSpeakers.length;
+        this.originalSpeakersCount.national = this.nationalSpeakers.length;
     }
 
     render() {
@@ -47,17 +78,26 @@ class SpeakerComponent {
         `;
         
         this.applyAnimations();
+        this.initializeCarousels();
         
-        // FORZAR LAYOUT HORIZONTAL DESPUÉS DEL RENDER
         setTimeout(() => {
-            this.forceHorizontalLayout();
-        }, 50);
+            this.startAutoPlay();
+        }, 1500);
     }
 
     createCarouselSection(type, title, speakers) {
         if (!speakers.length) return '';
 
-        const speakersHTML = speakers.map(speaker => this.createSpeakerCard(speaker)).join('');
+        //  CREAR SECUENCIA INFINITA - 7 COPIAS PARA MÁXIMA FLUIDEZ
+        const infiniteSequence = [];
+        for (let i = 0; i < 7; i++) {
+            infiniteSequence.push(...speakers.map((speaker, index) => ({
+                ...speaker,
+                uniqueId: `${speaker.id}-copy${i}-${index}`
+            })));
+        }
+        
+        const speakersHTML = infiniteSequence.map(speaker => this.createSpeakerCard(speaker)).join('');
         
         return `
             <div class="speaker-carousel-section fade-in" data-type="${type}">
@@ -98,7 +138,7 @@ class SpeakerComponent {
         const socialLinks = this.createSocialLinks(speaker.social || {});
 
         return `
-            <div class="speaker-card" data-speaker-id="${speaker.id}">
+            <div class="speaker-card" data-speaker-id="${speaker.id}" data-unique-id="${speaker.uniqueId || speaker.id}">
                 <div class="speaker-avatar">
                     ${speaker.photo ? 
                         `<img src="${speaker.photo}" alt="${speaker.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -120,9 +160,6 @@ class SpeakerComponent {
                 <div class="speaker-info">
                     <h4 class="speaker-name">${speaker.name}</h4>
                     <p class="speaker-title">${speaker.title}</p>
-                    <div class="speaker-country">
-                        ${speaker.country}
-                    </div>
                     <div class="social-links">
                         ${socialLinks}
                     </div>
@@ -147,31 +184,56 @@ class SpeakerComponent {
         return links.join('');
     }
 
-    truncateBio(bio, maxLength = 120) {
-        if (!bio || bio.length <= maxLength) return bio || '';
-        return bio.substring(0, maxLength).trim() + '...';
+    //  INICIALIZACIÓN DE CARRUSELES INFINITOS
+    initializeCarousels() {
+        const tracks = this.container.querySelectorAll('.carousel-track');
+        
+        tracks.forEach(track => {
+            const type = track.dataset.type;
+            const cards = track.querySelectorAll('.speaker-card');
+            const originalCount = this.originalSpeakersCount[type];
+            
+            // Configurar tamaño de cards
+            cards.forEach(card => {
+                card.style.minWidth = `${100 / this.slidesToShow}%`;
+                card.style.flexShrink = '0';
+            });
+            
+            //  POSICIÓN INICIAL EN EL CENTRO (COPIA 3 DE 7)
+            const centerCopy = 3;
+            this.currentPosition[type] = centerCopy * originalCount;
+            
+            // Posicionar sin transición
+            const initialPosition = -(this.currentPosition[type] * (100 / this.slidesToShow));
+            track.style.transition = 'none';
+            track.style.transform = `translate3d(${initialPosition}%, 0, 0)`;
+            
+            // Restaurar transición después de un frame
+            requestAnimationFrame(() => {
+                track.style.transition = `transform ${this.DURATION_BASE.AUTO}ms ${this.EASING_CURVES.AUTO}`;
+            });
+        });
+        
+        this.updateAllIndicators();
     }
 
     bindEvents() {
-        // Event delegation para botones de detalles
         this.container.addEventListener('click', (e) => {
             if (e.target.closest('.btn-view-details')) {
                 const speakerId = parseInt(e.target.closest('.btn-view-details').dataset.speakerId);
                 this.showSpeakerModal(speakerId);
             }
 
-            // Controles del carrusel
             if (e.target.closest('.carousel-prev')) {
                 const type = e.target.closest('.carousel-prev').dataset.type;
-                this.prevSlide(type);
+                this.manualSlide(type, 'prev');
             }
 
             if (e.target.closest('.carousel-next')) {
                 const type = e.target.closest('.carousel-next').dataset.type;
-                this.nextSlide(type);
+                this.manualSlide(type, 'next');
             }
 
-            // Indicadores del carrusel
             if (e.target.closest('.carousel-indicator')) {
                 const indicator = e.target.closest('.carousel-indicator');
                 const type = indicator.dataset.type;
@@ -180,16 +242,23 @@ class SpeakerComponent {
             }
         });
 
-        // Touch/swipe support
         this.setupTouchEvents();
+        this.setupHoverEvents();
+    }
 
-        // Hover effects para pausar autoplay
+    setupHoverEvents() {
+        //  HOVER EN CONTENEDOR PRINCIPAL - PAUSAR AUTOPLAY
         this.container.addEventListener('mouseenter', () => {
             this.pauseAutoPlay();
         });
 
         this.container.addEventListener('mouseleave', () => {
-            this.startAutoPlay();
+            // VERIFICAR QUE NO HAY MODAL ABIERTO ANTES DE REANUDAR
+            if (!document.querySelector('.speaker-modal.active')) {
+                setTimeout(() => {
+                    this.startAutoPlay();
+                }, 500);
+            }
         });
     }
 
@@ -206,11 +275,13 @@ class SpeakerComponent {
                 startX = e.touches[0].clientX;
                 isDragging = true;
                 this.pauseAutoPlay();
+                this.lastInteractionType = 'TOUCH';
             });
 
             carousel.addEventListener('touchmove', (e) => {
                 if (!isDragging) return;
                 currentX = e.touches[0].clientX;
+                e.preventDefault();
             });
 
             carousel.addEventListener('touchend', () => {
@@ -218,19 +289,138 @@ class SpeakerComponent {
                 isDragging = false;
                 
                 const diffX = startX - currentX;
-                const threshold = 50;
+                const threshold = 60;
                 
                 if (Math.abs(diffX) > threshold) {
                     if (diffX > 0) {
-                        this.nextSlide(type);
+                        this.manualSlide(type, 'next');
                     } else {
-                        this.prevSlide(type);
+                        this.manualSlide(type, 'prev');
                     }
+                } else {
+                    this.scheduleAutoPlayResume(1000);
                 }
-                
-                this.startAutoPlay();
             });
         });
+    }
+
+    manualSlide(type, direction) {
+        this.pauseAutoPlay();
+        this.lastInteractionType = 'MANUAL';
+        
+        if (direction === 'next') {
+            this.nextSlide(type);
+        } else {
+            this.prevSlide(type);
+        }
+        
+        this.scheduleAutoPlayResume(3000);
+    }
+
+    nextSlide(type) {
+        this.currentPosition[type]++;
+        this.updateCarousel(type);
+    }
+
+    prevSlide(type) {
+        this.currentPosition[type]--;
+        this.updateCarousel(type);
+    }
+
+    //  ACTUALIZACIÓN DEL CARRUSEL CON REPOSICIONAMIENTO INVISIBLE
+    updateCarousel(type) {
+        const track = this.container.querySelector(`.carousel-track[data-type="${type}"]`);
+        if (!track) return;
+
+        const originalCount = this.originalSpeakersCount[type];
+        const translateX = -(this.currentPosition[type] * (100 / this.slidesToShow));
+        
+        // Aplicar transición
+        const duration = this.getDuration(this.lastInteractionType);
+        const easing = this.EASING_CURVES[this.lastInteractionType];
+        
+        track.style.transition = `transform ${duration}ms ${easing}`;
+        track.style.transform = `translate3d(${translateX}%, 0, 0)`;
+        
+        //  REPOSICIONAMIENTO INVISIBLE DESPUÉS DE LA TRANSICIÓN
+        setTimeout(() => {
+            this.checkInfinitePosition(type, track, originalCount);
+        }, duration);
+        
+        this.updateIndicators(type);
+    }
+
+    //  VERIFICAR Y REPOSICIONAR PARA INFINITO VERDADERO
+    checkInfinitePosition(type, track, originalCount) {
+        const currentPos = this.currentPosition[type];
+        const centerCopy = 3; // Copia central de las 7
+        const buffer = originalCount; // Una copia completa de buffer
+        
+        let needsReposition = false;
+        let newPosition = currentPos;
+        
+        // Si se acerca al inicio (copia 1), saltar a copia 5
+        if (currentPos <= originalCount) {
+            newPosition = (centerCopy + 2) * originalCount + (currentPos % originalCount);
+            needsReposition = true;
+        }
+        // Si se acerca al final (copia 6), saltar a copia 2  
+        else if (currentPos >= 6 * originalCount) {
+            newPosition = (centerCopy - 2) * originalCount + (currentPos % originalCount);
+            needsReposition = true;
+        }
+        
+        if (needsReposition) {
+            this.currentPosition[type] = newPosition;
+            const newTranslateX = -(newPosition * (100 / this.slidesToShow));
+            
+            // Reposicionamiento instantáneo e invisible
+            track.style.transition = 'none';
+            track.style.transform = `translate3d(${newTranslateX}%, 0, 0)`;
+            
+            // Restaurar transición en el siguiente frame
+            requestAnimationFrame(() => {
+                track.style.transition = `transform ${this.DURATION_BASE.AUTO}ms ${this.EASING_CURVES.AUTO}`;
+            });
+        }
+    }
+
+    getDuration(interactionType) {
+        const baseDuration = this.DURATION_BASE[interactionType];
+        const responsiveFactor = window.innerWidth <= 768 ? 0.8 : 1;
+        return Math.round(baseDuration * responsiveFactor);
+    }
+
+    goToSlide(type, slideIndex) {
+        this.lastInteractionType = 'MANUAL';
+        
+        const originalCount = this.originalSpeakersCount[type];
+        const currentRealPos = this.currentPosition[type] % originalCount;
+        const targetPos = slideIndex * this.slidesToShow;
+        
+        // Calcular ruta más corta
+        let diff = targetPos - currentRealPos;
+        if (diff > originalCount / 2) diff -= originalCount;
+        if (diff < -originalCount / 2) diff += originalCount;
+        
+        this.currentPosition[type] += diff;
+        this.updateCarousel(type);
+    }
+
+    updateIndicators(type) {
+        const indicators = this.container.querySelectorAll(`.carousel-indicator[data-type="${type}"]`);
+        const originalCount = this.originalSpeakersCount[type];
+        const realPosition = this.currentPosition[type] % originalCount;
+        const currentPage = Math.floor(realPosition / this.slidesToShow);
+        
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentPage);
+        });
+    }
+
+    updateAllIndicators() {
+        this.updateIndicators('international');
+        this.updateIndicators('national');
     }
 
     setupResponsive() {
@@ -245,141 +435,50 @@ class SpeakerComponent {
                 this.slidesToShow = 3;
             }
             
-            this.updateCarouselDisplay();
+            this.initializeCarousels();
         };
 
         window.addEventListener('resize', updateSlidesToShow);
         updateSlidesToShow();
     }
 
-    updateCarouselDisplay() {
-        const tracks = this.container.querySelectorAll('.carousel-track');
-        
-        tracks.forEach(track => {
-            const type = track.dataset.type;
-            const cards = track.querySelectorAll('.speaker-card');
-            
-            // Actualizar ancho de las cards Y FORZAR LAYOUT HORIZONTAL
-            cards.forEach(card => {
-                // APLICAR ANCHO
-                card.style.minWidth = `${100 / this.slidesToShow}%`;
-                
-                // LAYOUT HORIZONTAL FORZADO CON cssText
-                card.style.cssText += `
-                    display: flex !important;
-                    flex-direction: row !important;
-                    align-items: center !important;
-                    height: 140px !important;
-                    padding: 1.5rem !important;
-                `;
-                
-                // AVATAR A LA IZQUIERDA
-                const avatar = card.querySelector('.speaker-avatar');
-                if (avatar) {
-                    avatar.style.cssText = `
-                        width: 90px !important;
-                        height: 90px !important;
-                        margin-right: 1.5rem !important;
-                        margin-bottom: 0 !important;
-                        flex-shrink: 0 !important;
-                        order: 1 !important;
-                    `;
-                }
-                
-                // CONTENIDO A LA DERECHA
-                const info = card.querySelector('.speaker-info');
-                if (info) {
-                    info.style.cssText = `
-                        flex: 1 !important;
-                        display: flex !important;
-                        flex-direction: column !important;
-                        justify-content: center !important;
-                        align-items: flex-start !important;
-                        text-align: left !important;
-                        height: 100% !important;
-                        order: 2 !important;
-                    `;
-                }
-            });
-            
-            // Actualizar posición actual
-            this.goToSlide(type, this.currentSlides[type]);
-            
-            // Actualizar indicadores
-            this.updateIndicators(type);
-        });
-    }
-
-    nextSlide(type) {
-        const speakers = type === 'international' ? this.internationalSpeakers : this.nationalSpeakers;
-        const maxSlides = Math.ceil(speakers.length / this.slidesToShow) - 1;
-        
-        this.currentSlides[type] = this.currentSlides[type] >= maxSlides ? 0 : this.currentSlides[type] + 1;
-        this.updateCarousel(type);
-    }
-
-    prevSlide(type) {
-        const speakers = type === 'international' ? this.internationalSpeakers : this.nationalSpeakers;
-        const maxSlides = Math.ceil(speakers.length / this.slidesToShow) - 1;
-        
-        this.currentSlides[type] = this.currentSlides[type] <= 0 ? maxSlides : this.currentSlides[type] - 1;
-        this.updateCarousel(type);
-    }
-
-    goToSlide(type, slideIndex) {
-        const speakers = type === 'international' ? this.internationalSpeakers : this.nationalSpeakers;
-        const maxSlides = Math.ceil(speakers.length / this.slidesToShow) - 1;
-        
-        this.currentSlides[type] = Math.max(0, Math.min(slideIndex, maxSlides));
-        this.updateCarousel(type);
-    }
-
-    updateCarousel(type) {
-        const track = this.container.querySelector(`.carousel-track[data-type="${type}"]`);
-        if (!track) return;
-
-        const translateX = -(this.currentSlides[type] * (100 / this.slidesToShow) * this.slidesToShow);
-        track.style.transform = `translateX(${translateX}%)`;
-        
-        this.updateIndicators(type);
-        this.updateControls(type);
-    }
-
-    updateIndicators(type) {
-        const indicators = this.container.querySelectorAll(`.carousel-indicator[data-type="${type}"]`);
-        
-        indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === this.currentSlides[type]);
-        });
-    }
-
-    updateControls(type) {
-        const speakers = type === 'international' ? this.internationalSpeakers : this.nationalSpeakers;
-        const maxSlides = Math.ceil(speakers.length / this.slidesToShow) - 1;
-        
-        const prevBtn = this.container.querySelector(`.carousel-prev[data-type="${type}"]`);
-        const nextBtn = this.container.querySelector(`.carousel-next[data-type="${type}"]`);
-        
-        if (prevBtn && nextBtn) {
-            prevBtn.disabled = this.currentSlides[type] === 0;
-            nextBtn.disabled = this.currentSlides[type] === maxSlides;
-        }
-    }
-
+    //  AUTOPLAY SINCRONIZADO
     startAutoPlay() {
-        this.pauseAutoPlay(); // Limpiar cualquier intervalo existente
+        this.pauseAutoPlay();
+        
+        const hasInternational = this.internationalSpeakers.length > 0;
+        const hasNational = this.nationalSpeakers.length > 0;
+        
+        if (!hasInternational && !hasNational) return;
+        
+        const autoInterval = this.getDuration('AUTO') + 4000; // Pausa larga
         
         this.autoPlayInterval = setInterval(() => {
-            // Alternar entre carruseles
-            const types = ['international', 'national'];
-            const randomType = types[Math.floor(Math.random() * types.length)];
+            if (this.isTransitioning) return;
             
-            // Solo avanzar si hay suficientes speakers
-            const speakers = randomType === 'international' ? this.internationalSpeakers : this.nationalSpeakers;
-            if (speakers.length > this.slidesToShow) {
-                this.nextSlide(randomType);
-            }
-        }, 5000); // Cambiar cada 5 segundos
+            this.lastInteractionType = 'AUTO';
+            this.executeSynchronizedMovement();
+        }, autoInterval);
+    }
+
+    executeSynchronizedMovement() {
+        const hasInternational = this.internationalSpeakers.length > 0;
+        const hasNational = this.nationalSpeakers.length > 0;
+        
+        this.isTransitioning = true;
+        
+        if (hasInternational && hasNational) {
+            this.nextSlide('international');
+            this.prevSlide('national');
+        } else if (hasInternational) {
+            this.nextSlide('international');
+        } else if (hasNational) {
+            this.nextSlide('national');
+        }
+        
+        setTimeout(() => {
+            this.isTransitioning = false;
+        }, this.getDuration('AUTO') + 100);
     }
 
     pauseAutoPlay() {
@@ -387,18 +486,47 @@ class SpeakerComponent {
             clearInterval(this.autoPlayInterval);
             this.autoPlayInterval = null;
         }
+        
+        //  TAMBIÉN CANCELAR CUALQUIER RESUME PENDIENTE
+        if (this.resumeTimeout) {
+            clearTimeout(this.resumeTimeout);
+            this.resumeTimeout = null;
+        }
+        
+        this.isTransitioning = false;
+    }
+
+    scheduleAutoPlayResume(delay = 3000) {
+        //  LIMPIAR CUALQUIER RESUME PENDIENTE
+        if (this.resumeTimeout) {
+            clearTimeout(this.resumeTimeout);
+        }
+        
+        this.resumeTimeout = setTimeout(() => {
+            //  VERIFICAR QUE NO HAY MODAL ABIERTO ANTES DE REANUDAR
+            if (!document.querySelector('.speaker-modal.active')) {
+                this.startAutoPlay();
+            }
+            this.resumeTimeout = null;
+        }, delay);
     }
 
     async showSpeakerModal(speakerId) {
+        //  PAUSAR AUTOPLAY TEMPORALMENTE AL ABRIR MODAL
+        this.pauseAutoPlay();
+        
         const speaker = await dataService.getSpeakerById(speakerId);
         const sessions = await dataService.getSessionsBySpeaker(speakerId);
         
-        if (!speaker) return;
+        if (!speaker) {
+            // Si hay error, reanudar autoplay
+            this.scheduleAutoPlayResume(1000);
+            return;
+        }
 
         const modal = this.createModal(speaker, sessions);
         document.body.appendChild(modal);
         
-        // Animate modal
         setTimeout(() => {
             modal.classList.add('active');
         }, 10);
@@ -478,13 +606,18 @@ class SpeakerComponent {
                 if (modal.parentElement) {
                     document.body.removeChild(modal);
                 }
+                //  REANUDAR AUTOPLAY DESPUÉS DE CERRAR MODAL
+                this.scheduleAutoPlayResume(1000); // 1 segundo de gracia antes de reanudar
             }, 300);
         };
 
+        // Cerrar con botón X
         modal.querySelector('.modal-close').addEventListener('click', closeModal);
+        
+        // Cerrar con click en overlay
         modal.querySelector('.modal-overlay').addEventListener('click', closeModal);
         
-        // Close on Escape
+        // Cerrar con tecla Escape
         const handleKeydown = (e) => {
             if (e.key === 'Escape') {
                 closeModal();
@@ -492,12 +625,28 @@ class SpeakerComponent {
             }
         };
         document.addEventListener('keydown', handleKeydown);
+        
+        //  LIMPIAR EVENT LISTENER SI EL MODAL SE ELIMINA DE OTRA FORMA
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'childList' && !document.body.contains(modal)) {
+                    document.removeEventListener('keydown', handleKeydown);
+                    observer.disconnect();
+                    // Reanudar autoplay por seguridad
+                    this.scheduleAutoPlayResume(500);
+                }
+            });
+        });
+        observer.observe(document.body, { childList: true });
     }
 
     applyAnimations() {
         const sections = this.container.querySelectorAll('.speaker-carousel-section');
         sections.forEach((section, index) => {
             section.style.animationDelay = `${index * 0.2}s`;
+            setTimeout(() => {
+                section.classList.add('visible');
+            }, index * 200 + 100);
         });
     }
 
@@ -517,83 +666,15 @@ class SpeakerComponent {
         `;
     }
 
-    // Cleanup method
     destroy() {
         this.pauseAutoPlay();
-        window.removeEventListener('resize', this.setupResponsive);
-    }
-    
-    // FORZAR LAYOUT HORIZONTAL DESDE JAVASCRIPT
-    forceHorizontalLayout() {
-        const cards = this.container.querySelectorAll('.speaker-card');
         
-        cards.forEach(card => {
-            // REMOVER TODOS LOS ESTILOS PREVIOS QUE PUEDAN INTERFERIR
-            card.removeAttribute('style');
-            
-            // APLICAR LAYOUT HORIZONTAL FORZADO
-            card.style.cssText = `
-                display: flex !important;
-                flex-direction: row !important;
-                align-items: center !important;
-                justify-content: flex-start !important;
-                text-align: left !important;
-                height: 140px !important;
-                min-height: 140px !important;
-                max-height: 140px !important;
-                padding: 1.5rem !important;
-                box-sizing: border-box !important;
-                width: calc(33.333% - 1rem) !important;
-                min-width: calc(33.333% - 1rem) !important;
-            `;
-            
-            // AVATAR A LA IZQUIERDA - FORZADO
-            const avatar = card.querySelector('.speaker-avatar');
-            if (avatar) {
-                avatar.style.cssText = `
-                    width: 90px !important;
-                    height: 90px !important;
-                    margin-right: 1.5rem !important;
-                    margin-bottom: 0 !important;
-                    margin-top: 0 !important;
-                    margin-left: 0 !important;
-                    flex-shrink: 0 !important;
-                    flex-grow: 0 !important;
-                    order: 1 !important;
-                `;
-            }
-            
-            // CONTENIDO A LA DERECHA - FORZADO
-            const info = card.querySelector('.speaker-info');
-            if (info) {
-                info.style.cssText = `
-                    flex: 1 !important;
-                    flex-grow: 1 !important;
-                    flex-shrink: 1 !important;
-                    display: flex !important;
-                    flex-direction: column !important;
-                    justify-content: center !important;
-                    align-items: flex-start !important;
-                    text-align: left !important;
-                    height: 100% !important;
-                    gap: 0.5rem !important;
-                    min-width: 0 !important;
-                    order: 2 !important;
-                `;
-            }
-            
-            // OVERLAY DEBE CUBRIR TODA LA CARD
-            const overlay = card.querySelector('.speaker-overlay');
-            if (overlay) {
-                overlay.style.cssText = `
-                    position: absolute !important;
-                    top: 0 !important;
-                    left: 0 !important;
-                    right: 0 !important;
-                    bottom: 0 !important;
-                    order: 3 !important;
-                `;
-            }
-        });
+        //  LIMPIAR TODOS LOS TIMEOUTS
+        if (this.resumeTimeout) {
+            clearTimeout(this.resumeTimeout);
+            this.resumeTimeout = null;
+        }
+        
+        window.removeEventListener('resize', this.setupResponsive);
     }
 }
