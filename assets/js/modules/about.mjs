@@ -37,9 +37,27 @@ async function start(){
         if(i>0) about.appendChild(document.createElement("hr"));
         await speak(about,info.desc[i],"p");
     }
-    //await speak(about.querySelector("p"),info.desc);
-    about.innerHTML=`${about.innerHTML}
-    <div class="about-button">
+    let logoDiv = document.createElement("div");
+    logoDiv.classList.add("about-image");
+    about.appendChild(logoDiv);
+
+    console.log(logoDiv);
+    let logoImg = new Image();
+    logoImg.src = "/assets/images/other/Congreso-1.jpg";
+    logoImg.alt = "Congreso AI UPDS";
+    logoImg.style.maxWidth = "100%";
+    logoImg.style.height = "auto";
+    logoImg.onload = () => {
+        console.log(logoDiv, logoImg);
+        logoDiv.appendChild(logoImg);
+    };
+    logoImg.onerror = () => {
+        console.log("No se pudo cargar la imagen.");
+    };
+
+    const buttonDiv = document.createElement("div");
+    buttonDiv.className = "about-button";
+    buttonDiv.innerHTML = `
         <button>
             <i class="fa fa-clone" aria-hidden="true"></i>
         </button>
@@ -52,8 +70,9 @@ async function start(){
         <button>
             <i class="fa fa-thumbs-down" aria-hidden="true"></i>
         </button>
-    </div>`;
-    let buttons = about.querySelectorAll("button");
+    `;
+    about.appendChild(buttonDiv);
+    let buttons = buttonDiv.querySelectorAll("button");
     buttons[0].addEventListener("click",async (e)=>{
         let target = e.currentTarget;
         target.setAttribute("disabled","");
@@ -71,6 +90,7 @@ async function start(){
         buttons[2].style.color="";
     });
 }
+
 async function init(){
     observer.observe(about);
 }

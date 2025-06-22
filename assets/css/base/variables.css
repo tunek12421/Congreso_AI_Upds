@@ -72,3 +72,13 @@
 
     --responsive-min-width: 850px;
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dark: #000e0e;
+
+        /* Paleta de colores */
+        --dark-background: linear-gradient(120deg, #001a1a 0%, #000a0a 100%);
+        --dark-background-hover: linear-gradient(160deg, #001313 0%, #000000 100%);
+    }
+}
