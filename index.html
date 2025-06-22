@@ -62,7 +62,10 @@
                         </div>
                     </div>
                     <div class="hero-divider"></div>
-                    <h1>2° Congreso internacional Inteligencia Artificial 2025</h1>
+                    <h1>
+                        <span class="congress-number" style="color: #00d4aa !important; -webkit-text-fill-color: #00d4aa !important; background-clip: unset !important; -webkit-background-clip: unset !important;">II</span> Congreso Internacional<br>
+                        Inteligencia Artificial <span class="year-number" style="color: #00d4aa !important; -webkit-text-fill-color: #00d4aa !important; background-clip: unset !important; -webkit-background-clip: unset !important;">2025</span>
+                    </h1>
                     <div class="cta-buttons">
                         <a href="#tickets" class="btn btn-primary">
                             <i class="fas fa-ticket-alt"></i>
@@ -230,5 +233,58 @@
     <script src="src/utils/animations.js"></script>
     <script src="src/utils/helpers.js"></script>
     <script src="assets/js/main.js"></script>
+    <!-- Reemplaza el script del menú móvil en tu HTML con esta versión optimizada -->
+<!-- Reemplaza tu <script> del menú móvil con esta versión optimizada -->
+<script>
+// Mobile Menu - Solución Final
+document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.querySelector('.mobile-menu-btn');
+    const nav = document.querySelector('.nav-links');
+    
+    if (!btn || !nav) return;
+    
+    function toggleMenu() {
+        const isOpen = nav.classList.contains('mobile-open');
+        const icon = btn.querySelector('i');
+        
+        nav.classList.toggle('mobile-open');
+        
+        if (icon) {
+            icon.className = isOpen ? 'fas fa-bars' : 'fas fa-times';
+        }
+    }
+    
+    function closeMenu() {
+        nav.classList.remove('mobile-open');
+        const icon = btn.querySelector('i');
+        if (icon) icon.className = 'fas fa-bars';
+    }
+    
+    // Event listeners
+    btn.addEventListener('click', toggleMenu);
+    
+    nav.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A') closeMenu();
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && nav.classList.contains('mobile-open')) {
+            closeMenu();
+        }
+    });
+    
+    document.addEventListener('click', function(e) {
+        if (nav.classList.contains('mobile-open') &&
+            !nav.contains(e.target) &&
+            !btn.contains(e.target)) {
+            closeMenu();
+        }
+    });
+    
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 767) closeMenu();
+    });
+});
+</script>
 </body>
 </html>

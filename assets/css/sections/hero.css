@@ -12,8 +12,7 @@
     position: relative;
     padding: 2rem;
     padding-top: 70px;
-    overflow: hidden; /* Importante para que el video no se desborde */
-    /*background-color: var(--dark-bg);  Fallback */
+    overflow: hidden;
     height: 100%;
 }
 
@@ -41,7 +40,7 @@
 }
 
 .hero-content {
-    max-width: 900px;
+    max-width: 1200px;
     z-index: 2;
     position: relative;
 }
@@ -55,7 +54,7 @@
 }
 
 .logo-text {
-    font-size: 10rem;
+    font-size: 20rem;
     font-weight: 800;
     color: var(--white);
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
@@ -72,39 +71,30 @@
 
 .logo-dots {
     position: absolute;
-    top: 15px;
-    left: 185px;
+    top: 35px;
+    left: 380px;
     display: flex;
-    gap: 8px;
+    gap: 15px;
 }
 
 .dot {
-    width: 22px;
-    height: 22px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     background: #00d4aa;
-    box-shadow: 0 0 15px rgba(0, 212, 170, 0.6);
 }
 
 /* Línea divisoria */
 .hero-divider {
-    width: 800px;
-    height: 3px;
+    width: 1000px;
+    height: 4px;
     background: #00d4aa;
     margin: 0px auto;
     border-radius: 2px;
-    box-shadow: 0 0 10px rgba(0, 212, 170, 0.4);
     animation: fadeIn 1s ease-out 0.2s both;
 }
 
-.dot-1 {
-    animation: float 3s ease-in-out infinite;
-}
-
-.dot-2 {
-    animation: float 3s ease-in-out infinite 1.5s;
-}
-
+/* Título principal */
 .hero-content h1 {
     font-size: 3rem;
     font-weight: 600;
@@ -115,22 +105,33 @@
     line-height: 1.2;
 }
 
-.hero-subtitle {
-    font-size: 1.8rem;
-    color: var(--light-gray);
-    margin-bottom: 3rem;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    animation: fadeIn 1s ease-out 0.3s both;
+/* Números II y 2025 en turquesa */
+.hero-content h1 .congress-number,
+.hero-content h1 .year-number {
+    color: #00d4aa !important;
+    -webkit-text-fill-color: #00d4aa !important;
+    font-weight: 900 !important;
+    font-family: 'Times New Roman', serif !important;
+    background-clip: unset !important;
+    -webkit-background-clip: unset !important;
 }
 
-/* Eliminado completamente .hero-date */
+.hero-content h1 .congress-number {
+    letter-spacing: 0.2em;
+    margin-right: 0.5rem;
+}
+
+.hero-content h1 .year-number {
+    letter-spacing: 0.1em;
+}
 
 .cta-buttons {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     justify-content: center;
     flex-wrap: wrap;
-    animation: fadeIn 1s ease-out 0.4s both; /* Cambiado de 0.6s a 0.4s */
+    animation: fadeIn 1s ease-out 0.4s both;
+    margin-top: 2rem;
 }
 
 /* Floating Elements */
@@ -139,9 +140,7 @@
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    animation: float 6s ease-in-out infinite;
     z-index: 1;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .floating-1 {
@@ -149,7 +148,6 @@
     height: 100px;
     top: 20%;
     left: 10%;
-    animation-delay: 0s;
 }
 
 .floating-2 {
@@ -157,7 +155,6 @@
     height: 60px;
     top: 60%;
     right: 15%;
-    animation-delay: 2s;
 }
 
 .floating-3 {
@@ -165,19 +162,9 @@
     height: 80px;
     bottom: 20%;
     left: 15%;
-    animation-delay: 4s;
 }
 
 /* Animaciones */
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-20px);
-    }
-}
-
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -189,51 +176,107 @@
     }
 }
 
-/* Eliminado @keyframes slideInUp ya que no se usa */
-
 /* Responsive */
+@media (max-width: 1200px) {
+    .logo-text {
+        font-size: 16rem;
+    }
+    
+    .logo-dots {
+        left: 300px;
+        top: 30px;
+    }
+    
+    .dot {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .hero-divider {
+        width: 800px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+}
+
 @media (max-width: 850px) {
+    .hero-content {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+    
     .hero-content h1 {
         font-size: 2.5rem;
     }
     
-    .hero-subtitle {
-        font-size: 1.4rem;
-    }
-    
     .logo-text {
-        font-size: 7.5rem;
+        font-size: 12rem;
     }
     
     .logo-dots {
-        left: 125px;
-        top: 10px;
+        left: 210px;
+        top: 20px;
     }
     
     .dot {
-        width: 18px;
-        height: 18px;
+        width: 20px;
+        height: 20px;
     }
 
     .hero-divider {
         width: 80%;
-        height: 2px;
+        height: 3px;
         margin: 0.3rem auto 1.5rem auto;
     }
+    
+    .floating-element {
+        display: none;
+    }
+    
+    .cta-buttons {
+        gap: 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cta-buttons .btn {
+        width: 250px;
+        justify-content: center;
+    }
+}
 
+@media (max-width: 480px) {
     .hero-content h1 {
         font-size: 2.2rem;
         line-height: 1.1;
     }
     
-    .floating-element {
-        display: none; /* Ocultar elementos flotantes en móviles */
+    .logo-text {
+        font-size: 8rem;
     }
     
-    /* Optimización del video en móviles */
-    .hero-video {
-        /* En móviles, puedes considerar pausar el video o usar una imagen como fallback */
-        object-position: center;
+    .logo-dots {
+        left: 140px;
+        top: 15px;
+        gap: 8px;
+    }
+    
+    .dot {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .hero-divider {
+        width: 90%;
+        height: 2px;
+    }
+    
+    .cta-buttons .btn {
+        width: 200px;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
     }
 }
 
@@ -241,5 +284,9 @@
 @media (prefers-reduced-motion: reduce) {
     .hero-video {
         animation-play-state: paused;
+    }
+    
+    .floating-element {
+        animation: none;
     }
 }
