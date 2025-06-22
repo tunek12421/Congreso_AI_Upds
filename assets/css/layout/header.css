@@ -8,7 +8,6 @@ header {
     transition: var(--transition);
     display: flex;
     justify-content: space-between;
-    backdrop-filter: blur(10px);
 }
 
 header img {
@@ -280,106 +279,46 @@ nav {
     }
 }
 
-/* Mobile menu - DEBE IR DESPUÉS DE LAS MEDIA QUERIES */
-@media (max-width: 767px) {
-    /* Reset inicial del menú */
-    .nav-links {
-        display: none !important;
-        position: static;
-        flex-direction: row;
-        gap: clamp(1rem, 3vw, 2rem);
-        max-width: none;
-        min-width: auto;
-        background: transparent;
-        padding: 0;
-        border-radius: 0;
-        box-shadow: none;
-        backdrop-filter: none;
-        border: none;
-        animation: none;
-    }
+/* Mobile menu */
+.mobile-open {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 80%;
+    min-width: 200px;
+    top: var(--header-height, 60px);
+    right: 0;
+    background: var(--dark-background);
+    position: absolute;
+    padding: 1.5rem 1rem;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     
-    /* Estilos cuando está abierto */
-    .nav-links.mobile-open {
-        display: flex !important;
-        flex-direction: column;
-        gap: 0.5rem;
-        max-width: 85%; /* Ajustado para pantallas pequeñas */
-        min-width: 180px;
-        top: 55px; /* Ajustado según height del header móvil */
-        right: 0.3rem; /* Pequeño margen del borde */
-        background: var(--dark-background);
-        position: absolute;
-        padding: 1.2rem 0.8rem;
-        border-top-left-radius: 15px;
-        border-bottom-left-radius: 15px;
-        box-shadow: var(--shadow);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        z-index: 9999;
-        
-        /* Animación de entrada desde la derecha */
-        animation: slideInFromRight 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-    
-    .nav-links.mobile-open a {
-        padding: 0.6rem 0.8rem;
-        border-radius: 8px;
-        transition: var(--transition);
-        text-align: center;
-        background: rgba(255, 255, 255, 0.05);
-        margin-bottom: 0.2rem;
-        font-size: 0.9rem;
-    }
-    
-    .nav-links.mobile-open a:hover {
-        background: rgba(255, 255, 255, 0.1);
-        transform: translateX(-5px);
-    }
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Ajustes específicos para pantallas muy pequeñas */
-@media (max-width: 480px) {
-    .nav-links.mobile-open {
-        top: 50px;
-        right: 0.2rem;
-        max-width: 90%;
-        min-width: 160px;
-        padding: 1rem 0.6rem;
-    }
-    
-    .nav-links.mobile-open a {
-        padding: 0.5rem 0.6rem;
-        font-size: 0.85rem;
-    }
+.mobile-open.show {
+    transform: translateX(0);
+    opacity: 1;
 }
 
-@media (max-width: 319px) {
-    .nav-links.mobile-open {
-        top: 45px;
-        right: 0.15rem;
-        max-width: 95%;
-        min-width: 140px;
-        padding: 0.8rem 0.5rem;
-    }
-    
-    .nav-links.mobile-open a {
-        padding: 0.45rem 0.5rem;
-        font-size: 0.8rem;
-        margin-bottom: 0.15rem;
-    }
+.mobile-open a {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: var(--transition);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    margin-bottom: 0.25rem;
 }
 
-/* Animación keyframes - IMPORTANTE: debe estar definida */
-@keyframes slideInFromRight {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+.mobile-open a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-5px);
 }
 
 /* Landscape mode */
@@ -430,7 +369,7 @@ nav {
 
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
-    .nav-links.mobile-open {
+    .mobile-open {
         background: rgba(0, 0, 0, 0.95);
         border: 1px solid rgba(255, 255, 255, 0.2);
     }

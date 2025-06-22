@@ -44,7 +44,7 @@
     width: max-content;
     min-width: 100%;
     justify-content: space-evenly;
-    animation: 10s logos_slides infinite linear;
+    animation: 25s logos_slides infinite linear;
 }
 
 .logo_items img{

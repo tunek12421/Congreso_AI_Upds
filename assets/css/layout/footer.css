@@ -1,6 +1,7 @@
 /* ===== FOOTER ===== */
 footer {
     background: var(--primary-blue);
+    box-shadow: var(--shadow);
     color: var(--white);
     padding: 2rem;
     text-align: center;
@@ -12,11 +13,13 @@ footer {
 .footer-content {
     width: 100%;
 }
-
 .footer-logo {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 2rem;
+    width: 33%;
+    max-width: 250px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    margin:10px;
 }
 
 .footer-text {
@@ -27,34 +30,64 @@ footer {
     margin-right: auto;
 }
 
+/*Links del footer*/
 .footer-links {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin:10px;
+    width: 33%;
+    max-width: 250px;
 }
-
-.footer .social-link {
-    width: 50px;
-    height: 50px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 50%;
+.footer-links ul{
     display: flex;
-    align-items: center;
     justify-content: center;
-    text-decoration: none;
-    color: var(--white);
+    height: 100%;
+    gap: 0.3rem;
+}
+.footer-links ul li{
+    color: var(--primary-blue);
+    background: var(--white);
+    border-radius: 50%;
+    align-self: center;
+    font-size: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
     transition: var(--transition);
-    backdrop-filter: blur(10px);
+}
+.footer-links ul li:hover {
+    transform: translateY(-3px);
 }
 
-.footer .social-link:hover {
-    background: rgba(255,255,255,0.2);
-    transform: translateY(-3px);
+/*Contactos*/
+.footer-contactos{
+    margin:10px;
+}
+.footer-contactos ul{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.footer-contactos ul li{
+    margin: 0px 10px;
+}
+.footer-contactos ul li a i{
+    margin-right: 5px;
 }
 
 .copyright {
     border-top: 1px solid rgba(255,255,255,0.2);
     padding-top: 2rem;
     opacity: 0.7;
+}
+
+@media (max-width: 850px) {
+    .footer-card{
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-logo {
+        width: 40%;
+    }
 }

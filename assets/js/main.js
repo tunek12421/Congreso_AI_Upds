@@ -177,11 +177,6 @@ function setupGlobalEvents() {
         });
     });
 
-    // Mobile menu toggle (future enhancement)
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-    }
 
     // Global click handler for buttons with ripple effect
     document.addEventListener('click', function(e) {
