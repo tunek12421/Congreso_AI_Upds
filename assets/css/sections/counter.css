@@ -1,0 +1,39 @@
+#counter{
+    min-height: 0px;
+}
+.counter-card{
+    display: flex;
+    justify-content: space-evenly;
+    margin:10px;
+    padding: 10px;
+    background: var(--dark-background);
+    border-radius: 20px;
+    font-weight: bold;
+}
+.counter-card li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+}
+.counter-name{
+    font-size:1.5rem;
+    font-style: normal;
+}
+.counter-number{
+    font-size: 4rem;
+}
+.counter-card hr{
+    margin: 1rem;
+    background: var(--primary-color);
+    width: 3px;
+    border: 0;
+}
+@media (max-width: 850px) {
+    .counter-number{
+        font-size: 3rem;
+    }
+    .counter-name{
+        font-size:0.80rem;
+    }
+}

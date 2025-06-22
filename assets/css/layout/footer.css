@@ -63,11 +63,13 @@ footer {
 /*Contactos*/
 .footer-contactos{
     margin:10px;
+    max-width: 550px;
 }
 .footer-contactos ul{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+
 }
 .footer-contactos ul li{
     margin: 0px 10px;

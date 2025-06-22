@@ -27,6 +27,7 @@
 @import url('./sections/sponsors.css');
 @import url('./sections/tickets.css');
 @import url('./sections/impact.css');
+@import url('./sections/counter.css');
 
 /* Utilities */
 @import url('./utilities/helpers.css');
