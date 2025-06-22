@@ -8,8 +8,9 @@ const updateHeader = () => {
     if((window.scrollY > 10) != state){
         state = (window.scrollY > 10);
         if (state) {
-            header.style.background = cssVariable("primary-blue");
-            header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            // Usar el color de la maquetación
+            header.style.background = '#014b55'; // Color verde azulado de la maquetación
+            header.style.boxShadow = '0 5px 20px rgba(1, 75, 85, 0.2)'; // Sombra que combine
             
             if (logo) {
                 logo.src = '/assets/images/logos/UPDS5.png';

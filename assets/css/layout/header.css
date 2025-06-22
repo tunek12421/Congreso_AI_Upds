@@ -36,7 +36,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 clamp(1rem, 4vw, 2rem);
+    padding: 0 1rem; /* Reducido para acercar a los bordes */
 }
 
 .logo {
@@ -121,7 +121,7 @@ nav {
 /* Desktop Large (1200px+) */
 @media (min-width: 1200px) {
     nav {
-        padding: 0 3rem;
+        padding: 0 1.5rem; /* Reducido de 3rem para acercar a bordes */
     }
     
     .nav-links {
@@ -142,7 +142,7 @@ nav {
 /* Desktop (1024px - 1199px) */
 @media (max-width: 1199px) and (min-width: 1024px) {
     nav {
-        padding: 0 2rem;
+        padding: 0 1rem; /* Reducido de 2rem */
     }
     
     .nav-links {
@@ -161,7 +161,7 @@ nav {
     }
     
     nav {
-        padding: 0 1.5rem;
+        padding: 0 0.75rem; /* Reducido de 1.5rem */
     }
     
     .nav-links {
@@ -190,7 +190,7 @@ nav {
     }
     
     nav {
-        padding: 0 1rem;
+        padding: 0 0.5rem; /* Más cerca de los bordes en móvil */
     }
     
     .nav-links {
@@ -199,6 +199,7 @@ nav {
     
     .mobile-menu-btn {
         display: block;
+        margin-right: 0.25rem; /* Pequeño margen del borde */
     }
     
     header img[src*="CiiA"] {
@@ -219,7 +220,7 @@ nav {
     }
     
     nav {
-        padding: 0 0.75rem;
+        padding: 0 0.4rem; /* Muy cerca de los bordes */
     }
     
     .nav-links {
@@ -229,7 +230,8 @@ nav {
     .mobile-menu-btn {
         display: block;
         font-size: 1.2rem;
-        padding: 0.4rem;
+        padding: 0.3rem;
+        margin-right: 0.2rem;
     }
     
     header img[src*="CiiA"] {
@@ -250,7 +252,7 @@ nav {
     }
     
     nav {
-        padding: 0 0.5rem;
+        padding: 0 0.3rem; /* Mínimo padding para pantallas muy pequeñas */
     }
     
     .nav-links {
@@ -259,7 +261,8 @@ nav {
     
     .mobile-menu-btn {
         font-size: 1.1rem;
-        padding: 0.3rem;
+        padding: 0.25rem;
+        margin-right: 0.15rem;
     }
     
     header img[src*="CiiA"] {
@@ -270,6 +273,10 @@ nav {
     header img[src*="UPDS"] {
         height: 30px;
         max-width: 80px;
+    }
+    
+    .logo {
+        margin-left: 0.1rem; /* Muy cerca del borde izquierdo */
     }
 }
 
@@ -297,13 +304,13 @@ nav {
         display: flex !important;
         flex-direction: column;
         gap: 0.5rem;
-        max-width: 80%;
-        min-width: 200px;
-        top: 60px;
-        right: 0;
+        max-width: 85%; /* Ajustado para pantallas pequeñas */
+        min-width: 180px;
+        top: 55px; /* Ajustado según height del header móvil */
+        right: 0.3rem; /* Pequeño margen del borde */
         background: var(--dark-background);
         position: absolute;
-        padding: 1.5rem 1rem;
+        padding: 1.2rem 0.8rem;
         border-top-left-radius: 15px;
         border-bottom-left-radius: 15px;
         box-shadow: var(--shadow);
@@ -316,17 +323,50 @@ nav {
     }
     
     .nav-links.mobile-open a {
-        padding: 0.75rem 1rem;
+        padding: 0.6rem 0.8rem;
         border-radius: 8px;
         transition: var(--transition);
         text-align: center;
         background: rgba(255, 255, 255, 0.05);
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.2rem;
+        font-size: 0.9rem;
     }
     
     .nav-links.mobile-open a:hover {
         background: rgba(255, 255, 255, 0.1);
         transform: translateX(-5px);
+    }
+}
+
+/* Ajustes específicos para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .nav-links.mobile-open {
+        top: 50px;
+        right: 0.2rem;
+        max-width: 90%;
+        min-width: 160px;
+        padding: 1rem 0.6rem;
+    }
+    
+    .nav-links.mobile-open a {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 319px) {
+    .nav-links.mobile-open {
+        top: 45px;
+        right: 0.15rem;
+        max-width: 95%;
+        min-width: 140px;
+        padding: 0.8rem 0.5rem;
+    }
+    
+    .nav-links.mobile-open a {
+        padding: 0.45rem 0.5rem;
+        font-size: 0.8rem;
+        margin-bottom: 0.15rem;
     }
 }
 
@@ -345,29 +385,38 @@ nav {
 /* Landscape mode */
 @media (max-height: 500px) and (orientation: landscape) {
     header {
-        height: 50px;
+        height: 45px; /* Más compacto en landscape */
+    }
+    
+    nav {
+        padding: 0 0.5rem;
     }
     
     header img[src*="CiiA"] {
-        height: 35px;
-        max-width: 100px;
+        height: 32px;
+        max-width: 90px;
     }
     
     header img[src*="UPDS"] {
-        height: 30px;
-        max-width: 80px;
+        height: 28px;
+        max-width: 70px;
     }
     
     .mobile-menu-btn {
-        font-size: 1.1rem;
-        padding: 0.3rem;
+        font-size: 1rem;
+        padding: 0.25rem;
     }
     
     .nav-links.mobile-open {
-        top: 50px !important;
-        max-height: calc(100vh - 50px);
+        top: 40px !important;
+        max-height: calc(100vh - 45px);
         overflow-y: auto;
-        padding: 1rem;
+        padding: 0.8rem 0.6rem;
+    }
+    
+    .nav-links.mobile-open a {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
     }
 }
 
