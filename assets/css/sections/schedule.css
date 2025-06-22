@@ -15,8 +15,8 @@
 
 .filter-btn {
     background: transparent;
-    border: 2px solid var(--light-blue);
-    color: var(--light-blue);
+    border: 2px solid #46BAC0;
+    color: #46BAC0;
     padding: 0.7rem 1.5rem;
     border-radius: 25px;
     font-weight: 600;
@@ -29,8 +29,8 @@
 
 .filter-btn:hover,
 .filter-btn.active {
-    background: var(--light-blue);
-    color: var(--white);
+    background: #46BAC0;
+    color: #ffffff;
 }
 
 .schedule-timeline {
@@ -62,19 +62,19 @@
 .time-indicator {
     width: 50px;
     height: 50px;
-    background: var(--gradient-primary);
+    background: #46BAC0;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--white);
+    color: #001A1A;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
 }
 
 .time-text {
     font-weight: 600;
-    color: var(--primary-blue);
+    color: #46BAC0;
     text-align: center;
     font-size: 0.9rem;
 }
@@ -85,7 +85,7 @@
     padding: 2rem;
     border-radius: 15px;
     box-shadow: var(--shadow);
-    border-left: 4px solid var(--light-blue);
+    border-left: 4px solid #46BAC0;
 }
 
 .session-header {
@@ -98,13 +98,13 @@
 .session-title {
     font-size: 1.3rem;
     font-weight: 600;
-    color: var(--primary-blue);
+    color: #ffffff;
     margin-bottom: 0.5rem;
 }
 
 .category-badge {
-    background: var(--gradient-accent);
-    color: var(--white);
+    background: #46BAC0;
+    color: #001A1A;
     padding: 0.3rem 0.8rem;
     border-radius: 15px;
     font-size: 0.7rem;
@@ -113,7 +113,7 @@
 }
 
 .session-description {
-    color: var(--dark-background-text);
+    color: #ffffff;
     margin-bottom: 1.5rem;
     line-height: 1.6;
 }
@@ -123,7 +123,7 @@
     gap: 1.5rem;
     margin-bottom: 1rem;
     font-size: 0.9rem;
-    color: var(--dark-background-text);
+    color: #46BAC0;
 }
 
 .session-location,
@@ -144,7 +144,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    background: var(--main-background);
+    background: #026062;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     cursor: pointer;
@@ -152,8 +152,8 @@
 }
 
 .session-speaker:hover {
-    background: var(--light-blue);
-    color: var(--white);
+    background: #46BAC0;
+    color: #001A1A;
 }
 
 .session-speaker img {
@@ -166,10 +166,34 @@
 .speaker-name {
     font-size: 0.8rem;
     font-weight: 500;
+    color: #ffffff;
+}
+
+.session-speaker:hover .speaker-name {
+    color: #001A1A;
 }
 
 .session-actions {
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
+}
+
+.btn-action {
+    background: transparent;
+    border: 1px solid #46BAC0;
+    color: #46BAC0;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.btn-action:hover {
+    background: #46BAC0;
+    color: #001A1A;
 }
