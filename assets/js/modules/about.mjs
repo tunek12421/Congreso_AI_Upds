@@ -43,7 +43,7 @@ async function start(){
 
     console.log(logoDiv);
     let logoImg = new Image();
-    logoImg.src = "../../images/other/Congreso-1.jpg";
+    logoImg.src = "assets/images/other/Congreso-1.jpg";
     logoImg.alt = "Congreso AI UPDS";
     logoImg.style.maxWidth = "100%";
     logoImg.style.height = "auto";

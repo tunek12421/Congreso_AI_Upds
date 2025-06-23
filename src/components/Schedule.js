@@ -259,7 +259,7 @@ class ScheduleComponent {
             setTimeout(() => {
                 new Notification(`¡Próxima sesión!`, {
                     body: `"${session.title}" comienza en 10 minutos`,
-                    icon: '../../assets/images/logo.png'
+                    icon: 'assets/images/logo.png'
                 });
             }, reminderTime - now);
         }
