@@ -13,14 +13,14 @@ const updateHeader = () => {
             header.style.boxShadow = '0 5px 20px rgba(1, 75, 85, 0.2)'; // Sombra que combine
             
             if (logo) {
-                logo.src = 'assets/images/logos/UPDS5.png';
+                logo.src = '../../assets/images/logos/UPDS5.png';
             }
         } else {
             header.style.background = 'rgba(0, 0, 0, 0.0)';
             header.style.boxShadow = 'none';
             
             if (logo) {
-                logo.src = '/assets/images/logos/CiiA1.png';
+                logo.src = '../../assets/images/logos/CiiA1.png';
             }
         }
     }
