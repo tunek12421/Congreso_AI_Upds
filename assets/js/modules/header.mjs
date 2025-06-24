@@ -8,24 +8,14 @@ const updateHeader = () => {
     if((window.scrollY > 10) != state){
         state = (window.scrollY > 10);
         if (state) {
-            // Usar el color de la maquetación
-            header.style.background = '#014b55'; // Color verde azulado de la maquetación
-            header.style.boxShadow = '0 5px 20px rgba(1, 75, 85, 0.2)'; // Sombra que combine
-            
-            if (logo) {
-                logo.src = '../../assets/images/logos/UPDS5.png';
-            }
+            header.classList.add("header-color");
+            logo.src = '../../assets/images/logos/UPDS5.png';
         } else {
-            header.style.background = 'rgba(0, 0, 0, 0.0)';
-            header.style.boxShadow = 'none';
-            
-            if (logo) {
-                logo.src = '../../assets/images/logos/CiiA1.png';
-            }
+            header.classList.remove("header-color")
+            logo.src = '../../assets/images/logos/CiiA1.png';
         }
     }
 }
-
 const toggleMobileMenu = () => {
     if (!navLinks || !mobileMenuBtn) {
         return;
@@ -33,17 +23,12 @@ const toggleMobileMenu = () => {
     
     const isOpen = navLinks.classList.contains('mobile-open');
     const icon = mobileMenuBtn.querySelector('i');
+
+    navLinks.classList.toggle('mobile-open');
     
-    if (isOpen) {
-        navLinks.classList.remove('mobile-open');
-        if (icon) {
-            icon.className = 'fas fa-bars';
-        }
-    } else {
-        navLinks.classList.add('mobile-open');
-        if (icon) {
-            icon.className = 'fas fa-times';
-        }
+    if(icon){
+        if (isOpen) icon.className = 'fas fa-bars';
+        else icon.className = 'fas fa-times';
     }
 }
 
@@ -67,10 +52,7 @@ const closeMobileMenuOnEscape = (e) => {
     }
 }
 
-async function init(){
-    // Esperar a que el DOM esté listo
-    await new Promise(resolve => setTimeout(resolve, 100));
-    
+async function init(){    
     // Asignar variables globales
     header = document.querySelector('header');
     logo = document.querySelector('header .logo img');

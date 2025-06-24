@@ -80,7 +80,48 @@ class ScheduleComponent {
         `).join('');
 
         const typeIcon = this.getTypeIcon(item.type);
-        const categoryBadge = item.category ? `<span class="category-badge category-${item.category.toLowerCase().replace(/\s+/g, '-')}">${item.category}</span>` : '';
+        const categoryBadge = '';//item.category ? `<span class="category-badge category-${item.category.toLowerCase().replace(/\s+/g, '-')}">${item.category}</span>` : '';
+
+        return `
+            <div class="timeline-item ${item.type}" data-type="${item.type}" data-category="${item.category || ''}">
+                <div class="timeline-time">
+                    <div class="time-indicator">
+                        <i class="${typeIcon}"></i>
+                    </div>
+                    <span class="time-text">${item.time}</span>
+                </div>
+                <div class="timeline-content">
+                    <div>
+                        <div class="session-header">
+                            <h3 class="session-title">${item.title}</h3>
+                            ${categoryBadge}
+                        </div>
+                        <p class="session-description">${item.description}</p>
+                        <div class="session-meta">
+                            <div class="session-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                ${item.location}
+                            </div>
+                            ${speakers.length > 0 ? `
+                                <div class="session-speakers">
+                                    <i class="fas fa-user-tie"></i>
+                                    <span>Ponentes:</span>
+                                </div>
+                            ` : ''}
+                        </div>
+                        ${speakers.length > 0 ? `
+                            <div class="speakers-list">
+                                ${speakersHTML}
+                            </div>
+                        ` : ''}
+                        <div class="session-actions">
+                            ${this.createSessionActions(item)}
+                        </div>
+                    </div>
+                    <img src="assets/images/webinars/1.gif">
+                </div>
+            </div>
+        `;
 
         return `
             <div class="timeline-item ${item.type}" data-type="${item.type}" data-category="${item.category || ''}">

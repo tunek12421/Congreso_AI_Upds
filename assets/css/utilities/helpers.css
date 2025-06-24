@@ -33,11 +33,11 @@
 .ml-3 { margin-left: var(--spacing-md); }
 .ml-4 { margin-left: var(--spacing-lg); }
 
-.mr-0 { margin-left: 0; }
-.mr-1 { margin-left: var(--spacing-xs); }
-.mr-2 { margin-left: var(--spacing-sm); }
-.mr-3 { margin-left: var(--spacing-md); }
-.mr-4 { margin-left: var(--spacing-lg); }
+.mr-0 { margin-right: 0; }
+.mr-1 { margin-right: var(--spacing-xs); }
+.mr-2 { margin-right: var(--spacing-sm); }
+.mr-3 { margin-right: var(--spacing-md); }
+.mr-4 { margin-right: var(--spacing-lg); }
 
 .d-none { display: none; }
 .d-block { display: block; }

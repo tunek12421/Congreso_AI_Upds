@@ -157,36 +157,6 @@
                 </div>
             </div>
         </section>
-        <!--hr class="section-hr">
-        <section id="impacto" class="impact">
-            <div class="container">
-                <h2 class="section-title fade-in">Impacto del Evento</h2>
-                <div class="impact-stats">
-                    <div class="stat-card fade-in">
-                        <span class="stat-number" data-target="11">0</span>
-                        <p class="stat-label">Panelistas Expertos</p>
-                    </div>
-                    <div class="stat-card fade-in">
-                        <span class="stat-number" data-target="12">0</span>
-                        <p class="stat-label">Horas de Contenido</p>
-                    </div>
-                    <div class="stat-card fade-in">
-                        <span class="stat-number" data-target="3">0</span>
-                        <p class="stat-label">Países Participantes</p>
-                    </div>
-                    <div class="stat-card fade-in">
-                        <span class="stat-number" data-target="100">0</span>
-                        <p class="stat-label">% Apoyo Social</p>
-                    </div>
-                </div>
-                
-                <div style="text-align: center; margin-top: 4rem;" class="fade-in">
-                    <h3 style="color: var(--primary-blue); font-size: 1.8rem; margin-bottom: 2rem;">Temas Abordados</h3>
-                    <div id="topics-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
-                    </div>
-                </div>
-            </div>
-        </section-->
     </main>
 
     <footer id="contacto">
@@ -258,58 +228,5 @@
     <script src="src/utils/animations.js"></script>
     <script src="src/utils/helpers.js"></script>
     <script src="assets/js/main.js"></script>
-    <!-- Reemplaza el script del menú móvil en tu HTML con esta versión optimizada -->
-<!-- Reemplaza tu <script> del menú móvil con esta versión optimizada -->
-<script>
-// Mobile Menu - Solución Final
-document.addEventListener('DOMContentLoaded', function() {
-    const btn = document.querySelector('.mobile-menu-btn');
-    const nav = document.querySelector('.nav-links');
-    
-    if (!btn || !nav) return;
-    
-    function toggleMenu() {
-        const isOpen = nav.classList.contains('mobile-open');
-        const icon = btn.querySelector('i');
-        
-        nav.classList.toggle('mobile-open');
-        
-        if (icon) {
-            icon.className = isOpen ? 'fas fa-bars' : 'fas fa-times';
-        }
-    }
-    
-    function closeMenu() {
-        nav.classList.remove('mobile-open');
-        const icon = btn.querySelector('i');
-        if (icon) icon.className = 'fas fa-bars';
-    }
-    
-    // Event listeners
-    btn.addEventListener('click', toggleMenu);
-    
-    nav.addEventListener('click', function(e) {
-        if (e.target.tagName === 'A') closeMenu();
-    });
-    
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && nav.classList.contains('mobile-open')) {
-            closeMenu();
-        }
-    });
-    
-    document.addEventListener('click', function(e) {
-        if (nav.classList.contains('mobile-open') &&
-            !nav.contains(e.target) &&
-            !btn.contains(e.target)) {
-            closeMenu();
-        }
-    });
-    
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 767) closeMenu();
-    });
-});
-</script>
 </body>
 </html>

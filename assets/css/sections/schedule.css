@@ -34,8 +34,8 @@
 }
 
 .schedule-timeline {
-    max-width: 900px;
     margin: 0 auto;
+    max-width: 900px;
 }
 
 .timeline-item {
@@ -52,11 +52,12 @@
 }
 
 .timeline-time {
-    flex: 0 0 150px;
+    flex: 0 0 120px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin-right: 2rem;
+    margin-right: 1rem;
 }
 
 .time-indicator {
@@ -80,14 +81,22 @@
 }
 
 .timeline-content {
-    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:10px;
+    padding: 30px 20px;
+    width: 100%;
     background: var(--dark-background);
-    padding: 2rem;
     border-radius: 15px;
     box-shadow: var(--shadow);
     border-left: 4px solid #46BAC0;
 }
-
+.timeline-content img{
+    width: 150px;
+    height: 150px;
+    aspect-ratio: 1/1;
+}
 .session-header {
     display: flex;
     justify-content: space-between;

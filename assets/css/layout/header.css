@@ -9,7 +9,10 @@ header {
     display: flex;
     justify-content: space-between;
 }
-
+.header-color{
+    background: var(--primary-blue);
+    box-shadow: var(--shadow);
+}
 header img {
     height: 50px;
     max-width: 200px;
@@ -30,7 +33,6 @@ header img[src*="UPDS"] {
 
 nav {
     width: 100%;
-    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -96,9 +98,11 @@ nav {
     background: none;
     border: none;
     font-size: clamp(1.2rem, 4vw, 1.5rem);
+    height: 70%;
+    aspect-ratio: 1/1;
     color: var(--text-primary);
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 0.2rem;
     border-radius: 4px;
     transition: var(--transition);
 }
@@ -112,78 +116,11 @@ nav {
     background: rgba(255, 255, 255, 0.1);
     transform: scale(1.05);
 }
-
 .mobile-menu-btn:active {
     transform: scale(0.95);
 }
-
-/* Desktop Large (1200px+) */
-@media (min-width: 1200px) {
-    nav {
-        padding: 0 1.5rem; /* Reducido de 3rem para acercar a bordes */
-    }
-    
-    .nav-links {
-        gap: 2.5rem;
-    }
-    
-    header img[src*="CiiA"] {
-        height: 55px;
-        max-width: 160px;
-    }
-    
-    header img[src*="UPDS"] {
-        height: 45px;
-        max-width: 130px;
-    }
-}
-
-/* Desktop (1024px - 1199px) */
-@media (max-width: 1199px) and (min-width: 1024px) {
-    nav {
-        padding: 0 1rem; /* Reducido de 2rem */
-    }
-    
-    .nav-links {
-        gap: 1.8rem;
-    }
-    
-    .nav-links a {
-        font-size: 0.95rem;
-    }
-}
-
-/* Tablet (768px - 1023px) */
-@media (max-width: 1023px) and (min-width: 768px) {
-    header {
-        height: 65px;
-    }
-    
-    nav {
-        padding: 0 0.75rem; /* Reducido de 1.5rem */
-    }
-    
-    .nav-links {
-        gap: 1.5rem;
-    }
-    
-    .nav-links a {
-        font-size: 0.9rem;
-    }
-    
-    header img[src*="CiiA"] {
-        height: 45px;
-        max-width: 140px;
-    }
-    
-    header img[src*="UPDS"] {
-        height: 38px;
-        max-width: 110px;
-    }
-}
-
 /* Mobile Large (481px - 767px) */
-@media (max-width: 767px) and (min-width: 481px) {
+@media (max-width: 767px) {
     header {
         height: 60px;
     }
@@ -193,7 +130,30 @@ nav {
     }
     
     .nav-links {
-        display: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        max-width: 80%;
+        min-width: 200px;
+        top: var(--header-height, 60px);
+        right: 0px;
+        background: var(--dark-background);
+        position: absolute;
+        padding: 1rem;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 2;
+        transform: translateX(100%);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-links li{
+        width: 100%;
+    }
+    .nav-links li a{
+        width: 100px;
     }
     
     .mobile-menu-btn {
@@ -212,94 +172,9 @@ nav {
     }
 }
 
-/* Mobile Small (320px - 480px) */
-@media (max-width: 480px) {
-    header {
-        height: 55px;
-    }
-    
-    nav {
-        padding: 0 0.4rem; /* Muy cerca de los bordes */
-    }
-    
-    .nav-links {
-        display: none;
-    }
-    
-    .mobile-menu-btn {
-        display: block;
-        font-size: 1.2rem;
-        padding: 0.3rem;
-        margin-right: 0.2rem;
-    }
-    
-    header img[src*="CiiA"] {
-        height: 38px;
-        max-width: 110px;
-    }
-    
-    header img[src*="UPDS"] {
-        height: 32px;
-        max-width: 90px;
-    }
-}
-
-/* Mobile Extra Small (hasta 319px) */
-@media (max-width: 319px) {
-    header {
-        height: 50px;
-    }
-    
-    nav {
-        padding: 0 0.3rem; /* Mínimo padding para pantallas muy pequeñas */
-    }
-    
-    .nav-links {
-        display: none;
-    }
-    
-    .mobile-menu-btn {
-        font-size: 1.1rem;
-        padding: 0.25rem;
-        margin-right: 0.15rem;
-    }
-    
-    header img[src*="CiiA"] {
-        height: 35px;
-        max-width: 100px;
-    }
-    
-    header img[src*="UPDS"] {
-        height: 30px;
-        max-width: 80px;
-    }
-    
-    .logo {
-        margin-left: 0.1rem; /* Muy cerca del borde izquierdo */
-    }
-}
-
 /* Mobile menu */
 .mobile-open {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    max-width: 80%;
-    min-width: 200px;
-    top: var(--header-height, 60px);
-    right: 0;
-    background: var(--dark-background);
-    position: absolute;
-    padding: 1.5rem 1rem;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    
-    transform: translateX(100%);
-    opacity: 0;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(0%);
 }
 
 .mobile-open.show {
@@ -307,58 +182,10 @@ nav {
     opacity: 1;
 }
 
-.mobile-open a {
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    transition: var(--transition);
-    text-align: center;
-    background: rgba(255, 255, 255, 0.05);
-    margin-bottom: 0.25rem;
-}
-
 .mobile-open a:hover {
     background: rgba(255, 255, 255, 0.1);
     transform: translateX(-5px);
 }
-
-/* Landscape mode */
-@media (max-height: 500px) and (orientation: landscape) {
-    header {
-        height: 45px; /* Más compacto en landscape */
-    }
-    
-    nav {
-        padding: 0 0.5rem;
-    }
-    
-    header img[src*="CiiA"] {
-        height: 32px;
-        max-width: 90px;
-    }
-    
-    header img[src*="UPDS"] {
-        height: 28px;
-        max-width: 70px;
-    }
-    
-    .mobile-menu-btn {
-        font-size: 1rem;
-        padding: 0.25rem;
-    }
-    
-    .nav-links.mobile-open {
-        top: 40px !important;
-        max-height: calc(100vh - 45px);
-        overflow-y: auto;
-        padding: 0.8rem 0.6rem;
-    }
-    
-    .nav-links.mobile-open a {
-        padding: 0.4rem 0.6rem;
-        font-size: 0.8rem;
-    }
-}
-
 /* High DPI displays */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     header img {
@@ -366,15 +193,6 @@ nav {
         image-rendering: crisp-edges;
     }
 }
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    .mobile-open {
-        background: rgba(0, 0, 0, 0.95);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-}
-
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
     header img,
@@ -391,26 +209,5 @@ nav {
     
     .mobile-menu-btn:hover {
         transform: none;
-    }
-}
-
-/* Print styles */
-@media print {
-    header {
-        position: static;
-        background: white !important;
-        box-shadow: none !important;
-        height: auto;
-        padding: 1rem 0;
-    }
-    
-    .mobile-menu-btn,
-    .nav-links {
-        display: none !important;
-    }
-    
-    header img {
-        height: 40px;
-        filter: grayscale(1);
     }
 }

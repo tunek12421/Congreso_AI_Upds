@@ -173,7 +173,6 @@ function setupGlobalEvents() {
                     behavior: 'smooth'
                 });
             }
-            if(document.querySelector(".mobile-open"))toggleMobileMenu();
         });
     });
 
@@ -185,9 +184,6 @@ function setupGlobalEvents() {
         }
     });
 
-    // Keyboard navigation
-    document.addEventListener('keydown', handleKeyboardNavigation);
-    
     // Handle focus for accessibility
     setupFocusManagement();
     
@@ -338,60 +334,6 @@ function createRippleEffect(event, button) {
         }
     }, 600);
 }
-
-// Mobile menu toggle
-function toggleMobileMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    const mobileBtn = document.querySelector('.mobile-menu-btn');
-    
-    if (navLinks) {
-        navLinks.classList.toggle('mobile-open');
-        mobileBtn.classList.toggle('active');
-        
-        // Toggle icon
-        const icon = mobileBtn.querySelector('i');
-        if (icon) {
-            icon.className = navLinks.classList.contains('mobile-open') ? 
-                'fas fa-times' : 'fas fa-bars';
-        }
-    }
-}
-
-// Keyboard navigation handler
-function handleKeyboardNavigation(e) {
-    // Close modals on Escape
-    if (e.key === 'Escape') {
-        const activeModals = document.querySelectorAll('.speaker-modal.active, .session-modal.active');
-        activeModals.forEach(modal => {
-            const closeBtn = modal.querySelector('.modal-close');
-            if (closeBtn) closeBtn.click();
-        });
-        
-        // Close mobile menu
-        const navLinks = document.querySelector('.nav-links.mobile-open');
-        if (navLinks) {
-            toggleMobileMenu();
-        }
-    }
-    
-    // Navigate sections with arrow keys (when focused on nav)
-    if (document.activeElement.closest('.nav-links')) {
-        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-            e.preventDefault();
-            const links = document.querySelectorAll('.nav-links a');
-            const currentIndex = Array.from(links).indexOf(document.activeElement);
-            const nextIndex = (currentIndex + 1) % links.length;
-            links[nextIndex].focus();
-        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-            e.preventDefault();
-            const links = document.querySelectorAll('.nav-links a');
-            const currentIndex = Array.from(links).indexOf(document.activeElement);
-            const prevIndex = currentIndex === 0 ? links.length - 1 : currentIndex - 1;
-            links[prevIndex].focus();
-        }
-    }
-}
-
 // Focus management for accessibility
 function setupFocusManagement() {
     // Skip link functionality
