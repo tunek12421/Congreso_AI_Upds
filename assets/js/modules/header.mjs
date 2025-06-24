@@ -9,10 +9,10 @@ const updateHeader = () => {
         state = (window.scrollY > 10);
         if (state) {
             header.classList.add("header-color");
-            logo.src = '../../assets/images/logos/UPDS5.png';
+            logo.src = 'assets/images/logos/UPDS5.png';
         } else {
             header.classList.remove("header-color")
-            logo.src = '../../assets/images/logos/CiiA1.png';
+            logo.src = 'assets/images/logos/CiiA1.png';
         }
     }
 }
