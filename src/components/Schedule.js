@@ -12,6 +12,7 @@ class ScheduleComponent {
             this.speakers = await dataService.getSpeakers();
             this.render();
             this.bindEvents();
+            this.initializeWebinarFeatures();
         } catch (error) {
             console.error('Error initializing schedule:', error);
             this.renderError();
@@ -37,6 +38,7 @@ class ScheduleComponent {
     createFilters() {
         const types = [...new Set(this.schedule.map(item => item.type))];
         const categories = [...new Set(this.schedule.map(item => item.category).filter(Boolean))];
+        const hasWebinars = this.schedule.some(item => item.type === 'webinar');
 
         return `
             <div class="filter-buttons">
@@ -44,6 +46,14 @@ class ScheduleComponent {
                     <i class="fas fa-list"></i>
                     Todos
                 </button>
+                ${hasWebinars ? `
+                    <button class="filter-btn filter-webinar-live" data-filter="webinar">
+                        <i class="fas fa-broadcast-tower"></i>
+                        <span class="live-indicator">●</span>
+                        Webinars EN VIVO
+                        <span class="live-pulse"></span>
+                    </button>
+                ` : ''}
                 <button class="filter-btn" data-filter="keynote">
                     <i class="fas fa-star"></i>
                     Conferencias
@@ -80,82 +90,75 @@ class ScheduleComponent {
         `).join('');
 
         const typeIcon = this.getTypeIcon(item.type);
-        const categoryBadge = '';//item.category ? `<span class="category-badge category-${item.category.toLowerCase().replace(/\s+/g, '-')}">${item.category}</span>` : '';
+        const categoryBadge = item.category ? `<span class="category-badge category-${item.category.toLowerCase().replace(/\s+/g, '-')}">${item.category}</span>` : '';
 
-        return `
-            <div class="timeline-item ${item.type}" data-type="${item.type}" data-category="${item.category || ''}">
-                <div class="timeline-time">
-                    <div class="time-indicator">
-                        <i class="${typeIcon}"></i>
-                    </div>
-                    <span class="time-text">${item.time}</span>
-                </div>
-                <div class="timeline-content">
-                    <div>
-                        <div class="session-header">
-                            <h3 class="session-title">${item.title}</h3>
-                            ${categoryBadge}
-                        </div>
-                        <p class="session-description">${item.description}</p>
-                        <div class="session-meta">
-                            <div class="session-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                ${item.location}
-                            </div>
-                            ${speakers.length > 0 ? `
-                                <div class="session-speakers">
-                                    <i class="fas fa-user-tie"></i>
-                                    <span>Ponentes:</span>
-                                </div>
-                            ` : ''}
-                        </div>
-                        ${speakers.length > 0 ? `
-                            <div class="speakers-list">
-                                ${speakersHTML}
-                            </div>
-                        ` : ''}
-                        <div class="session-actions">
-                            ${this.createSessionActions(item)}
-                        </div>
-                    </div>
-                    <img src="assets/images/webinars/1.gif">
-                </div>
+        // Imagen/GIF de la sesión con fallback
+        const sessionImage = item.image ? `
+            <div class="session-image ${item.type === 'webinar' ? 'webinar-image' : ''}">
+                <img src="${item.image}" 
+                     alt="${item.title}" 
+                     onerror="this.src='assets/images/schedule/default-session.jpg'">
+                ${item.isLive ? '<div class="live-overlay"><span class="live-badge">EN VIVO</span></div>' : ''}
             </div>
-        `;
+        ` : '';
+
+        // Información especial para webinars
+        const webinarInfo = item.type === 'webinar' ? `
+            <div class="webinar-details">
+                <div class="webinar-platforms">
+                    <span class="platforms-label">Disponible en:</span>
+                    ${item.platforms.map(platform => `
+                        <span class="platform-badge">${platform}</span>
+                    `).join('')}
+                </div>
+                ${item.interactive ? '<div class="webinar-feature"><i class="fas fa-comments"></i> Sesión Interactiva</div>' : ''}
+                ${item.chatEnabled ? '<div class="webinar-feature"><i class="fas fa-comment-dots"></i> Chat en Vivo</div>' : ''}
+                ${item.qnaEnabled ? '<div class="webinar-feature"><i class="fas fa-question-circle"></i> Q&A en Tiempo Real</div>' : ''}
+                ${item.maxViewers ? `<div class="webinar-feature"><i class="fas fa-users"></i> Hasta ${item.maxViewers} participantes</div>` : ''}
+            </div>
+        ` : '';
 
         return `
-            <div class="timeline-item ${item.type}" data-type="${item.type}" data-category="${item.category || ''}">
+            <div class="timeline-item ${item.type} ${item.isLive ? 'live-session' : ''}" data-type="${item.type}" data-category="${item.category || ''}">
                 <div class="timeline-time">
-                    <div class="time-indicator">
+                    <div class="time-indicator ${item.type === 'webinar' ? 'webinar-indicator' : ''}">
                         <i class="${typeIcon}"></i>
+                        ${item.isLive ? '<div class="live-pulse-indicator"></div>' : ''}
                     </div>
                     <span class="time-text">${item.time}</span>
                 </div>
                 <div class="timeline-content">
                     <div class="session-header">
-                        <h3 class="session-title">${item.title}</h3>
-                        ${categoryBadge}
-                    </div>
-                    <p class="session-description">${item.description}</p>
-                    <div class="session-meta">
-                        <div class="session-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            ${item.location}
-                        </div>
-                        ${speakers.length > 0 ? `
-                            <div class="session-speakers">
-                                <i class="fas fa-user-tie"></i>
-                                <span>Ponentes:</span>
+                        <div class="session-info">
+                            <h3 class="session-title">
+                                ${item.title}
+                                ${item.isLive ? '<span class="live-title-badge">🔴 EN VIVO</span>' : ''}
+                            </h3>
+                            ${categoryBadge}
+                            <p class="session-description">${item.description}</p>
+                            <div class="session-meta">
+                                <div class="session-location">
+                                    <i class="fas fa-${item.type === 'webinar' ? 'globe' : 'map-marker-alt'}"></i>
+                                    ${item.location}
+                                </div>
+                                ${speakers.length > 0 ? `
+                                    <div class="session-speakers">
+                                        <i class="fas fa-user-tie"></i>
+                                        <span>Ponentes:</span>
+                                    </div>
+                                ` : ''}
                             </div>
-                        ` : ''}
-                    </div>
-                    ${speakers.length > 0 ? `
-                        <div class="speakers-list">
-                            ${speakersHTML}
+                            ${webinarInfo}
+                            ${speakers.length > 0 ? `
+                                <div class="speakers-list">
+                                    ${speakersHTML}
+                                </div>
+                            ` : ''}
+                            <div class="session-actions">
+                                ${this.createSessionActions(item)}
+                            </div>
                         </div>
-                    ` : ''}
-                    <div class="session-actions">
-                        ${this.createSessionActions(item)}
+                        ${sessionImage}
                     </div>
                 </div>
             </div>
@@ -178,7 +181,8 @@ class ScheduleComponent {
             'registration': 'fas fa-clipboard-check',
             'opening': 'fas fa-play',
             'closing': 'fas fa-flag-checkered',
-            'networking': 'fas fa-handshake'
+            'networking': 'fas fa-handshake',
+            'webinar': 'fas fa-broadcast-tower'
         };
         return icons[type] || 'fas fa-calendar';
     }
@@ -202,6 +206,27 @@ class ScheduleComponent {
                     Ver Ponentes
                 </button>
             `);
+        }
+
+        // Acciones especiales para webinars
+        if (item.type === 'webinar') {
+            if (item.streamUrl) {
+                actions.push(`
+                    <button class="btn-action btn-join-stream" data-stream-url="${item.streamUrl}">
+                        <i class="fas fa-play-circle"></i>
+                        ${item.isLive ? 'Unirse al Live' : 'Ver Grabación'}
+                    </button>
+                `);
+            }
+            
+            if (item.requiresRegistration) {
+                actions.push(`
+                    <button class="btn-action btn-register-webinar" data-session-id="${item.id}">
+                        <i class="fas fa-user-plus"></i>
+                        Registrarse
+                    </button>
+                `);
+            }
         }
 
         return actions.join('');
@@ -229,6 +254,17 @@ class ScheduleComponent {
             if (e.target.closest('.btn-speakers')) {
                 const sessionId = parseInt(e.target.closest('.btn-speakers').dataset.sessionId);
                 this.showSessionSpeakers(sessionId);
+            }
+
+            // Webinar actions
+            if (e.target.closest('.btn-join-stream')) {
+                const streamUrl = e.target.closest('.btn-join-stream').dataset.streamUrl;
+                this.joinWebinarStream(streamUrl);
+            }
+
+            if (e.target.closest('.btn-register-webinar')) {
+                const sessionId = parseInt(e.target.closest('.btn-register-webinar').dataset.sessionId);
+                this.registerForWebinar(sessionId);
             }
 
             // Speaker clicks
@@ -300,7 +336,7 @@ class ScheduleComponent {
             setTimeout(() => {
                 new Notification(`¡Próxima sesión!`, {
                     body: `"${session.title}" comienza en 10 minutos`,
-                    icon: 'assets/images/logo.png'
+                    icon: 'assets/images/logos/CiiA1.png'
                 });
             }, reminderTime - now);
         }
@@ -358,11 +394,21 @@ class ScheduleComponent {
                     <h2>${session.title}</h2>
                     <div class="session-time-location">
                         <span class="time"><i class="fas fa-clock"></i> ${session.time}</span>
-                        <span class="location"><i class="fas fa-map-marker-alt"></i> ${session.location}</span>
+                        <span class="location"><i class="fas fa-${session.type === 'webinar' ? 'globe' : 'map-marker-alt'}"></i> ${session.location}</span>
                     </div>
                 </div>
                 <div class="modal-body">
                     <p class="session-description">${session.description}</p>
+                    ${session.type === 'webinar' ? `
+                        <div class="webinar-modal-info">
+                            <h4>Información del Webinar</h4>
+                            <div class="webinar-platforms">
+                                <strong>Plataformas:</strong> ${session.platforms ? session.platforms.join(', ') : 'YouTube'}
+                            </div>
+                            ${session.maxViewers ? `<div><strong>Capacidad:</strong> ${session.maxViewers} participantes</div>` : ''}
+                            ${session.interactive ? '<div><i class="fas fa-check"></i> Sesión Interactiva</div>' : ''}
+                        </div>
+                    ` : ''}
                     <h3>Ponentes</h3>
                     <div class="speakers-grid">
                         ${speakersHTML}
@@ -463,6 +509,273 @@ class ScheduleComponent {
                 </button>
             </div>
         `;
+    }
+
+    // NUEVOS MÉTODOS PARA WEBINARS
+
+    joinWebinarStream(streamUrl) {
+        if (!streamUrl) {
+            this.showToast('URL de transmisión no disponible', 'warning');
+            return;
+        }
+
+        // Mostrar modal de confirmación antes de abrir el stream
+        const modal = this.createWebinarJoinModal(streamUrl);
+        document.body.appendChild(modal);
+        setTimeout(() => modal.classList.add('active'), 10);
+    }
+
+    createWebinarJoinModal(streamUrl) {
+        const modal = document.createElement('div');
+        modal.className = 'webinar-join-modal';
+        modal.innerHTML = `
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="modal-header">
+                    <div class="live-indicator-large">🔴</div>
+                    <h2>Unirse a Webinar en Vivo</h2>
+                    <p>Estás a punto de unirte a una transmisión en vivo</p>
+                </div>
+                <div class="modal-body">
+                    <div class="webinar-info">
+                        <div class="info-item">
+                            <i class="fas fa-broadcast-tower"></i>
+                            <span>Transmisión en tiempo real</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-comments"></i>
+                            <span>Chat interactivo disponible</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Sesión de preguntas y respuestas</span>
+                        </div>
+                    </div>
+                    <div class="join-actions">
+                        <button class="btn-cancel">Cancelar</button>
+                        <button class="btn-join-now" data-url="${streamUrl}">
+                            <i class="fas fa-play-circle"></i>
+                            Unirse Ahora
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        this.bindWebinarModalEvents(modal);
+        return modal;
+    }
+
+    bindWebinarModalEvents(modal) {
+        const closeModal = () => {
+            modal.classList.remove('active');
+            setTimeout(() => document.body.removeChild(modal), 300);
+        };
+
+        modal.querySelector('.modal-close').addEventListener('click', closeModal);
+        modal.querySelector('.modal-overlay').addEventListener('click', closeModal);
+        modal.querySelector('.btn-cancel').addEventListener('click', closeModal);
+        
+        modal.querySelector('.btn-join-now').addEventListener('click', (e) => {
+            const url = e.target.dataset.url;
+            window.open(url, '_blank', 'width=1200,height=800');
+            closeModal();
+            this.showToast('¡Te has unido al webinar en vivo!', 'success');
+        });
+
+        document.addEventListener('keydown', function handleEscape(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+                document.removeEventListener('keydown', handleEscape);
+            }
+        });
+    }
+
+    registerForWebinar(sessionId) {
+        const session = this.schedule.find(s => s.id === sessionId);
+        if (!session) return;
+
+        // Simular registro (en una aplicación real, esto haría una llamada API)
+        const registrationModal = this.createRegistrationModal(session);
+        document.body.appendChild(registrationModal);
+        setTimeout(() => registrationModal.classList.add('active'), 10);
+    }
+
+    createRegistrationModal(session) {
+        const modal = document.createElement('div');
+        modal.className = 'webinar-registration-modal';
+        modal.innerHTML = `
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="modal-header">
+                    <h2>Registro para Webinar</h2>
+                    <h3>${session.title}</h3>
+                    <p class="session-time">${session.time}</p>
+                </div>
+                <div class="modal-body">
+                    <form class="registration-form">
+                        <div class="form-group">
+                            <label for="reg-name">Nombre completo *</label>
+                            <input type="text" id="reg-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-email">Email *</label>
+                            <input type="email" id="reg-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-organization">Organización</label>
+                            <input type="text" id="reg-organization">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="reg-notifications">
+                                Recibir recordatorios por email
+                            </label>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn-cancel">Cancelar</button>
+                            <button type="submit" class="btn-register">
+                                <i class="fas fa-user-plus"></i>
+                                Registrarse
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        `;
+
+        this.bindRegistrationModalEvents(modal, session);
+        return modal;
+    }
+
+    bindRegistrationModalEvents(modal, session) {
+        const closeModal = () => {
+            modal.classList.remove('active');
+            setTimeout(() => document.body.removeChild(modal), 300);
+        };
+
+        modal.querySelector('.modal-close').addEventListener('click', closeModal);
+        modal.querySelector('.modal-overlay').addEventListener('click', closeModal);
+        modal.querySelector('.btn-cancel').addEventListener('click', closeModal);
+        
+        modal.querySelector('.registration-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const registrationData = {
+                sessionId: session.id,
+                name: modal.querySelector('#reg-name').value,
+                email: modal.querySelector('#reg-email').value,
+                organization: modal.querySelector('#reg-organization').value,
+                notifications: modal.querySelector('#reg-notifications').checked
+            };
+
+            // Simular envío exitoso
+            this.showToast('¡Registro exitoso! Te enviaremos los detalles por email.', 'success');
+            closeModal();
+            
+            // En una aplicación real, aquí harías la llamada API
+            console.log('Webinar registration:', registrationData);
+        });
+    }
+
+    // Método para obtener webinars en vivo
+    getLiveWebinars() {
+        return this.schedule.filter(session => 
+            session.type === 'webinar' && session.isLive
+        );
+    }
+
+    // Inicializar características específicas de webinars
+    initializeWebinarFeatures() {
+        // Verificar webinars próximos cada 30 segundos
+        setTimeout(() => {
+            this.checkUpcomingWebinars();
+        }, 2000);
+        
+        setInterval(() => {
+            this.checkUpcomingWebinars();
+        }, 30000);
+    }
+
+    // Método para verificar webinars próximos
+    checkUpcomingWebinars() {
+        const liveWebinars = this.getLiveWebinars();
+        if (liveWebinars.length > 0 && Math.random() > 0.8) { // 20% de probabilidad
+            const randomWebinar = liveWebinars[Math.floor(Math.random() * liveWebinars.length)];
+            this.showWebinarNotification(randomWebinar);
+        }
+    }
+
+    showWebinarNotification(webinar) {
+        // Evitar mostrar notificación duplicada
+        if (document.querySelector('.webinar-notification')) return;
+
+        const notification = document.createElement('div');
+        notification.className = 'webinar-notification';
+        notification.innerHTML = `
+            <div class="notification-content">
+                <div class="notification-icon">
+                    <i class="fas fa-broadcast-tower"></i>
+                    <div class="live-pulse-small"></div>
+                </div>
+                <div class="notification-text">
+                    <h4>Webinar en Vivo</h4>
+                    <p>${webinar.title}</p>
+                    <span class="notification-time">${webinar.time}</span>
+                </div>
+                <div class="notification-actions">
+                    <button class="btn-join-notification" data-stream-url="${webinar.streamUrl}">
+                        Unirse
+                    </button>
+                    <button class="btn-close-notification">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 100);
+
+        // Auto-remove después de 10 segundos
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    document.body.removeChild(notification);
+                }
+            }, 300);
+        }, 10000);
+
+        // Bind events
+        notification.querySelector('.btn-join-notification').addEventListener('click', (e) => {
+            const streamUrl = e.target.dataset.streamUrl;
+            this.joinWebinarStream(streamUrl);
+            notification.classList.remove('show');
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    document.body.removeChild(notification);
+                }
+            }, 300);
+        });
+
+        notification.querySelector('.btn-close-notification').addEventListener('click', () => {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    document.body.removeChild(notification);
+                }
+            }, 300);
+        });
     }
 
     // Método para obtener próximas sesiones

@@ -184,6 +184,9 @@ function setupGlobalEvents() {
         }
     });
 
+    // Keyboard navigation
+    document.addEventListener('keydown', handleKeyboardNavigation);
+
     // Handle focus for accessibility
     setupFocusManagement();
     
@@ -334,6 +337,43 @@ function createRippleEffect(event, button) {
         }
     }, 600);
 }
+
+// Keyboard navigation handler
+function handleKeyboardNavigation(e) {
+    // Close modals on Escape
+    if (e.key === 'Escape') {
+        const activeModals = document.querySelectorAll('.speaker-modal.active, .session-modal.active, .webinar-join-modal.active, .webinar-registration-modal.active');
+        activeModals.forEach(modal => {
+            const closeBtn = modal.querySelector('.modal-close');
+            if (closeBtn) closeBtn.click();
+        });
+        
+        // Close mobile menu
+        const navLinks = document.querySelector('.nav-links.mobile-open');
+        if (navLinks) {
+            toggleMobileMenu();
+        }
+    }
+}
+
+// Mobile menu toggle
+function toggleMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    
+    if (navLinks) {
+        navLinks.classList.toggle('mobile-open');
+        mobileBtn.classList.toggle('active');
+        
+        // Toggle icon
+        const icon = mobileBtn.querySelector('i');
+        if (icon) {
+            icon.className = navLinks.classList.contains('mobile-open') ? 
+                'fas fa-times' : 'fas fa-bars';
+        }
+    }
+}
+
 // Focus management for accessibility
 function setupFocusManagement() {
     // Skip link functionality
@@ -351,7 +391,7 @@ function setupFocusManagement() {
     
     // Trap focus in modals
     document.addEventListener('keydown', function(e) {
-        const activeModal = document.querySelector('.speaker-modal.active, .session-modal.active');
+        const activeModal = document.querySelector('.speaker-modal.active, .session-modal.active, .webinar-join-modal.active, .webinar-registration-modal.active');
         if (activeModal && e.key === 'Tab') {
             trapFocus(e, activeModal);
         }
@@ -802,6 +842,285 @@ function finalizeInitialization() {
     console.log('🎉 Aplicación completamente inicializada');
 }
 
+// ===== FUNCIONALIDADES ESPECÍFICAS DE WEBINARS =====
+
+// Inicialización específica para webinars
+function initializeWebinarFeatures() {
+    // Verificar webinars próximos cada 30 segundos
+    if (window.scheduleComponent) {
+        // Verificación inicial
+        setTimeout(() => {
+            window.scheduleComponent.checkUpcomingWebinars();
+        }, 2000);
+        
+        // Verificación periódica
+        setInterval(() => {
+            window.scheduleComponent.checkUpcomingWebinars();
+        }, 30000); // Cada 30 segundos
+    }
+    
+    // Añadir indicador de estado de conexión
+    addConnectionStatus();
+    
+    // Configurar notificaciones del navegador
+    requestNotificationPermission();
+    
+    console.log('🔴 Funcionalidades de webinar inicializadas');
+}
+
+// Indicador de estado de conexión
+function addConnectionStatus() {
+    const statusIndicator = document.createElement('div');
+    statusIndicator.id = 'connection-status';
+    statusIndicator.className = 'connection-status online';
+    statusIndicator.innerHTML = `
+        <div class="status-icon">
+            <i class="fas fa-wifi"></i>
+        </div>
+        <span class="status-text">Conectado</span>
+    `;
+    
+    // Añadir estilos
+    const style = document.createElement('style');
+    style.textContent = `
+        .connection-status {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--dark-background);
+            border: 2px solid #00b894;
+            border-radius: 25px;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            z-index: 1500;
+            transition: var(--transition);
+        }
+        .connection-status.offline {
+            border-color: #e17055;
+            background: rgba(225, 112, 85, 0.1);
+        }
+        .connection-status .status-icon {
+            color: #00b894;
+        }
+        .connection-status.offline .status-icon {
+            color: #e17055;
+        }
+        .connection-status .status-text {
+            color: var(--white);
+        }
+        @media (max-width: 768px) {
+            .connection-status {
+                bottom: 80px;
+                left: 10px;
+                font-size: 0.7rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+    `;
+    
+    if (!document.querySelector('#connection-status-styles')) {
+        style.id = 'connection-status-styles';
+        document.head.appendChild(style);
+    }
+    
+    document.body.appendChild(statusIndicator);
+    
+    // Monitorear estado de conexión
+    window.addEventListener('online', () => {
+        statusIndicator.className = 'connection-status online';
+        statusIndicator.querySelector('.status-text').textContent = 'Conectado';
+        statusIndicator.querySelector('.status-icon i').className = 'fas fa-wifi';
+        showToast('Conexión restablecida - Webinars disponibles', 'success');
+    });
+    
+    window.addEventListener('offline', () => {
+        statusIndicator.className = 'connection-status offline';
+        statusIndicator.querySelector('.status-text').textContent = 'Sin conexión';
+        statusIndicator.querySelector('.status-icon i').className = 'fas fa-wifi-slash';
+        showToast('Sin conexión - Webinars no disponibles', 'warning');
+    });
+}
+
+// Solicitar permisos de notificación
+function requestNotificationPermission() {
+    if ('Notification' in window && Notification.permission === 'default') {
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                showToast('Notificaciones activadas para webinars', 'success');
+            }
+        });
+    }
+}
+
+// Función para detectar webinars activos automáticamente
+function detectActiveWebinars() {
+    // Simular detección de webinars activos
+    const activeWebinars = [
+        {
+            id: 'live-1',
+            title: 'IA Generativa en Tiempo Real',
+            viewers: 127,
+            duration: '45 min',
+            platform: 'YouTube'
+        }
+    ];
+    
+    if (activeWebinars.length > 0) {
+        showLiveWebinarBanner(activeWebinars[0]);
+    }
+}
+
+// Banner para webinars activos
+function showLiveWebinarBanner(webinar) {
+    // Verificar si ya existe un banner
+    if (document.querySelector('.live-webinar-banner')) return;
+    
+    const banner = document.createElement('div');
+    banner.className = 'live-webinar-banner';
+    banner.innerHTML = `
+        <div class="banner-content">
+            <div class="live-indicator-banner">
+                <span class="live-dot"></span>
+                EN VIVO
+            </div>
+            <div class="webinar-info-banner">
+                <h4>${webinar.title}</h4>
+                <span class="viewer-count">
+                    <i class="fas fa-eye"></i> ${webinar.viewers} viendo
+                </span>
+            </div>
+            <button class="btn-join-banner">
+                <i class="fas fa-play"></i>
+                Unirse
+            </button>
+            <button class="btn-close-banner">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    `;
+    
+    // Añadir estilos del banner
+    const bannerStyle = document.createElement('style');
+    bannerStyle.textContent = `
+        .live-webinar-banner {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            z-index: 1500;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        .live-webinar-banner.show {
+            transform: translateY(0);
+        }
+        .banner-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .live-indicator-banner {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+        .webinar-info-banner h4 {
+            margin: 0;
+            font-size: 1rem;
+        }
+        .viewer-count {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+        .btn-join-banner {
+            background: white;
+            color: #ff6b6b;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-join-banner:hover {
+            transform: scale(1.05);
+            background: #f1f1f1;
+        }
+        .btn-close-banner {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        .btn-close-banner:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        @media (max-width: 768px) {
+            .banner-content {
+                padding: 0.6rem 1rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+        }
+    `;
+    
+    if (!document.querySelector('#live-banner-styles')) {
+        bannerStyle.id = 'live-banner-styles';
+        document.head.appendChild(bannerStyle);
+    }
+    
+    document.body.appendChild(banner);
+    
+    // Mostrar banner
+    setTimeout(() => banner.classList.add('show'), 100);
+    
+    // Bind events
+    banner.querySelector('.btn-join-banner').addEventListener('click', () => {
+        window.open('https://youtube.com/live/example', '_blank');
+        showToast('¡Te has unido al webinar en vivo!', 'success');
+    });
+    
+    banner.querySelector('.btn-close-banner').addEventListener('click', () => {
+        banner.classList.remove('show');
+        setTimeout(() => {
+            if (banner.parentElement) {
+                document.body.removeChild(banner);
+            }
+        }, 300);
+    });
+    
+    // Auto-remove después de 30 segundos
+    setTimeout(() => {
+        banner.classList.remove('show');
+        setTimeout(() => {
+            if (banner.parentElement) {
+                document.body.removeChild(banner);
+            }
+        }, 300);
+    }, 30000);
+}
+
 // Export functions for external use
 window.CongresoIA = {
     showToast,
@@ -816,6 +1135,12 @@ document.addEventListener('appInitialized', function(e) {
     
     // Final setup after everything is loaded
     finalizeInitialization();
+
+    // Inicializar funcionalidades de webinar
+    initializeWebinarFeatures();
+
+    // Detectar webinars activos después de 3 segundos
+    setTimeout(detectActiveWebinars, 3000);
     
     // Hide loading screen if exists
     const loader = document.querySelector('.loading-screen');

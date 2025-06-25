@@ -1,0 +1,596 @@
+/* ===== MODALES Y COMPONENTES DE WEBINARS ===== */
+
+/* Modal de unirse a webinar */
+.webinar-join-modal,
+.webinar-registration-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.webinar-join-modal.active,
+.webinar-registration-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.webinar-join-modal .modal-overlay,
+.webinar-registration-modal .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.webinar-join-modal .modal-content,
+.webinar-registration-modal .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--dark-background);
+    border: 2px solid #ff6b6b;
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+}
+
+.webinar-join-modal .modal-close,
+.webinar-registration-modal .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: #ff4757;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    font-size: 1.2rem;
+}
+
+.webinar-join-modal .modal-close:hover,
+.webinar-registration-modal .modal-close:hover {
+    background: #ff3742;
+    transform: scale(1.1);
+}
+
+/* Header del modal de webinar */
+.webinar-join-modal .modal-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.live-indicator-large {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    animation: pulse-large 2s ease-in-out infinite;
+}
+
+.webinar-join-modal .modal-header h2 {
+    color: #ff6b6b;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.webinar-join-modal .modal-header p {
+    color: var(--dark-background-text);
+    opacity: 0.9;
+}
+
+/* Información del webinar */
+.webinar-info {
+    margin: 2rem 0;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: var(--dark-background-text);
+    padding: 0.5rem;
+    background: rgba(255, 107, 107, 0.1);
+    border-radius: 8px;
+}
+
+.info-item i {
+    color: #ff6b6b;
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* Acciones del modal */
+.join-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.btn-cancel {
+    background: transparent;
+    border: 2px solid var(--dark-background-text);
+    color: var(--dark-background-text);
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+}
+
+.btn-cancel:hover {
+    background: var(--dark-background-text);
+    color: var(--dark-background);
+}
+
+.btn-join-now {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: pulse-join 2s ease-in-out infinite alternate;
+}
+
+.btn-join-now:hover {
+    background: linear-gradient(135deg, #ee5a24, #ff6b6b);
+    transform: scale(1.05);
+}
+
+/* MODAL DE REGISTRO PARA WEBINARS */
+.webinar-registration-modal .modal-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 107, 107, 0.3);
+    padding-bottom: 1rem;
+}
+
+.webinar-registration-modal .modal-header h2 {
+    color: #ff6b6b;
+    margin-bottom: 0.5rem;
+}
+
+.webinar-registration-modal .modal-header h3 {
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.session-time {
+    color: var(--dark-background-text);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* Formulario de registro */
+.registration-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--dark-background-text);
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--main-background);
+    border-radius: 10px;
+    background: var(--dark-background);
+    color: var(--white);
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+.form-group input:focus {
+    border-color: #ff6b6b;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+}
+
+.form-group input[type="checkbox"] {
+    margin-right: 0.5rem;
+    accent-color: #ff6b6b;
+}
+
+.form-group label[for] {
+    cursor: pointer;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.btn-register {
+    background: linear-gradient(135deg, #00b894, #00d4aa);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-register:hover {
+    background: linear-gradient(135deg, #00d4aa, #00b894);
+    transform: scale(1.05);
+}
+
+/* INFORMACIÓN MODAL PARA WEBINARS */
+.webinar-modal-info {
+    background: rgba(255, 107, 107, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+    border-left: 4px solid #ff6b6b;
+}
+
+.webinar-modal-info h4 {
+    color: #ff6b6b;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.webinar-modal-info div {
+    margin-bottom: 0.5rem;
+    color: var(--dark-background-text);
+    font-size: 0.9rem;
+}
+
+.webinar-modal-info div strong {
+    color: var(--white);
+}
+
+.webinar-modal-info div i {
+    color: #00b894;
+    margin-right: 0.5rem;
+}
+
+/* ANIMACIONES ESPECÍFICAS PARA WEBINARS */
+@keyframes pulse-large {
+    0% { 
+        transform: scale(1); 
+        text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+    }
+    50% { 
+        transform: scale(1.1); 
+        text-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
+    }
+    100% { 
+        transform: scale(1); 
+        text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+    }
+}
+
+@keyframes pulse-join {
+    0% { 
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        transform: scale(1);
+    }
+    100% { 
+        box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        transform: scale(1.02);
+    }
+}
+
+/* RESPONSIVE DESIGN PARA MODALES */
+@media (max-width: 768px) {
+    .webinar-join-modal .modal-content,
+    .webinar-registration-modal .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .join-actions,
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .btn-join-now,
+    .btn-register,
+    .btn-cancel {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .live-indicator-large {
+        font-size: 2.5rem;
+    }
+    
+    .webinar-join-modal .modal-header h2 {
+        font-size: 1.3rem;
+    }
+    
+    .info-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .info-item i {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .webinar-join-modal .modal-content,
+    .webinar-registration-modal .modal-content {
+        padding: 1rem;
+    }
+    
+    .webinar-join-modal .modal-close,
+    .webinar-registration-modal .modal-close {
+        width: 35px;
+        height: 35px;
+        top: 0.5rem;
+        right: 0.5rem;
+        font-size: 1rem;
+    }
+    
+    .live-indicator-large {
+        font-size: 2rem;
+    }
+    
+    .form-group input[type="text"],
+    .form-group input[type="email"] {
+        padding: 0.7rem;
+        font-size: 1rem;
+    }
+}
+
+/* ESTADOS DE FOCUS PARA ACCESIBILIDAD */
+.btn-join-now:focus,
+.btn-register:focus,
+.btn-cancel:focus {
+    outline: 3px solid rgba(255, 107, 107, 0.5);
+    outline-offset: 2px;
+}
+
+.form-group input:focus {
+    outline: none;
+}
+
+.webinar-join-modal .modal-close:focus,
+.webinar-registration-modal .modal-close:focus {
+    outline: 3px solid white;
+    outline-offset: 2px;
+}
+
+/* MODO DE ALTO CONTRASTE */
+@media (prefers-contrast: high) {
+    .webinar-join-modal .modal-content,
+    .webinar-registration-modal .modal-content {
+        border-width: 3px;
+    }
+    
+    .info-item {
+        border: 1px solid #ff6b6b;
+    }
+    
+    .btn-join-now,
+    .btn-register {
+        border: 2px solid white;
+    }
+}
+
+/* REDUCIR MOVIMIENTO */
+@media (prefers-reduced-motion: reduce) {
+    .live-indicator-large,
+    .btn-join-now {
+        animation: none;
+    }
+    
+    .webinar-join-modal,
+    .webinar-registration-modal {
+        transition: opacity 0.1s ease;
+    }
+    
+    .webinar-join-modal .modal-content,
+    .webinar-registration-modal .modal-content {
+        transition: none;
+    }
+}
+
+/* MODO OSCURO DEL SISTEMA */
+@media (prefers-color-scheme: dark) {
+    .webinar-join-modal .modal-content,
+    .webinar-registration-modal .modal-content {
+        background: rgba(0, 0, 0, 0.95);
+        border-color: #ff6b6b;
+    }
+    
+    .form-group input[type="text"],
+    .form-group input[type="email"] {
+        background: rgba(0, 0, 0, 0.8);
+        border-color: rgba(255, 107, 107, 0.3);
+    }
+}
+
+/* ESTILOS PARA IMPRESIÓN */
+@media print {
+    .webinar-join-modal,
+    .webinar-registration-modal {
+        display: none !important;
+    }
+}
+
+/* ANIMACIÓN DE ENTRADA DEL MODAL */
+.webinar-join-modal.active .modal-content,
+.webinar-registration-modal.active .modal-content {
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* EFECTOS HOVER MEJORADOS */
+.info-item:hover {
+    background: rgba(255, 107, 107, 0.15);
+    transform: translateX(5px);
+}
+
+.form-group input[type="text"]:hover,
+.form-group input[type="email"]:hover {
+    border-color: rgba(255, 107, 107, 0.5);
+}
+
+/* INDICADORES DE VALIDACIÓN */
+.form-group input:valid {
+    border-color: #00b894;
+}
+
+.form-group input:invalid:not(:placeholder-shown) {
+    border-color: #ff4757;
+}
+
+.form-group input:invalid:not(:placeholder-shown) + .error-message {
+    display: block;
+    color: #ff4757;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+.error-message {
+    display: none;
+}
+
+/* LOADING STATES */
+.btn-join-now.loading,
+.btn-register.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.btn-join-now.loading::after,
+.btn-register.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* TOOLTIPS PARA ELEMENTOS DEL WEBINAR */
+.webinar-tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.webinar-tooltip::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.webinar-tooltip:hover::before {
+    opacity: 1;
+}
+
+/* BADGES DE ESTADO */
+.webinar-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.webinar-status-badge.live {
+    background: #ff4757;
+    color: white;
+    animation: pulse-badge 2s ease-in-out infinite;
+}
+
+.webinar-status-badge.upcoming {
+    background: #fdcb6e;
+    color: #2d3436;
+}
+
+.webinar-status-badge.ended {
+    background: #636e72;
+    color: white;
+}
+
+@keyframes pulse-badge {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}

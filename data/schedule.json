@@ -13,7 +13,8 @@
       "title": "Registro y Acreditación",
       "description": "Bienvenida a participantes y entrega de materiales",
       "location": "Hall Principal",
-      "speakers": []
+      "speakers": [],
+      "image": "assets/images/logos/UPDS3.png"
     },
     {
       "id": 2,
@@ -22,7 +23,8 @@
       "title": "Ceremonia de Apertura",
       "description": "Palabras de bienvenida y presentación del evento",
       "location": "Auditorio Principal",
-      "speakers": []
+      "speakers": [],
+      "image": "assets/images/logos/UPDS3.png"
     },
     {
       "id": 3,
@@ -32,7 +34,8 @@
       "description": "Conferencia magistral sobre las oportunidades y desafíos de la IA en la región",
       "location": "Auditorio Principal",
       "speakers": [1],
-      "category": "Keynote"
+      "category": "Keynote",
+      "image": "assets/images/logos/UPDS3.png"
     },
     {
       "id": 4,
@@ -41,7 +44,26 @@
       "title": "Coffee Break",
       "description": "Networking y refrigerio",
       "location": "Terraza",
-      "speakers": []
+      "speakers": [],
+      "image": "assets/images/logos/UPDS3.png"
+    },
+    {
+      "id": 15,
+      "time": "10:45 - 11:45",
+      "type": "webinar",
+      "title": "IA Generativa: Presente y Futuro",
+      "description": "Transmisión en vivo sobre las últimas tendencias en IA generativa y su impacto en diferentes industrias",
+      "location": "Streaming Online",
+      "speakers": [1, 8],
+      "category": "Webinar Live",
+      "image": "assets/images/schedule/output.gif",
+      "isLive": true,
+      "streamUrl": "https://youtube.com/live/ai-generativa-2025",
+      "platforms": ["YouTube", "Facebook", "LinkedIn"],
+      "maxViewers": 1000,
+      "interactive": true,
+      "chatEnabled": true,
+      "qnaEnabled": true
     },
     {
       "id": 5,
@@ -51,7 +73,8 @@
       "description": "Panel de discusión sobre los aspectos éticos del desarrollo de IA",
       "location": "Auditorio Principal",
       "speakers": [2, 3],
-      "category": "Panel"
+      "category": "Panel",
+      "image": "assets/images/logos/UPDS3.png"
     },
     {
       "id": 6,
@@ -61,7 +84,8 @@
       "description": "Experiencias prácticas de implementación de IA en universidades",
       "location": "Sala A",
       "speakers": [3],
-      "category": "Educación"
+      "category": "Educación",
+      "image": "assets/images/logos/UPDS3.png"
     },
     {
       "id": 7,
@@ -70,7 +94,8 @@
       "title": "Almuerzo",
       "description": "Almuerzo y networking",
       "location": "Comedor Universitario",
-      "speakers": []
+      "speakers": [],
+      "image": "assets/images/logos/UPDS3.png"
     },
     {
       "id": 8,
@@ -80,7 +105,27 @@
       "description": "Cómo la IA está revolucionando la gestión urbana",
       "location": "Auditorio Principal",
       "speakers": [4],
-      "category": "Smart Cities"
+      "category": "Smart Cities",
+      "image": "assets/images/logos/UPDS3.png"
+    },
+    {
+      "id": 16,
+      "time": "14:30 - 15:30",
+      "type": "webinar",
+      "title": "Workshop Interactivo: Programando con IA",
+      "description": "Sesión práctica en vivo donde los participantes aprenderán a integrar IA en sus proyectos de desarrollo",
+      "location": "Streaming Online",
+      "speakers": [3, 9],
+      "category": "Webinar Live",
+      "image": "assets/images/schedule/output.gif",
+      "isLive": true,
+      "streamUrl": "https://zoom.us/j/programming-ai-workshop",
+      "platforms": ["Zoom", "YouTube"],
+      "maxViewers": 500,
+      "interactive": true,
+      "chatEnabled": true,
+      "requiresRegistration": true,
+      "materials": "Código disponible en GitHub"
     },
     {
       "id": 9,
@@ -90,7 +135,8 @@
       "description": "Taller práctico sobre implementación de IA en marketing",
       "location": "Laboratorio",
       "speakers": [5],
-      "category": "Marketing"
+      "category": "Marketing",
+      "image": "assets/images/logos/UPDS3.png"
     },
     {
       "id": 10,
@@ -99,7 +145,27 @@
       "title": "Coffee Break",
       "description": "Pausa y networking",
       "location": "Terraza",
-      "speakers": []
+      "speakers": [],
+      "image": "assets/images/logos/UPDS3.png"
+    },
+    {
+      "id": 17,
+      "time": "16:00 - 17:00",
+      "type": "webinar",
+      "title": "Mesa Redonda: Ética en IA - Debate Abierto",
+      "description": "Debate en vivo con expertos internacionales sobre los dilemas éticos de la inteligencia artificial",
+      "location": "Streaming Online",
+      "speakers": [2, 4, 7],
+      "category": "Webinar Live",
+      "image": "assets/images/schedule/output.gif",
+      "isLive": true,
+      "streamUrl": "https://youtube.com/live/ethics-ai-debate",
+      "platforms": ["YouTube", "Twitch", "Facebook"],
+      "maxViewers": 2000,
+      "interactive": true,
+      "chatEnabled": true,
+      "qnaEnabled": true,
+      "moderator": "Dr. Ana Silva"
     },
     {
       "id": 11,
@@ -109,7 +175,8 @@
       "description": "Desafíos y soluciones de seguridad en sistemas de IA",
       "location": "Sala B",
       "speakers": [6],
-      "category": "Ciberseguridad"
+      "category": "Ciberseguridad",
+      "image": "assets/images/logos/UPDS3.png"
     },
     {
       "id": 12,
@@ -119,7 +186,27 @@
       "description": "Presentación interactiva de asistente educativo con IA",
       "location": "Auditorio Principal",
       "speakers": [],
-      "category": "Demo"
+      "category": "Demo",
+      "image": "assets/images/logos/UPDS3.png"
+    },
+    {
+      "id": 18,
+      "time": "18:00 - 19:00",
+      "type": "webinar",
+      "title": "Innovación y Startups: IA en Emprendimiento",
+      "description": "Webinar especial sobre cómo las startups están usando IA para revolucionar sus industrias",
+      "location": "Streaming Online",
+      "speakers": [10, 11],
+      "category": "Webinar Live",
+      "image": "assets/images/schedule/output.gif",
+      "isLive": true,
+      "streamUrl": "https://linkedin.com/live/startup-ai-innovation",
+      "platforms": ["LinkedIn", "YouTube", "Instagram"],
+      "maxViewers": 800,
+      "interactive": true,
+      "chatEnabled": true,
+      "pitchSession": true,
+      "networking": true
     },
     {
       "id": 13,
@@ -128,7 +215,8 @@
       "title": "Ceremonia de Clausura",
       "description": "Reflexiones finales y entrega de certificados",
       "location": "Auditorio Principal",
-      "speakers": []
+      "speakers": [],
+      "image": "assets/images/logos/UPDS3.png"
     },
     {
       "id": 14,
@@ -137,7 +225,8 @@
       "title": "Cóctel de Networking",
       "description": "Evento social para establecer conexiones profesionales",
       "location": "Jardín Universitario",
-      "speakers": []
+      "speakers": [],
+      "image": "assets/images/logos/UPDS3.png"
     }
   ],
   "categories": [
@@ -165,8 +254,33 @@
       "id": "demo",
       "name": "Demostraciones",
       "color": "#00b894"
+    },
+    {
+      "id": "webinar",
+      "name": "Webinars en Vivo",
+      "color": "#ff6b6b"
     }
   ],
+  "webinar_features": {
+    "global_chat": true,
+    "multilanguage_support": ["es", "en", "pt"],
+    "recording_available": true,
+    "certificates": true,
+    "networking_rooms": true,
+    "technical_support": "24/7 durante eventos"
+  },
+  "streaming_info": {
+    "main_platform": "YouTube",
+    "backup_platforms": ["Facebook", "LinkedIn"],
+    "quality": "1080p HD",
+    "latency": "Ultra-low latency",
+    "chat_moderation": true,
+    "accessibility": {
+      "subtitles": true,
+      "sign_language": "Disponible bajo solicitud",
+      "audio_description": true
+    }
+  },
   "topics": [
     "IA en Educación Superior",
     "Ciudades Digitales",
@@ -175,6 +289,10 @@
     "Alfabetización Digital",
     "Ciberseguridad",
     "Ética en IA",
-    "Innovación Tecnológica"
+    "Innovación Tecnológica",
+    "Webinars Interactivos",
+    "Streaming en Vivo",
+    "IA Generativa",
+    "Emprendimiento con IA"
   ]
 }
