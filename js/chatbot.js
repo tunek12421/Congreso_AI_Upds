@@ -1,7 +1,53 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Verificar si el chatbot ya está inicializado
+  // Configuración inicial
   if (window.chatbotInitialized) return;
   window.chatbotInitialized = true;
+
+  // Base de conocimiento de preguntas y respuestas
+  const knowledgeBase = {
+    "saludo": {
+      patterns: ["hola", "buenos días", "buenas tardes", "hi", "hello"],
+      responses: [
+        "¡Hola! Bienvenido al Congreso de IA UPDS 2025. ¿En qué puedo ayudarte?",
+        "¡Hola! ¿Cómo puedo asistirte hoy?"
+      ]
+    },
+    "agradecimiento": {
+      patterns: ["gracias", "muchas gracias", "thanks", "thank you"],
+      responses: [
+        "¡De nada! Estoy aquí para ayudar.",
+        "¡Es un placer ayudarte! ¿Necesitas algo más?"
+      ]
+    },
+    "fecha": {
+      patterns: ["cuándo es", "fecha del evento", "día del congreso"],
+      responses: [
+        "El congreso se realizará los días 15, 16 y 17 de octubre de 2025.",
+        "Las fechas son del 15 al 17 de octubre de 2025."
+      ]
+    },
+    "lugar": {
+      patterns: ["dónde es", "ubicación", "lugar del evento", "dirección"],
+      responses: [
+        "El evento será en el Campus UPDS Cochabamba, Av. Irigoyen #1555, Zona Sarco.",
+        "En la Universidad Privada Domingo Savio, Cochabamba."
+      ]
+    },
+    "inscripcion": {
+      patterns: ["cómo me inscribo", "inscripción", "registro", "participar"],
+      responses: [
+        "Puedes registrarte en nuestra sección de tickets o visitando upds.edu.bo/ciia",
+        "Las inscripciones están disponibles en la pestaña 'Comprar entradas' de este sitio."
+      ]
+    },
+    "default": {
+      responses: [
+        "Lo siento, no entendí tu pregunta. ¿Podrías reformularla?",
+        "Todavía estoy aprendiendo. ¿Te importaría preguntar de otra forma?",
+        "Pregunta sobre: fechas, ubicación o inscripciones para ayudarte mejor."
+      ]
+    }
+  };
 
   // Elementos del DOM
   const elements = {
@@ -13,54 +59,37 @@ document.addEventListener('DOMContentLoaded', function() {
     messages: document.getElementById('chatbot-messages')
   };
 
-  // Validar que todos los elementos existan
+  // Validación de elementos
   if (Object.values(elements).some(el => !el)) {
     console.error('Error: Elementos del chatbot no encontrados');
     return;
   }
 
-  // Control de visibilidad con animación
-  let isAnimating = false;
-
-  elements.toggler.addEventListener('click', function() {
-    if (isAnimating) return;
-    
-    isAnimating = true;
-    elements.box.classList.toggle('active');
-    
-    setTimeout(() => {
-      isAnimating = false;
-    }, 300);
-  });
-
-  elements.closeBtn.addEventListener('click', function() {
-    if (isAnimating) return;
-    
-    isAnimating = true;
-    elements.box.classList.remove('active');
-    
-    setTimeout(() => {
-      isAnimating = false;
-    }, 300);
-  });
-
-  // Manejo del input y envío de mensajes
-  elements.input.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-      sendMessage();
-    }
-  });
-
+  // Event listeners
+  elements.toggler.addEventListener('click', toggleChat);
+  elements.closeBtn.addEventListener('click', closeChat);
+  elements.input.addEventListener('keypress', (e) => e.key === 'Enter' && sendMessage());
   elements.sendBtn.addEventListener('click', sendMessage);
+
+  // Funciones principales
+  function toggleChat() {
+    elements.box.classList.toggle('active');
+    if (elements.box.classList.contains('active')) {
+      elements.input.focus();
+    }
+  }
+
+  function closeChat() {
+    elements.box.classList.remove('active');
+  }
 
   function sendMessage() {
     const message = elements.input.value.trim();
-    if (message) {
-      addMessage('user', message);
-      elements.input.value = '';
-      // Aquí iría la lógica para procesar la respuesta
-      simulateResponse(message);
-    }
+    if (!message) return;
+
+    addMessage('user', message);
+    elements.input.value = '';
+    processMessage(message);
   }
 
   function addMessage(sender, text) {
@@ -71,10 +100,46 @@ document.addEventListener('DOMContentLoaded', function() {
     elements.messages.scrollTop = elements.messages.scrollHeight;
   }
 
-  function simulateResponse(userMessage) {
-    // Simular tiempo de respuesta
+  function processMessage(message) {
+    // Mostrar indicador de que el bot está escribiendo
+    const typingIndicator = document.createElement('div');
+    typingIndicator.classList.add('chat-message', 'bot', 'typing');
+    typingIndicator.textContent = '...';
+    elements.messages.appendChild(typingIndicator);
+    elements.messages.scrollTop = elements.messages.scrollHeight;
+
+    // Simular tiempo de procesamiento
     setTimeout(() => {
-      addMessage('bot', `Recibí: "${userMessage}". Esto es una simulación.`);
+      elements.messages.removeChild(typingIndicator);
+      const response = getResponse(message.toLowerCase());
+      addMessage('bot', response);
     }, 800);
   }
+
+  function getResponse(message) {
+    // Buscar coincidencia en la base de conocimiento
+    for (const [intent, data] of Object.entries(knowledgeBase)) {
+      if (intent === 'default') continue;
+      
+      const hasMatch = data.patterns.some(pattern => 
+        message.includes(pattern.toLowerCase())
+      );
+      
+      if (hasMatch) {
+        return getRandomResponse(data.responses);
+      }
+    }
+    
+    // Respuesta por defecto si no hay coincidencia
+    return getRandomResponse(knowledgeBase.default.responses);
+  }
+
+  function getRandomResponse(responses) {
+    return responses[Math.floor(Math.random() * responses.length)];
+  }
+
+  // Mensaje inicial de bienvenida
+  setTimeout(() => {
+    addMessage('bot', getRandomResponse(knowledgeBase.saludo.responses));
+  }, 1000);
 });
