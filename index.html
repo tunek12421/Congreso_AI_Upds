@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="assets/css/components/webinar-modals.css">
     <link rel="stylesheet" href="./assets/css/components/chatbot.css">
 
-<!-- Opción 2 (relativa al root del sitio) -->
-<link rel="stylesheet" href="./assets/css/components/chatbot.css">
 </head> 
 <body>
     <div class="animated-bg"></div>
@@ -37,6 +35,22 @@
     </header>
 
     <main>
+                    <!-- Chatbot (agregar esto NUEVO, después del cronograma) -->
+<div class="chatbot-btn" id="chatbot-toggler">
+  <i class="fas fa-comment-dots"></i>
+</div>
+
+<div class="chatbot-container" id="chatbot-box">
+  <div class="chatbot-header">
+    <h5>Chatbot del Congreso</h5>
+    <span class="close-btn" id="chatbot-close">×</span>
+  </div>
+  <div class="chatbot-body" id="chatbot-messages"></div>
+  <div class="chatbot-input">
+    <input type="text" id="chatbot-user-input" placeholder="Escribe tu mensaje...">
+    <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
         <section id="inicio" class="hero">
             <div class="hero-card">
                 <!-- Video de fondo -->
@@ -153,22 +167,7 @@
                     </li>
                 </ul>
             </div> 
-            <!-- Chatbot (agregar esto NUEVO, después del cronograma) -->
-<div class="chatbot-btn" id="chatbot-toggler">
-  <i class="fas fa-comment-dots"></i>
-</div>
 
-<div class="chatbot-container" id="chatbot-box">
-  <div class="chatbot-header">
-    <h5>Chatbot del Congreso</h5>
-    <span class="close-btn" id="chatbot-close">×</span>
-  </div>
-  <div class="chatbot-body" id="chatbot-messages"></div>
-  <div class="chatbot-input">
-    <input type="text" id="chatbot-user-input" placeholder="Escribe tu mensaje...">
-    <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
-  </div>
-</div>
         </section>
         <hr class="section-hr">
         <section id="tickets" class="tickets">
@@ -249,7 +248,7 @@
     <script src="src/components/TicketSection.js"></script>
     <script src="src/utils/animations.js"></script>
     <script src="src/utils/helpers.js"></script>
-    <script src="assets/js/main.js"></script>
     <script src="https://tunek12421.github.io/Congreso_AI_Upds/js/chatbot.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
