@@ -15,27 +15,7 @@
 </head> 
 <body>
     <div class="animated-bg"></div>
-        <!-- Chatbot Button and Container -->
-    <div id="chatbot-container">
-        <button id="chatbot-toggle" aria-label="Abrir chat">
-            <i class="fas fa-comments"></i>
-        </button>
-        <div id="chatbot-window" class="hidden">
-            <div id="chatbot-header">
-                <div class="header-content">
-                    <img id="chatbot-avatar" src="assets/images/chatbot/robot-head.png" alt="Avatar Chatbot" style="display:inline;"/>
-                    <span>Asistente Congreso IA</span>
-                </div>
-                <button id="chatbot-close" aria-label="Cerrar chat">&times;</button>
-            </div>
-            <div id="chatbot-messages">
-                <div id="chatbot-message-list"></div>
-            </div>
-            <div id="chatbot-questions"></div>
-        </div>
-    </div>
-    <!-- Fin Chatbot -->
-
+      
     <header>
         <nav>
             <div class="logo">
@@ -172,7 +152,23 @@
                         <i class="counter-name">Segundos</i>
                     </li>
                 </ul>
-            </div>         
+            </div> 
+            <!-- Chatbot (agregar esto NUEVO, después del cronograma) -->
+<div class="chatbot-btn" id="chatbot-toggler">
+  <i class="fas fa-comment-dots"></i>
+</div>
+
+<div class="chatbot-container" id="chatbot-box">
+  <div class="chatbot-header">
+    <h5>Chatbot del Congreso</h5>
+    <span class="close-btn" id="chatbot-close">×</span>
+  </div>
+  <div class="chatbot-body" id="chatbot-messages"></div>
+  <div class="chatbot-input">
+    <input type="text" id="chatbot-user-input" placeholder="Escribe tu mensaje...">
+    <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
         </section>
         <hr class="section-hr">
         <section id="tickets" class="tickets">
