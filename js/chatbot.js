@@ -1,4 +1,4 @@
-// Chatbot profesional para Congreso IA UPDS
+// Base de conocimiento del chatbot
 const chatbotQuestions = [
   {
     id: 1,
@@ -17,14 +17,22 @@ const chatbotQuestions = [
   }
 ];
 
+// Estado del chatbot
 const chatbotState = {
   availableQuestions: [...chatbotQuestions],
-  chatHistory: []
+  chatHistory: [
+    {
+      sender: 'bot',
+      text: '¡Hola! Bienvenido al Congreso de IA UPDS 2025. ¿En qué puedo ayudarte?'
+    }
+  ]
 };
 
+// Renderizar preguntas disponibles
 function renderChatbotQuestions() {
   const questionsDiv = document.getElementById('chatbot-questions');
   questionsDiv.innerHTML = '';
+  
   chatbotState.availableQuestions.forEach(q => {
     const btn = document.createElement('button');
     btn.className = 'chatbot-question-btn';
@@ -32,75 +40,80 @@ function renderChatbotQuestions() {
     btn.onclick = () => handleQuestion(q.id);
     questionsDiv.appendChild(btn);
   });
-  if (chatbotState.availableQuestions.length === 0) {
-    questionsDiv.innerHTML = '<span style="color:#888">No hay más preguntas disponibles.</span>';
-  }
 }
 
-function renderChatbotMessages(scrollToBottom = true) {
+// Renderizar mensajes del chat
+function renderChatbotMessages() {
   const messagesDiv = document.getElementById('chatbot-message-list');
   messagesDiv.innerHTML = '';
+  
   chatbotState.chatHistory.forEach((msg, i) => {
     const div = document.createElement('div');
-    div.className = 'chatbot-message ' + msg.sender;
+    div.className = `chatbot-message ${msg.sender}`;
     div.innerHTML = msg.text;
-    div.style.animationDelay = (i * 0.08) + 's';
+    div.style.animationDelay = `${i * 0.1}s`;
     messagesDiv.appendChild(div);
   });
-  const outerDiv = document.getElementById('chatbot-messages');
-  if (scrollToBottom) {
-    outerDiv.scrollTop = outerDiv.scrollHeight;
-  }
+  
+  // Auto-scroll al final
+  const container = document.getElementById('chatbot-messages');
+  container.scrollTop = container.scrollHeight;
 }
 
+// Manejar selección de pregunta
 function handleQuestion(id) {
-  const q = chatbotQuestions.find(q => q.id === id);
-  if (!q) return;
-  chatbotState.chatHistory.push({ sender: 'user', text: q.question });
+  const question = chatbotQuestions.find(q => q.id === id);
+  if (!question) return;
+
+  // Agregar pregunta del usuario
+  chatbotState.chatHistory.push({
+    sender: 'user',
+    text: question.question
+  });
+  
   renderChatbotMessages();
+  
+  // Simular tiempo de respuesta
   setTimeout(() => {
-    chatbotState.chatHistory.push({ sender: 'bot', text: q.answer });
-    chatbotState.availableQuestions = chatbotState.availableQuestions.filter(qq => qq.id !== id);
+    // Agregar respuesta del bot
+    chatbotState.chatHistory.push({
+      sender: 'bot',
+      text: question.answer
+    });
+    
+    // Eliminar pregunta de las disponibles
+    chatbotState.availableQuestions = chatbotState.availableQuestions.filter(q => q.id !== id);
+    
     renderChatbotMessages();
     renderChatbotQuestions();
-  }, 500);
+  }, 800);
 }
 
-function setChatbotAvatar(url) {
-  const avatar = document.getElementById('chatbot-avatar');
-  if (avatar) {
-    avatar.src = url;
-    avatar.style.display = 'block';
-  }
-}
-
+// Control de apertura/cierre
 function openChatbot() {
   const chatWindow = document.getElementById('chatbot-window');
   chatWindow.classList.remove('hidden');
   chatWindow.classList.add('open');
   document.getElementById('chatbot-toggle').classList.add('hide');
-  setTimeout(() => {
-    renderChatbotMessages();
-  }, 100);
 }
+
 function closeChatbot() {
   const chatWindow = document.getElementById('chatbot-window');
   chatWindow.classList.remove('open');
+  
   setTimeout(() => {
     chatWindow.classList.add('hidden');
     document.getElementById('chatbot-toggle').classList.remove('hide');
-  }, 200);
+  }, 300);
 }
 
+// Inicialización
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('chatbot-toggle').onclick = openChatbot;
-  document.getElementById('chatbot-close').onclick = closeChatbot;
+  // Configurar event listeners
+  document.getElementById('chatbot-toggle').addEventListener('click', openChatbot);
+  document.getElementById('chatbot-close').addEventListener('click', closeChatbot);
+  
+  // Renderizar contenido inicial
   renderChatbotQuestions();
   renderChatbotMessages();
-  // Permitir scroll manual sin que se baje automáticamente
-  const messagesDiv = document.getElementById('chatbot-messages');
-  let userScrolling = false;
-  messagesDiv.addEventListener('scroll', () => {
-    userScrolling = true;
-  });
 });
