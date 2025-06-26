@@ -35,22 +35,7 @@
     </header>
 
     <main>
-                    <!-- Chatbot (agregar esto NUEVO, después del cronograma) -->
-<div class="chatbot-btn" id="chatbot-toggler">
-  <i class="fas fa-comment-dots"></i>
-</div>
 
-<div class="chatbot-container" id="chatbot-box">
-  <div class="chatbot-header">
-    <h5>Chatbot del Congreso</h5>
-    <span class="close-btn" id="chatbot-close">×</span>
-  </div>
-  <div class="chatbot-body" id="chatbot-messages"></div>
-  <div class="chatbot-input">
-    <input type="text" id="chatbot-user-input" placeholder="Escribe tu mensaje...">
-    <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
-  </div>
-</div>
         <section id="inicio" class="hero">
             <div class="hero-card">
                 <!-- Video de fondo -->
@@ -238,7 +223,22 @@
             </p>
         </div>
     </footer>
+                    <!-- Chatbot (agregar esto NUEVO, después del cronograma) -->
+<div class="chatbot-btn" id="chatbot-toggler">
+  <i class="fas fa-comment-dots"></i>
+</div>
 
+<div class="chatbot-container" id="chatbot-box">
+  <div class="chatbot-header">
+    <h5>Chatbot del Congreso</h5>
+    <span class="close-btn" id="chatbot-close">×</span>
+  </div>
+  <div class="chatbot-body" id="chatbot-messages"></div>
+  <div class="chatbot-input">
+    <input type="text" id="chatbot-user-input" placeholder="Escribe tu mensaje...">
+    <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
     <!-- Scripts -->
     <script src="assets/js/modules.mjs" type="module"></script>
     <script src="src/services/dataService.js"></script>
@@ -250,5 +250,7 @@
     <script src="src/utils/helpers.js"></script>
     <script src="./js/chatbot.js"></script>
     <script src="assets/js/main.js"></script>
+    
+
 </body>
 </html>
