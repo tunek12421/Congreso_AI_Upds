@@ -125,7 +125,6 @@ class ScheduleComponent {
                         <i class="${typeIcon}"></i>
                         ${item.isLive ? '<div class="live-pulse-indicator"></div>' : ''}
                     </div>
-                    <span class="time-text">${item.time}</span>
                 </div>
                 <div class="timeline-content">
                     <div class="session-header">
@@ -511,7 +510,7 @@ class ScheduleComponent {
         `;
     }
 
-    // NUEVOS MÉTODOS PARA WEBINARS
+    // MÉTODOS PARA WEBINARS (Sin auto-notificaciones)
 
     joinWebinarStream(streamUrl) {
         if (!streamUrl) {
@@ -693,20 +692,21 @@ class ScheduleComponent {
 
     // Inicializar características específicas de webinars
     initializeWebinarFeatures() {
-        // Verificar webinars próximos cada 30 segundos
+        // PRIMERA APARICIÓN: 7 segundos
         setTimeout(() => {
             this.checkUpcomingWebinars();
-        }, 2000);
+        }, 7000);
         
+        // APARICIONES CONTINUAS: cada 25 segundos
         setInterval(() => {
             this.checkUpcomingWebinars();
-        }, 30000);
+        }, 25000);
     }
 
     // Método para verificar webinars próximos
     checkUpcomingWebinars() {
         const liveWebinars = this.getLiveWebinars();
-        if (liveWebinars.length > 0 && Math.random() > 0.8) { // 20% de probabilidad
+        if (liveWebinars.length > 0) {
             const randomWebinar = liveWebinars[Math.floor(Math.random() * liveWebinars.length)];
             this.showWebinarNotification(randomWebinar);
         }
@@ -742,39 +742,60 @@ class ScheduleComponent {
 
         document.body.appendChild(notification);
         
-        setTimeout(() => {
-            notification.classList.add('show');
-        }, 100);
+        // Animación de entrada más suave y fluida
+        requestAnimationFrame(() => {
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(120%) scale(0.8)';
+            notification.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+            
+            requestAnimationFrame(() => {
+                notification.classList.add('show');
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(0) scale(1)';
+            });
+        });
 
-        // Auto-remove después de 10 segundos
+        // Auto-remove con animación suave después de 10 segundos
         setTimeout(() => {
-            notification.classList.remove('show');
+            notification.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(120%) scale(0.9)';
+            
             setTimeout(() => {
                 if (notification.parentElement) {
                     document.body.removeChild(notification);
                 }
-            }, 300);
+            }, 600);
         }, 10000);
 
         // Bind events
         notification.querySelector('.btn-join-notification').addEventListener('click', (e) => {
             const streamUrl = e.target.dataset.streamUrl;
             this.joinWebinarStream(streamUrl);
-            notification.classList.remove('show');
+            
+            // Animación de salida suave al hacer click
+            notification.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(120%) scale(0.95)';
+            
             setTimeout(() => {
                 if (notification.parentElement) {
                     document.body.removeChild(notification);
                 }
-            }, 300);
+            }, 400);
         });
 
         notification.querySelector('.btn-close-notification').addEventListener('click', () => {
-            notification.classList.remove('show');
+            // Animación de salida suave al cerrar
+            notification.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(120%) scale(0.9)';
+            
             setTimeout(() => {
                 if (notification.parentElement) {
                     document.body.removeChild(notification);
                 }
-            }, 300);
+            }, 500);
         });
     }
 
