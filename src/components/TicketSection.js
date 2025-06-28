@@ -68,14 +68,9 @@ class TicketSectionComponent {
                     <h3 class="ticket-name">${ticket.name}</h3>
                     <div class="ticket-group">
                         <div class="ticket-price">
-                            <h4>Profesional:</h4>
+                            <h4>Precio:</h4>
                             <span class="currency">${ticket.currency}</span>
-                            <span class="amount">${ticket.price_profesional}</span>
-                        </div>
-                        <div class="ticket-price">
-                            <h4>Estudiante:</h4>
-                            <span class="currency">${ticket.currency}</span>
-                            <span class="amount">${ticket.price_student}</span>
+                            <span class="amount">${ticket.price}</span>
                         </div>
                     </div>
                     <!--div class="ticket-price">

@@ -8,30 +8,12 @@ class TicketService {
                 maxQuantity: 5
             },
         };
-        this.ticketTypes=[{
-                id: 'student',
-                name: 'Externos',
-                description: 'Personas o instituciones ajenas a la UPDS',
-                //price: 25,
-                price_profesional: 120,
-                price_student: 80,
-                currency: 'Bs',
-                ticketListTitle: 'Ejemplos',
-                ticketList: [
-                    'Proveedores, contratistas o colaboradores externos',
-                    'Padres de familia',
-                    'Empresas o organizaciones que solicitan servicios o información',
-                ],
-                available: true,
-                maxQuantity: 3,
-            },
+        this.ticketTypes=[
             {
                 id: 'upds',
                 name: 'Comunidad UPDS',
                 description: 'Miembros activos de la universidad con acceso a beneficios o servicios internos.',
-                //price: 100,
-                price_profesional: 80,
-                price_student: 50,
+                price: 90,
                 currency: 'Bs',
                 ticketListTitle: 'Incluye',
                 ticketList: [
@@ -44,10 +26,25 @@ class TicketService {
                 available: true,
                 maxQuantity: 2,
                 //limited: true,
-                quantity: 50,
+                //quantity: 50,
                 requirements: 'Presentar carnet estudiantil vigente'
             },
             {
+                id: 'student',
+                name: 'Externos',
+                description: 'Personas o instituciones ajenas a la UPDS',
+                price: 120,
+                currency: 'Bs',
+                ticketListTitle: 'Ejemplos',
+                ticketList: [
+                    'Proveedores, contratistas o colaboradores externos',
+                    'Padres de familia',
+                    'Empresas o organizaciones que solicitan servicios o información',
+                ],
+                available: true,
+                maxQuantity: 3,
+            },
+            /*{
                 id: 'extranjeros',
                 name: 'Extranjeros',
                 description: 'Usuarios internacionales que interactúan con la UPDS',
@@ -66,7 +63,7 @@ class TicketService {
                 maxQuantity: 2,
                 //limited: true,
                 quantity: 50
-            }
+            }*/
         ];
     }
 

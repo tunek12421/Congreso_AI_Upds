@@ -29,7 +29,8 @@
     
     --primary-blue: #02193f;
 
-
+    --live: #ff6b6b;
+    --live-background: linear-gradient(135deg, #ff6b6b, #ee5a24);
 
     /* Gradientes */
     --gradient-primary: linear-gradient(135deg, #1d7c9f 0%, #000612 100%);
