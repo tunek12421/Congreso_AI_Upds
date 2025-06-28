@@ -145,11 +145,6 @@ class SpeakerComponent {
                          <div class="avatar-fallback" style="display:none;"><i class="fas fa-user-tie"></i></div>` :
                         `<div class="avatar-fallback"><i class="fas fa-user-tie"></i></div>`
                     }
-                    <div class="speaker-country-sash">
-                        <div class="sash-content">
-                            <span class="flag">${speaker.flag || '🌎'}</span>
-                        </div>
-                    </div>
                 </div>
                 <div class="speaker-overlay">
                     <button class="btn-view-details" data-speaker-id="${speaker.id}">
@@ -158,7 +153,10 @@ class SpeakerComponent {
                     </button>
                 </div>
                 <div class="speaker-info">
-                    <h4 class="speaker-name">${speaker.name}</h4>
+                    <div class="speaker-name-row">
+                        <h4 class="speaker-name">${speaker.name}</h4>
+                        <span class="speaker-flag">${speaker.flag || '🌎'}</span>
+                    </div>
                     <p class="speaker-title">${speaker.title}</p>
                     <div class="social-links">
                         ${socialLinks}
