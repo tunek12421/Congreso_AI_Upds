@@ -20,13 +20,6 @@
        flex-direction: column;
    }
    
-   .timeline-time {
-       flex-direction: row;
-       align-items: center;
-       margin-right: 0;
-       margin-bottom: 1rem;
-   }
-   
    .time-indicator {
        margin-right: 1rem;
        margin-bottom: 0;
@@ -122,12 +115,6 @@
        font-size: 1.1rem;
        padding: 0.8rem 1.5rem;
    }
-   
-   .btn {
-       padding: 0.8rem 1.5rem;
-       font-size: 1rem;
-   }
-   
    .section-title {
        font-size: 1.8rem;
    }

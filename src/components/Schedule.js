@@ -49,7 +49,7 @@ class ScheduleComponent {
                 ${hasWebinars ? `
                     <button class="filter-btn filter-webinar-live" data-filter="webinar">
                         <i class="fas fa-broadcast-tower"></i>
-                        <span class="live-indicator">●</span>
+                        <!--span class="live-indicator">●</span-->
                         Webinars EN VIVO
                         <span class="live-pulse"></span>
                     </button>
@@ -67,7 +67,7 @@ class ScheduleComponent {
                     Talleres
                 </button>
                 <button class="filter-btn" data-filter="presentation">
-                    <i class="fas fa-presentation"></i>
+                    <i class="fa-solid fa-desktop"></i>
                     Presentaciones
                 </button>
             </div>
@@ -131,7 +131,7 @@ class ScheduleComponent {
                         <div class="session-info">
                             <h3 class="session-title">
                                 ${item.title}
-                                ${item.isLive ? '<span class="live-title-badge">🔴 EN VIVO</span>' : ''}
+                                ${item.isLive ? '<span class="live-title-badge">EN VIVO</span>' : ''}
                             </h3>
                             ${categoryBadge}
                             <p class="session-description">${item.description}</p>
@@ -172,7 +172,7 @@ class ScheduleComponent {
         const icons = {
             'keynote': 'fas fa-star',
             'panel': 'fas fa-users',
-            'presentation': 'fas fa-presentation',
+            'presentation': 'fa-solid fa-desktop',
             'workshop': 'fas fa-tools',
             'demo': 'fas fa-robot',
             'break': 'fas fa-coffee',
@@ -695,12 +695,12 @@ class ScheduleComponent {
         // PRIMERA APARICIÓN: 7 segundos
         setTimeout(() => {
             this.checkUpcomingWebinars();
-        }, 7000);
+        }, 2000);
         
         // APARICIONES CONTINUAS: cada 25 segundos
-        setInterval(() => {
+        /*setInterval(() => {
             this.checkUpcomingWebinars();
-        }, 25000);
+        }, 25000);*/
     }
 
     // Método para verificar webinars próximos
@@ -733,10 +733,10 @@ class ScheduleComponent {
                     <button class="btn-join-notification" data-stream-url="${webinar.streamUrl}">
                         Unirse
                     </button>
-                    <button class="btn-close-notification">
-                        <i class="fas fa-times"></i>
-                    </button>
                 </div>
+                <button class="btn-close-notification">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
         `;
 
@@ -745,28 +745,27 @@ class ScheduleComponent {
         // Animación de entrada más suave y fluida
         requestAnimationFrame(() => {
             notification.style.opacity = '0';
-            notification.style.transform = 'translateX(120%) scale(0.8)';
+            notification.style.transform = 'translateX(-120%)';
             notification.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
             
             requestAnimationFrame(() => {
                 notification.classList.add('show');
                 notification.style.opacity = '1';
-                notification.style.transform = 'translateX(0) scale(1)';
+                notification.style.transform = 'translateX(0)';
             });
         });
 
-        // Auto-remove con animación suave después de 10 segundos
+        // Auto-remove con animación suave después de 30 segundos
         setTimeout(() => {
             notification.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
             notification.style.opacity = '0';
-            notification.style.transform = 'translateX(120%) scale(0.9)';
-            
+            notification.style.transform = 'translateX(-120%)';
             setTimeout(() => {
                 if (notification.parentElement) {
                     document.body.removeChild(notification);
                 }
             }, 600);
-        }, 10000);
+        }, 300000);
 
         // Bind events
         notification.querySelector('.btn-join-notification').addEventListener('click', (e) => {
@@ -776,7 +775,7 @@ class ScheduleComponent {
             // Animación de salida suave al hacer click
             notification.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
             notification.style.opacity = '0';
-            notification.style.transform = 'translateX(120%) scale(0.95)';
+            notification.style.transform = 'translateX(-120%)';
             
             setTimeout(() => {
                 if (notification.parentElement) {
@@ -789,7 +788,7 @@ class ScheduleComponent {
             // Animación de salida suave al cerrar
             notification.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
             notification.style.opacity = '0';
-            notification.style.transform = 'translateX(120%) scale(0.9)';
+            notification.style.transform = 'translateX(-120%)';
             
             setTimeout(() => {
                 if (notification.parentElement) {
