@@ -74,7 +74,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-            min-height: 280px;
+    min-height: 320px; /* Aumentado para mejor visualización */
 }
 
 /* Flechas posicionadas a los lados del carrusel */
@@ -121,18 +121,19 @@
     transform: translateY(-50%) scale(0.95);
 }
 
-/* 🎯 TRACK UNIFICADO - JavaScript maneja todas las transiciones */
+/* 🎯 TRACK MEJORADO - Sistema de centrado perfecto */
 .carousel-track {
     display: flex;
-    /* ❌ REMOVIDA: transition que conflictúa con JavaScript */
-    gap: 1.8rem;
-    padding: 1.8rem;
+    gap: 2rem; /* Gap base para desktop */
+    padding: 2rem 0; /* Solo padding vertical, el horizontal lo maneja JS */
     width: 100%;
     justify-content: flex-start;
-    /* 🎯 JavaScript se encarga completamente de las transiciones */
+    align-items: center;
+    box-sizing: border-box;
+    /* Permitir que JavaScript controle el posicionamiento horizontal */
 }
 
-/* Cards de speakers - Layout Horizontal Moderno */
+/* Cards de speakers - Layout Horizontal Moderno ACTUALIZADO */
 .speaker-card {
     background: var(--dark-background);
     border-radius: 15px;
@@ -140,18 +141,16 @@
     box-shadow: var(--shadow);
     transition: var(--transition);
     position: relative;
-    width: calc(95% - 2rem);
-    max-width: 380px;
+    /* ANCHO CONTROLADO DINÁMICAMENTE POR JAVASCRIPT (responsive: 1 card móvil, 2 cards desktop) */
     flex-shrink: 0;
     border: 2px solid transparent;
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 1.2rem;
+    padding: 1.5rem;
     text-align: left;
     box-sizing: border-box;
-    min-height: 280px;
-    max-height: 280px;
+    height: 280px; /* Altura fija para consistencia */
 }
 
 .speaker-card:hover {
@@ -209,8 +208,6 @@
     filter: brightness(1.1) saturate(1.2);
     flex-shrink: 0;
 }
-
-/* Efecto hover simplificado */
 
 .avatar-fallback {
     width: 100%;
@@ -314,14 +311,6 @@
     display: none;
 }
 
-.expertise-tags {
-    display: none;
-}
-
-.speaker-bio {
-    display: none;
-}
-
 .social-links {
     display: flex;
     gap: 0.5rem;
@@ -342,6 +331,12 @@
     transition: var(--transition);
     font-size: 0.8rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.social-link:hover {
+    background: var(--primary-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Modal de speaker */
@@ -377,7 +372,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--dark-background);
+    background: var(--white);
     border-radius: 20px;
     max-width: 600px;
     width: 90%;
@@ -505,6 +500,22 @@
     font-size: 0.9rem;
 }
 
+.modal-body .expertise-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.modal-body .expertise-tag {
+    background: var(--light-blue);
+    color: var(--white);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
 .speaker-social .social-links {
     justify-content: flex-start;
 }
@@ -532,18 +543,21 @@
     line-height: 1.6;
 }
 
-/* Responsive Design Mejorado */
+/* Responsive Design Mejorado y Actualizado */
 @media (max-width: 1200px) {
     .carousel-title {
         font-size: 1.8rem;
     }
     
+    .carousel-track {
+        gap: 1.5rem;
+        padding: 1.8rem 0; /* Solo padding vertical */
+    }
+    
     .speaker-card {
-        width: calc(85% - 1rem);
-        max-width: 420px;
+        /* JavaScript controla el ancho dinámicamente (responsive) */
         flex-direction: row;
         height: 250px;
-        min-height: 250px;
         padding: 1.5rem;
         text-align: left;
     }
@@ -604,6 +618,10 @@
         justify-content: center;
     }
     
+    .carousel-container {
+        min-height: 300px;
+    }
+    
     .carousel-btn {
         width: 45px;
         height: 45px;
@@ -618,14 +636,20 @@
         right: 0.5rem;
     }
     
+    .carousel-track {
+        gap: 1rem; /* Gap reducido para móvil */
+        padding: 1.5rem 0; /* Solo padding vertical */
+        justify-content: flex-start; /* JS controla el centrado */
+    }
+    
     .speaker-card {
-        width: calc(95% - 1rem);
-        max-width: 320px;
-        padding: 1.2rem 0.8rem;
+        /* JavaScript controla el ancho dinámicamente */
+        padding: 1.2rem;
         flex-direction: column;
         text-align: center;
         height: auto;
-        min-height: 260px;
+        min-height: 320px; /* Más altura para mejor visualización en móvil */
+        max-height: none;
     }
     
     .speaker-avatar {
@@ -642,6 +666,7 @@
     .speaker-info {
         align-items: center;
         text-align: center;
+        padding-right: 0;
     }
     
     .speaker-title {
@@ -649,27 +674,23 @@
         max-width: 200px;
     }
     
-    .carousel-track {
-        padding: 1.5rem 1rem;
-        gap: 1.2rem;
+    .speaker-name-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
     }
     
-        .speaker-name-row {
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .speaker-flag {
-            font-size: 1.4em;
-        }
+    .speaker-flag {
+        font-size: 1.4em;
+    }
     
     .speaker-name {
-        font-size: 1rem;
+        font-size: 1.1rem;
+        text-align: center;
     }
     
     .speaker-title {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
     
     .speaker-country {
@@ -678,9 +699,13 @@
     }
     
     .social-link {
-        width: 28px;
-        height: 28px;
-        font-size: 0.75rem;
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+    
+    .social-links {
+        justify-content: center;
     }
     
     .modal-content {
@@ -710,28 +735,15 @@
         width: 35px;
         height: 35px;
     }
-    
-    .modal-body .expertise-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-    }
-    
-    .modal-body .expertise-tag {
-        background: var(--light-blue);
-        color: var(--white);
-        padding: 0.3rem 0.8rem;
-        border-radius: 15px;
-        font-size: 0.7rem;
-        font-weight: 500;
-        white-space: nowrap;
-    }
 }
 
 @media (max-width: 480px) {
     .carousel-title {
         font-size: 1.3rem;
+    }
+    
+    .carousel-container {
+        min-height: 280px;
     }
     
     .carousel-btn {
@@ -753,33 +765,37 @@
         height: 10px;
     }
     
+    .carousel-track {
+        gap: 0.8rem;
+        padding: 1.2rem 0; /* Solo padding vertical */
+    }
+    
     .speaker-card {
         border-radius: 12px;
-        padding: 1rem 0.6rem;
-        width: calc(90% - 0.5rem);
-        max-width: 280px;
-        min-height: 240px;
+        padding: 1rem;
+        /* JavaScript controla el ancho dinámicamente */
+        min-height: 300px; /* Mejor altura para una sola card */
     }
     
     .speaker-avatar {
-        width: 100px;
-        height: 100px;
+        width: 120px; /* Más grande para una sola card */
+        height: 120px;
     }
     
     .avatar-fallback {
         font-size: 2rem;
     }
     
-        .speaker-flag {
-            font-size: 1.2em;
-        }
+    .speaker-flag {
+        font-size: 1.2em;
+    }
     
     .speaker-name {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
     
     .speaker-title {
-        font-size: 0.75rem;
+        font-size: 0.85rem;
     }
     
     .speaker-country {
@@ -789,13 +805,13 @@
     
     .btn-view-details {
         padding: 0.5rem 1rem;
-        font-size: 0.75rem;
+        font-size: 0.8rem;
     }
     
     .social-link {
-        width: 25px;
-        height: 25px;
-        font-size: 0.7rem;
+        width: 28px;
+        height: 28px;
+        font-size: 0.75rem;
     }
 }
 
@@ -876,10 +892,6 @@
     .expertise-tag {
         border: 1px solid var(--white);
     }
-    
-    .speaker-country-sash {
-        border: 3px solid var(--white);
-    }
 }
 
 /* Modo de movimiento reducido */
@@ -888,8 +900,7 @@
     .speaker-card,
     .carousel-btn,
     .modal-content,
-    .speaker-avatar,
-    .speaker-country-sash {
+    .speaker-avatar {
         transition: none;
     }
     
@@ -907,8 +918,443 @@
     .speaker-card {
         animation: none;
     }
+}
+
+/* ===== RESPONSIVE DESIGN COMPLETO PARA TODOS LOS DISPOSITIVOS ===== */
+
+/* Desktop y tablets grandes (1201px+) */
+@media (min-width: 1201px) {
+    .carousel-track {
+        gap: 2rem;
+        padding: 2rem 0; /* Solo padding vertical */
+    }
     
-    .sash-content .flag {
-        animation: none;
+    .speaker-card {
+        height: 280px;
+        padding: 1.5rem;
+    }
+}
+
+/* iPad Pro 12.9" (1024px - 1366px) */
+@media (max-width: 1366px) and (min-width: 1024px) {
+    .carousel-track {
+        gap: 1.8rem;
+        padding: 1.8rem 0; /* Solo padding vertical */
+    }
+    
+    .speaker-card {
+        height: 270px;
+        padding: 1.4rem;
+    }
+}
+
+/* iPad standard, iPad mini, Surface (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .carousel-track {
+        gap: 1.5rem;
+        padding: 1.6rem 0; /* Solo padding vertical */
+    }
+    
+    .speaker-card {
+        height: 260px;
+        padding: 1.3rem;
+    }
+    
+    .speaker-avatar {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+/* Kindle Fire HDX (800px x 1280px) en landscape */
+@media (max-width: 800px) and (min-width: 601px) and (orientation: portrait) {
+    .carousel-track {
+        gap: 1.2rem;
+        padding: 1.4rem 0; /* Solo padding vertical */
+    }
+    
+    .speaker-card {
+        flex-direction: column;
+        height: auto;
+        min-height: 280px;
+        text-align: center;
+    }
+    
+    .speaker-avatar {
+        width: 120px;
+        height: 120px;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .speaker-info {
+        align-items: center;
+        text-align: center;
+    }
+}
+
+/* Galaxy S20 Ultra, Note 20 Ultra (412px width) */
+@media (max-width: 412px) {
+    .carousel-container {
+        min-height: 300px;
+    }
+    
+    .carousel-track {
+        gap: 0.8rem;
+        padding: 1rem 0; /* Solo padding vertical */
+    }
+    
+    .carousel-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 0.95rem;
+    }
+    
+    .carousel-prev {
+        left: 0.3rem;
+    }
+    
+    .carousel-next {
+        right: 0.3rem;
+    }
+    
+    .speaker-card {
+        /* JavaScript controla el ancho dinámicamente (1 card en móvil) */
+        flex-direction: column;
+        padding: 1.1rem 0.9rem;
+        height: auto;
+        min-height: 270px;
+    }
+    
+    .speaker-avatar {
+        width: 110px;
+        height: 110px;
+    }
+    
+    .speaker-name {
+        font-size: 1.05rem;
+    }
+    
+    .speaker-title {
+        font-size: 0.88rem;
+    }
+}
+
+/* iPhone 12/13 Pro Max, iPhone 11 Pro Max (428px width) */
+@media (max-width: 428px) and (min-width: 413px) {
+    .carousel-track {
+        gap: 0.9rem;
+        padding: 1.1rem 0.9rem;
+    }
+    
+    .speaker-card {
+        min-height: 275px;
+        padding: 1.15rem 0.95rem;
+    }
+    
+    .speaker-avatar {
+        width: 115px;
+        height: 115px;
+    }
+}
+
+/* iPhone 12/13 Pro, iPhone 11 Pro (390px width) */
+@media (max-width: 390px) and (min-width: 376px) {
+    .carousel-track {
+        gap: 0.75rem;
+        padding: 1rem 0.8rem;
+    }
+    
+    .speaker-card {
+        min-height: 265px;
+        padding: 1.1rem 0.85rem;
+    }
+    
+    .speaker-avatar {
+        width: 105px;
+        height: 105px;
+    }
+    
+    .speaker-name {
+        font-size: 1rem;
+    }
+    
+    .speaker-title {
+        font-size: 0.85rem;
+    }
+    
+    .social-link {
+        width: 28px;
+        height: 28px;
+        font-size: 0.75rem;
+    }
+}
+
+/* iPhone 12/13 mini, iPhone SE 2nd gen (375px width) */
+@media (max-width: 375px) and (min-width: 361px) {
+    .carousel-container {
+        min-height: 280px;
+    }
+    
+    .carousel-track {
+        gap: 0.7rem;
+        padding: 0.9rem 0.75rem;
+    }
+    
+    .carousel-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 0.85rem;
+    }
+    
+    .speaker-card {
+        min-height: 260px;
+        padding: 1rem 0.8rem;
+    }
+    
+    .speaker-avatar {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .speaker-name {
+        font-size: 0.95rem;
+    }
+    
+    .speaker-title {
+        font-size: 0.82rem;
+        line-height: 1.2;
+    }
+    
+    .speaker-country {
+        font-size: 0.62rem;
+        padding: 0.2rem 0.5rem;
+    }
+}
+
+/* Galaxy S10/S10+ (360px width) */
+@media (max-width: 360px) and (min-width: 320px) {
+    .carousel-track {
+        gap: 0.6rem;
+        padding: 0.8rem 0.7rem;
+    }
+    
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 0.8rem;
+    }
+    
+    .carousel-prev {
+        left: 0.2rem;
+    }
+    
+    .carousel-next {
+        right: 0.2rem;
+    }
+    
+    .speaker-card {
+        min-height: 280px; /* Altura optimizada para una sola card */
+        padding: 0.9rem 0.75rem;
+        border-radius: 10px;
+    }
+    
+    .speaker-avatar {
+        width: 110px; /* Tamaño optimizado */
+        height: 110px;
+    }
+    
+    .avatar-fallback {
+        font-size: 1.8rem;
+    }
+    
+    .speaker-name {
+        font-size: 0.9rem;
+        line-height: 1.1;
+    }
+    
+    .speaker-title {
+        font-size: 0.8rem;
+        line-height: 1.15;
+    }
+    
+    .btn-view-details {
+        padding: 0.45rem 0.9rem;
+        font-size: 0.75rem;
+    }
+    
+    .social-link {
+        width: 26px;
+        height: 26px;
+        font-size: 0.7rem;
+    }
+}
+
+/* Dispositivos muy pequeños (menos de 320px) */
+@media (max-width: 319px) {
+    .carousel-container {
+        min-height: 240px;
+    }
+    
+    .carousel-track {
+        gap: 0.5rem;
+        padding: 0.7rem 0.6rem;
+    }
+    
+    .speaker-card {
+        min-height: 260px; /* Altura adecuada para una sola card */
+        padding: 0.8rem 0.7rem;
+    }
+    
+    .speaker-avatar {
+        width: 100px; /* Tamaño balanceado */
+        height: 100px;
+    }
+    
+    .speaker-name {
+        font-size: 0.85rem;
+    }
+    
+    .speaker-title {
+        font-size: 0.75rem;
+    }
+}
+
+/* ===== AJUSTES ESPECÍFICOS POR ORIENTACIÓN ===== */
+
+/* Landscape para móviles */
+@media (max-width: 932px) and (orientation: landscape) {
+    .carousel-container {
+        min-height: 250px;
+    }
+    
+    .speaker-card {
+        flex-direction: row;
+        height: 220px;
+        padding: 1rem;
+    }
+    
+    .speaker-avatar {
+        width: 100px;
+        height: 100px;
+        margin-right: 1rem;
+        margin-bottom: 0;
+    }
+    
+    .speaker-info {
+        align-items: flex-start;
+        text-align: left;
+    }
+    
+    .speaker-name-row {
+        flex-direction: row;
+    }
+    
+    .social-links {
+        justify-content: flex-start;
+    }
+}
+
+/* iPad en modo portrait */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    .carousel-track {
+        gap: 1.4rem;
+        padding: 1.6rem 0; /* Solo padding vertical */
+    }
+    
+    .speaker-card {
+        height: 260px;
+    }
+}
+
+/* iPad en modo landscape */
+@media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+    .carousel-track {
+        gap: 1.8rem;
+        padding: 1.8rem 0; /* Solo padding vertical */
+    }
+    
+    .speaker-card {
+        height: 270px;
+    }
+}
+
+/* ===== AJUSTES PARA DENSIDAD DE PÍXELES ===== */
+
+/* Retina displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .speaker-avatar {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+    
+    .speaker-card {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* Super Retina displays (iPhone 11 Pro, 12 Pro, 13 Pro) */
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
+    .speaker-avatar img {
+        image-rendering: auto;
+    }
+    
+    .social-link {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    }
+}
+
+/* ===== AJUSTES ESPECÍFICOS PARA NOTCH/DYNAMIC ISLAND ===== */
+
+/* iPhone con notch/Dynamic Island */
+@supports (padding-top: env(safe-area-inset-top)) {
+    @media (max-width: 428px) {
+        .carousel-container {
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
+        }
+    }
+}
+
+/* ===== OPTIMIZACIONES DE RENDIMIENTO PARA MÓVILES ===== */
+
+/* Reducir animaciones en dispositivos móviles para mejor rendimiento */
+@media (max-width: 768px) {
+    .speaker-card {
+        animation-duration: 0.4s;
+    }
+    
+    .speaker-card::before {
+        display: none; /* Eliminar efecto hover complejo en móvil */
+    }
+    
+    .speaker-avatar {
+        transition-duration: 0.2s;
+    }
+}
+
+/* ===== AJUSTES FINALES PARA CASOS EDGE ===== */
+
+/* Galaxy Fold (cuando está cerrado - 280px) */
+@media (max-width: 280px) {
+    .carousel-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.7rem;
+    }
+    
+    .carousel-track {
+        gap: 0.4rem;
+        padding: 0.6rem 0.5rem;
+    }
+    
+    .speaker-card {
+        min-height: 220px;
+        padding: 0.7rem 0.6rem;
+    }
+    
+    .speaker-avatar {
+        width: 75px;
+        height: 75px;
     }
 }
