@@ -2,193 +2,147 @@
   "speakers": [
     {
       "id": 1,
-      "name": "Dr. Ana María Silva",
-      "title": "Especialista en IA Aplicada",
-      "country": "Brasil",
-      "flag": "🇧🇷",
-      "expertise": ["Machine Learning", "Computer Vision", "Healthcare AI"],
-      "bio": "Doctora en Ciencias de la Computación con 15 años de experiencia en aplicaciones de IA en el sector salud. Ha liderado proyectos de implementación de sistemas de diagnóstico médico asistido por IA en más de 50 hospitales de América Latina.",
-      "photo": "assets/images/speakers/Acardozo.jpg",
+      "name": "Jefferson Cabrera Amaiquema",
+      "title": "Docente-Investigador Acreditado SENESCYT, Fundador y Director de JLA Ediciones",
+      "country": "Ecuador",
+      "flag": "🇪🇨",
+      "expertise": ["IA en Educación", "Machine Learning", "Innovación Educativa", "Análisis de Datos", "Dirección de Proyectos"],
+      "bio": "Docente-Investigador Acreditado SENESCYT (Ec), Lattes (Br) y artista. Fundador y director de JLA Ediciones (GYE/FLO), Gerente general de marca y editor en jefe de la revista científica multidisciplinar YUYAY, además es miembro de diferentes consejos editoriales y científicos para editoriales y revistas indexadas de México, Colombia, Puerto Rico y Bolivia. Su línea de investigación y trabajo creativo le han llevado a desempeñar cargos jerárquicos superiores y posicionar marcas a nivel local (EC) y regional exponiendo sus resultados y obras en varias muestras colectivas internacionales (BR, MX, COL, PER, U.S.A). Docente Titular Tiempo Completo del Instituto Superior Tecnológico Bolivariano de Tecnología (ITB-Ecuador) y docente invitado de la Escuela Internacional de Alta Gestión y Postgrado de la Universidad Privada Domingo Savio (Bolivia). Ha trabajado políticas públicas, dirección de proyectos, planes de cooperación e innovación desde las culturas, la educación y las tecnologías, docente autor de contenidos para formación regular, editor de programas académicos y formativos para escolaridad inconclusa y necesidades educativas específicas asociadas o no a discapacidades; inteligencia artificial, machine learning, innovación y aplicación en entornos educativos de IA. Actualmente cursa el doctorado en Dirección de Proyectos por la Universidad de Investigación e Innovación de México (UIIX)",
+      "photo": "assets/images/speakers/Jefferson-Cabrera.png",
+      "topic": "La IA como estrategia para la personalización educativa y análisis de datos en la educación",
       "social": {
-        "linkedin": "https://linkedin.com/in/ana-silva",
-        "twitter": "@ana_silva_ai",
-        "email": "ana.silva@healthai.br"
+        "linkedin": "",
+        "twitter": "",
+        "email": ""
       },
-      "sessions": [1, 3]
+      "sessions": []
     },
     {
       "id": 2,
-      "name": "Prof. Michael Johnson",
-      "title": "Director de IA Ética - MIT",
-      "country": "Estados Unidos",
-      "flag": "🇺🇸",
-      "expertise": ["AI Ethics", "Policy", "Governance"],
-      "bio": "Profesor del MIT especializado en ética de la inteligencia artificial y políticas públicas tecnológicas. Autor de 3 libros sobre regulación de IA y consultor para gobiernos internacionales en marcos regulatorios de tecnologías emergentes.",
-      "photo": "assets/images/speakers/Acardozo.jpg",
+      "name": "Renata Cervantes Áviles",
+      "title": "Licenciada en Artes Visuales, Directora General y Creativa de JLA S.A.S.",
+      "country": "Ecuador",
+      "flag": "🇪🇨",
+      "expertise": ["IA en Diseño", "Diagramación Digital", "Artes Visuales", "Comunicación Visual", "Desarrollo Académico"],
+      "bio": "Licenciada en artes visuales, docente e investigadora. Directora General y creativa de JLA S.A.S.; Deputy Editor in Chief de YUYAY (ISSN: 2953-6685 e-ISSN: 2953-6677) en donde coordina indexaciones y el seguimiento a la firma de declaratorias internacionales. Apasionada a la pintura, la fotografía y la maquetación editorial, ha expuesto sus propuestas visuales nivel nacional (EC) y editados proyectos editoriales en Ecuador, México y Colombia. La creatividad, imaginación y la comunicación son sus habilidades más destacadas. Ha participado en ponencias regionales en temas de manejo de recursos digitales para impresión, pedagogías desde las creatividades y prácticas con necesidades educativas específicas.",
+      "photo": "assets/images/speakers/Renata-Cervantes.png",
+      "topic": "Esquema visual de diagramación de productos con IA en el desarrollo académico",
       "social": {
-        "linkedin": "https://linkedin.com/in/mjohnson",
-        "twitter": "@mike_ai_ethics"
+        "linkedin": "",
+        "twitter": "",
+        "email": ""
       },
-      "sessions": [2, 5]
+      "sessions": []
     },
     {
       "id": 3,
-      "name": "Dra. Carmen Rodríguez",
-      "title": "Investigadora Senior UPDS",
+      "name": "Gabriela Cano Encinas",
+      "title": "Ingeniera Industrial y de Sistemas",
       "country": "Bolivia",
       "flag": "🇧🇴",
-      "expertise": ["Educational AI", "Digital Literacy", "Innovation"],
-      "bio": "Investigadora líder en aplicaciones de IA para educación superior en Latinoamérica. Pionera en el desarrollo de plataformas de aprendizaje adaptativo para universidades bolivianas, con más de 10 años de experiencia en innovación educativa.",
-      "photo": "assets/images/speakers/Acardozo.jpg",
+      "expertise": ["IA Empresarial", "Productividad", "Transformación Digital", "eCommerce", "Supply Chain", "Liderazgo"],
+      "bio": "Ingeniera Industrial y de Sistemas con más de 10 años liderando equipos multidisciplinarios y proyectos en consumo masivo, retail, eCommerce y tecnología. Como empresaria, aplica en su propio negocio principios de productividad e innovación basados en transformación digital e inteligencia artificial. Gabriela combina estrategia comercial y gestión de productos digitales para impulsar la eficiencia operativa y mejorar la experiencia del cliente. Especializada en gestión empresarial, supply chain, retail, liderazgo y soluciones con IA, aporta una visión integral y tangible al mundo corporativo. Su enfoque práctico y orientado a resultados la convierte en una referente para organizaciones que buscan optimizar recursos y enfocarse en lo estratégico.",
+      "photo": "assets/images/speakers/Gabriela-Cano.jpg",
+      "topic": "Cómo la Inteligencia Artificial Está Revolucionando la Productividad en las Empresas",
       "social": {
-        "linkedin": "https://linkedin.com/in/carmen-rodriguez",
-        "email": "carmen.rodriguez@upds.edu.bo"
+        "linkedin": "",
+        "twitter": "",
+        "email": ""
       },
-      "sessions": [4, 6]
+      "sessions": []
     },
     {
       "id": 4,
-      "name": "Dr. Roberto Santos",
-      "title": "CTO - TechnoCity Brasil",
-      "country": "Brasil",
-      "flag": "🇧🇷",
-      "expertise": ["Smart Cities", "IoT", "Urban AI"],
-      "bio": "Líder en implementación de ciudades inteligentes y tecnologías urbanas innovadoras. Ha transformado más de 20 ciudades brasileñas con soluciones de IA para transporte, seguridad y gestión ambiental urbana.",
-      "photo": "assets/images/speakers/Acardozo.jpg",
+      "name": "Arnildo Cardozo Daza",
+      "title": "Gerente de Soluciones IT, AI y Cloud en Huawei",
+      "country": "Bolivia",
+      "flag": "🇧🇴",
+      "expertise": ["Cloud Computing", "Inteligencia Artificial", "Infraestructura Tecnológica", "Integración de Sistemas", "Soluciones IT"],
+      "bio": "Profesional con más de 25 años de experiencia en Tecnología de la Información, especializado en servicios en la nube, integración de sistemas e infraestructura tecnológica. Actualmente se desempeña como Gerente de Soluciones IT, AI y Cloud en Huawei. Ha ocupado cargos directivos en empresas como YPFB y ENTEL en Bolivia, y ha trabajado en EE. UU. como ingeniero de software y administrador de sistemas. Es Ingeniero Electrónico con maestrías en Ingeniería Eléctrica (EE. UU.) y Administración de Empresas (España), además de contar con múltiples certificaciones internacionales. Ha sido también instructor para ISTEC-OEA en la University of South Florida.",
+      "photo": "assets/images/speakers/Angel-Cardozo.jpg",
+      "topic": "",
+      "company": "Huawei",
       "social": {
-        "linkedin": "https://linkedin.com/in/roberto-santos",
-        "twitter": "@roberto_smart"
+        "linkedin": "",
+        "twitter": "",
+        "email": ""
       },
-      "sessions": [7]
+      "sessions": []
     },
     {
       "id": 5,
-      "name": "Sarah Williams",
-      "title": "AI Marketing Strategist",
-      "country": "Estados Unidos",
-      "flag": "🇺🇸",
-      "expertise": ["Marketing AI", "Consumer Behavior", "Digital Strategy"],
-      "bio": "Estratega de marketing con IA para Fortune 500, especializada en comportamiento del consumidor digital. Ha incrementado las conversiones de sus clientes en un promedio del 340% mediante implementaciones de IA en marketing personalizado.",
-      "photo": "assets/images/speakers/Acardozo.jpg",
+      "name": "Juan Pablo Freddi",
+      "title": "Consultor en Marketing Digital, Automatización e Inteligencia Artificial",
+      "country": "Argentina",
+      "flag": "🇦🇷",
+      "expertise": ["Marketing Digital", "Automatización", "Inteligencia Artificial", "Transformación Digital", "Comunicación Estratégica"],
+      "bio": "Juan Pablo Freddi es consultor en marketing digital, automatización e inteligencia artificial con más de 20 años de experiencia asesorando a empresas, gobiernos y universidades en toda Iberoamérica. Fundador de la consultora Comunicar Bien, lidera proyectos de transformación digital enfocados en fortalecer la presencia online, automatizar procesos y desarrollar equipos con autonomía. Es embajador en Argentina del movimiento global Actitudes 2.0 y conferencista internacional en temas como IA aplicada, automatización con enfoque humano y comunicación estratégica. Ha trabajado en países como Argentina, Bolivia, Chile, Colombia, México y España, y ha sido docente de posgrado en instituciones como la Universidad del Valle (Bolivia). Su formación incluye una Licenciatura en Comunicación Social, programas ejecutivos en MIT e IE University, y múltiples certificaciones en plataformas digitales. Promueve una filosofía profesional centrada en el uso consciente y humano de la tecnología para generar impacto sostenible y confianza.",
+      "photo": "assets/images/speakers/Juan-Pablo-Freddi.jpg",
+      "topic": "",
+      "company": "Comunicar Bien",
       "social": {
-        "linkedin": "https://linkedin.com/in/sarah-williams",
-        "twitter": "@sarah_ai_marketing"
+        "linkedin": "",
+        "twitter": "",
+        "email": ""
       },
-      "sessions": [8]
+      "sessions": []
     },
     {
       "id": 6,
-      "name": "Ing. Luis Mamani",
-      "title": "Especialista en Ciberseguridad",
-      "country": "Bolivia",
-      "flag": "🇧🇴",
-      "expertise": ["Cybersecurity", "AI Security", "Risk Management"],
-      "bio": "Experto en seguridad informática y aplicaciones de IA para la protección de datos. Líder en implementación de sistemas de seguridad basados en IA para instituciones financieras y gubernamentales de Bolivia.",
-      "photo": "assets/images/speakers/Acardozo.jpg",
+      "name": "Simón Bouché",
+      "title": "Especialista en Futuro del Trabajo e Inclusión Financiera",
+      "country": "Argentina",
+      "flag": "🇦🇷",
+      "expertise": ["Fintech", "Inclusión Financiera", "Big Data", "Investigación Operativa", "Gestión de Proyectos Tecnológicos"],
+      "bio": "Profesional enfocado en construir el futuro del trabajo, promoviendo la inclusión financiera y una compensación justa para colaboradores del conocimiento a nivel global. En los últimos cinco años ha liderado y colaborado en proyectos en cinco países de América Latina y Estados Unidos, especializándose en gestión de proyectos con equipos tecnológicos en áreas como banca, big data e investigación operativa. Apasionado por desarrollar soluciones que impulsen un modelo laboral más flexible, eficiente y con impacto real en la vida de las personas.",
+      "photo": "assets/images/speakers/simon-bouche.jpg",
+      "topic": "Casos de uso: e-commerce, freelancers, remesas, Takecard",
+      "company": "Takenos",
       "social": {
-        "linkedin": "https://linkedin.com/in/luis-mamani",
-        "email": "luis.mamani@cybersec.bo"
+        "linkedin": "",
+        "twitter": "",
+        "email": ""
       },
-      "sessions": [9]
-    },
-    {
-      "id": 7,
-      "name": "Dr. Elena Vargas",
-      "title": "Directora de Innovación - Universidad Nacional",
-      "country": "Colombia",
-      "flag": "🇨🇴",
-      "expertise": ["Research Innovation", "Academic AI", "Technology Transfer"],
-      "bio": "Directora de Innovación con expertise en transferencia tecnológica y aplicaciones de IA en el ámbito académico. Ha establecido más de 15 alianzas universidad-industria para proyectos de investigación en IA.",
-      "photo": "assets/images/speakers/Acardozo.jpg",
-      "social": {
-        "linkedin": "https://linkedin.com/in/elena-vargas",
-        "email": "elena.vargas@unal.edu.co"
-      },
-      "sessions": [10]
-    },
-    {
-      "id": 8,
-      "name": "Prof. David Chen",
-      "title": "AI Research Director - Stanford",
-      "country": "Estados Unidos",
-      "flag": "🇺🇸",
-      "expertise": ["Deep Learning", "Neural Networks", "AI Research"],
-      "bio": "Profesor e investigador en Stanford con más de 20 años de experiencia en deep learning y redes neuronales. Sus investigaciones han sido citadas más de 15,000 veces y es pionero en arquitecturas de IA generativa.",
-      "photo": "assets/images/speakers/Acardozo.jpg",
-      "social": {
-        "linkedin": "https://linkedin.com/in/david-chen-ai",
-        "twitter": "@david_chen_ai"
-      },
-      "sessions": [11]
-    },
-    {
-      "id": 9,
-      "name": "Ing. María Quispe",
-      "title": "Líder de Transformación Digital",
-      "country": "Bolivia",
-      "flag": "🇧🇴",
-      "expertise": ["Digital Transformation", "Business AI", "Process Automation"],
-      "bio": "Especialista en transformación digital y automatización de procesos empresariales mediante IA. Ha liderado la digitalización de más de 30 empresas bolivianas, mejorando su eficiencia operativa en un promedio del 60%.",
-      "photo": "assets/images/speakers/Acardozo.jpg",
-      "social": {
-        "linkedin": "https://linkedin.com/in/maria-quispe",
-        "email": "maria.quispe@digitalbo.com"
-      },
-      "sessions": [12]
-    },
-    {
-      "id": 10,
-      "name": "Dr. Carlos Mendoza",
-      "title": "CEO - AI Solutions LATAM",
-      "country": "México",
-      "flag": "🇲🇽",
-      "expertise": ["AI Business", "Entrepreneurship", "Fintech AI"],
-      "bio": "CEO y fundador de AI Solutions LATAM, empresa líder en implementación de IA para el sector financiero. Ha desarrollado soluciones de IA que procesan más de $2 billones USD en transacciones anuales.",
-      "photo": "assets/images/speakers/Acardozo.jpg",
-      "social": {
-        "linkedin": "https://linkedin.com/in/carlos-mendoza-ai",
-        "twitter": "@carlos_ai_latam"
-      },
-      "sessions": [13]
-    },
-    {
-      "id": 11,
-      "name": "Dr. Patricia Flores",
-      "title": "Investigadora en IA Médica - UPDS",
-      "country": "Bolivia",
-      "flag": "🇧🇴",
-      "expertise": ["Medical AI", "Diagnostics", "Telemedicine"],
-      "bio": "Doctora en Medicina e Informática Médica, especializada en desarrollo de sistemas de diagnóstico asistido por IA. Lidera el proyecto de telemedicina con IA más grande de Bolivia, beneficiando a más de 100,000 pacientes rurales.",
-      "photo": "assets/images/speakers/Acardozo.jpg",
-      "social": {
-        "linkedin": "https://linkedin.com/in/patricia-flores-md",
-        "email": "patricia.flores@upds.edu.bo"
-      },
-      "sessions": [14]
+      "sessions": []
     }
   ],
-  "featured_speakers": [1, 2, 8],
-  "keynote_speakers": [1, 2],
-  "international_speakers": [1, 2, 4, 5, 7, 8, 10],
-  "national_speakers": [3, 6, 9, 11],
+  "featured_speakers": [1, 4, 5],
+  "keynote_speakers": [1, 4],
+  "international_speakers": [1, 2, 5, 6],
+  "national_speakers": [3, 4],
   "categories": {
     "international": "Ponentes Internacionales",
     "national": "Ponentes Nacionales"
   },
   "expertise_areas": [
-    "Machine Learning",
-    "AI Ethics",
-    "Computer Vision", 
-    "Healthcare AI",
-    "Smart Cities",
-    "Educational AI",
-    "Cybersecurity",
-    "Marketing AI",
-    "Research Innovation",
-    "Deep Learning",
-    "Digital Transformation",
-    "Business AI",
-    "Fintech AI",
-    "Medical AI"
+    "IA en Educación",
+    "Machine Learning", 
+    "Innovación Educativa",
+    "Análisis de Datos",
+    "Dirección de Proyectos",
+    "IA en Diseño",
+    "Diagramación Digital",
+    "Artes Visuales",
+    "Comunicación Visual",
+    "Desarrollo Académico",
+    "IA Empresarial",
+    "Productividad",
+    "Transformación Digital",
+    "eCommerce",
+    "Supply Chain",
+    "Liderazgo",
+    "Cloud Computing",
+    "Inteligencia Artificial",
+    "Infraestructura Tecnológica",
+    "Integración de Sistemas",
+    "Soluciones IT",
+    "Marketing Digital",
+    "Automatización",
+    "Comunicación Estratégica",
+    "Fintech",
+    "Inclusión Financiera",
+    "Big Data",
+    "Investigación Operativa",
+    "Gestión de Proyectos Tecnológicos"
   ]
 }

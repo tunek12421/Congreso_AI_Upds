@@ -166,6 +166,8 @@ class SpeakerComponent {
                         <span class="speaker-flag">${speaker.flag || '🌎'}</span>
                     </div>
                     <p class="speaker-title">${speaker.title}</p>
+                    ${speaker.topic ? `<p class="speaker-topic"><strong>Tema:</strong> ${speaker.topic}</p>` : ''}
+                    ${speaker.company ? `<p class="speaker-company"><i class="fas fa-building"></i> ${speaker.company}</p>` : ''}
                     <div class="social-links">
                         ${socialLinks}
                     </div>
@@ -711,9 +713,16 @@ class SpeakerComponent {
                             <span class="flag">${speaker.flag || '🌎'}</span>
                             ${speaker.country}
                         </div>
+                        ${speaker.company ? `<p class="speaker-company"><strong>Empresa:</strong> ${speaker.company}</p>` : ''}
                     </div>
                 </div>
                 <div class="modal-body">
+                    ${speaker.topic ? `
+                        <div class="speaker-topic">
+                            <h3>Tema</h3>
+                            <p>${speaker.topic}</p>
+                        </div>
+                    ` : ''}
                     <div class="speaker-bio-full">
                         <h3>Biografía</h3>
                         <p>${speaker.bio}</p>
