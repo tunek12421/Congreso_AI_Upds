@@ -75,13 +75,18 @@
     display: flex;
     align-items: center;
     min-height: 320px; /* Aumentado para mejor visualización */
+    transition: box-shadow 0.3s ease;
 }
 
-/* Flechas posicionadas a los lados del carrusel */
+.carousel-container:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* 🎯 FLECHAS OCULTAS POR DEFECTO */
 .carousel-btn {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%) scale(0.8);
     width: 50px;
     height: 50px;
     border: none;
@@ -92,10 +97,14 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     font-size: 1.6rem;
     box-shadow: var(--shadow);
     z-index: 10;
+    
+    /* 🔥 OCULTAR POR DEFECTO */
+    opacity: 0;
+    visibility: hidden;
 }
 
 .carousel-prev {
@@ -106,19 +115,94 @@
     right: 1rem;
 }
 
+/* 🎯 MOSTRAR FLECHAS AL HACER HOVER SOBRE EL CARRUSEL */
+.carousel-container:hover .carousel-btn {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) scale(1);
+}
+
+/* 🎨 EFECTOS ADICIONALES EN HOVER DE LAS FLECHAS */
 .carousel-btn:hover:not(:disabled) {
     transform: translateY(-50%) scale(1.1);
     box-shadow: var(--shadow-hover);
+    background: var(--primary-color);
 }
 
 .carousel-btn:disabled {
     opacity: 0.3;
     cursor: not-allowed;
-    transform: translateY(-50%);
+    transform: translateY(-50%) scale(0.8);
 }
 
 .carousel-btn:active {
     transform: translateY(-50%) scale(0.95);
+}
+
+/* 🌟 EFECTO ESPECIAL: APARICIÓN GRADUAL DE IZQUIERDA A DERECHA */
+.carousel-container:hover .carousel-prev {
+    animation: slideInLeft 0.3s ease;
+}
+
+.carousel-container:hover .carousel-next {
+    animation: slideInRight 0.3s ease;
+}
+
+/* Animaciones para las flechas */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) translateX(-20px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0) scale(1);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) translateX(20px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0) scale(1);
+    }
+}
+
+/* 🎯 INDICADORES SUTILES PARA MOSTRAR QUE HAY NAVEGACIÓN */
+.carousel-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0.5rem;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.3s ease;
+    z-index: 5;
+}
+
+.carousel-container::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.3s ease;
+    z-index: 5;
+}
+
+.carousel-container:hover::before,
+.carousel-container:hover::after {
+    opacity: 0;
 }
 
 /* 🎯 TRACK MEJORADO - Sistema de centrado perfecto */
@@ -596,6 +680,7 @@
     }
 }
 
+/* 📱 RESPONSIVE: En móviles mantener flechas visibles para mejor UX */
 @media (max-width: 768px) {
     .speakers-carousels {
         gap: 3rem;
@@ -623,6 +708,9 @@
     }
     
     .carousel-btn {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-50%) scale(1);
         width: 45px;
         height: 45px;
         font-size: 1rem;
@@ -634,6 +722,18 @@
     
     .carousel-next {
         right: 0.5rem;
+    }
+    
+    /* Desactivar animaciones en móvil para mejor rendimiento */
+    .carousel-container:hover .carousel-prev,
+    .carousel-container:hover .carousel-next {
+        animation: none;
+    }
+    
+    /* Ocultar indicadores sutiles en móvil */
+    .carousel-container::before,
+    .carousel-container::after {
+        display: none;
     }
     
     .carousel-track {
@@ -866,12 +966,15 @@
     transform: translateX(100%);
 }
 
-/* Accesibilidad */
+/* ♿ ACCESIBILIDAD: Focus visible para las flechas */
 .carousel-btn:focus,
 .carousel-indicator:focus,
 .btn-view-details:focus {
     outline: 2px solid var(--primary-blue);
     outline-offset: 2px;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) scale(1);
 }
 
 .social-link:focus {
@@ -879,14 +982,21 @@
     outline-offset: 2px;
 }
 
-/* Modo de alto contraste */
+/* 🎨 MODO DE ALTO CONTRASTE */
 @media (prefers-contrast: high) {
     .speaker-card {
         border: 2px solid var(--primary-blue);
     }
     
     .carousel-btn {
-        border: 2px solid var(--white);
+        border: 2px solid white;
+        background: var(--primary-blue);
+    }
+    
+    .carousel-container::before,
+    .carousel-container::after {
+        background: white;
+        border: 1px solid var(--primary-blue);
     }
     
     .expertise-tag {
@@ -894,14 +1004,23 @@
     }
 }
 
-/* Modo de movimiento reducido */
+/* ⚡ MODO DE MOVIMIENTO REDUCIDO */
 @media (prefers-reduced-motion: reduce) {
     .carousel-track,
     .speaker-card,
     .carousel-btn,
     .modal-content,
     .speaker-avatar {
-        transition: none;
+        transition: opacity 0.1s ease;
+    }
+    
+    .carousel-container:hover .carousel-prev,
+    .carousel-container:hover .carousel-next {
+        animation: none;
+    }
+    
+    .carousel-btn:hover:not(:disabled) {
+        transform: translateY(-50%) scale(1);
     }
     
     .speaker-card::before,
