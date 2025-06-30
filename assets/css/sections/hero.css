@@ -10,20 +10,20 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    position: relative;
     padding: 70px 2rem;
     overflow: hidden;
     height: 100%;
 }
-/*Logo UPDS*/
-.hero-image{
+
+/* Logo UPDS */
+.hero-image {
     position: absolute;
-    z-index: 1;
+    z-index: 3;
     height: 8rem;
-    bottom:80px;
+    bottom: 80px;
     right: 10px;
-    
 }
+
 /* Video de fondo */
 .hero-video {
     position: absolute;
@@ -51,63 +51,71 @@
     max-width: 1200px;
     z-index: 2;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
 }
 
-/* Logo ciiA */
+/* Logo ciiA integrado */
 .hero-logo {
     display: inline-block;
     position: relative;
     animation: fadeIn 1s ease-out 0.1s both;
+    z-index: 2;
 }
-.hero-logo img{
-    width: 20rem;
-}
-/* Línea divisoria */
-.hero-divider {
+
+.hero-logo img {
     width: 100%;
-    height: 4px;
-    background: #00d4aa;
-    margin: 0px auto;
-    border-radius: 2px;
-    animation: fadeIn 1s ease-out 0.2s both;
+    max-width: 750px;
+    height: auto;
+    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3));
 }
 
-/* Título principal */
-.hero-content h1 {
-    font-size: 2.0rem !important;
-    font-weight: 600;
-    color: var(--white);
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    animation: fadeIn 1s ease-out 0.3s both;
-    line-height: 1.2;
-}
-
-/* Números II y 2025 en turquesa */
-.hero-content h1 .congress-number,
-.hero-content h1 .year-number {
-    color: #00d4aa !important;
-    -webkit-text-fill-color: #00d4aa !important;
-    font-weight: 900 !important;
-    font-family: 'Times New Roman', serif !important;
-    background-clip: unset !important;
-    -webkit-background-clip: unset !important;
-}
-
-.hero-content h1 .congress-number {
-    letter-spacing: 0.2em;
-    margin-right: 0.5rem;
-}
-
-.hero-content h1 .year-number {
-    letter-spacing: 0.1em;
-}
-
+/* Botones CTA */
 .cta-buttons {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
     flex-wrap: wrap;
-    animation: fadeIn 1s ease-out 0.4s both;
+    animation: fadeIn 1s ease-out 0.3s both;
+    margin-top: -3rem;
+    transform: translateY(-20px);
+    position: relative;
+    z-index: 3;
+}
+
+/* Estilos específicos para botones del hero */
+.hero .btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.hero .btn-primary {
+    background: var(--primary-color);
+    color: var(--primary-color-text);
+    box-shadow: 0 4px 15px rgba(70, 186, 192, 0.4);
+}
+
+.hero .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(70, 186, 192, 0.6);
+}
+
+.hero .btn-secondary {
+    background: transparent;
+    color: var(--primary-color-text);
+    border: 2px solid var(--primary-color);
+    backdrop-filter: blur(10px);
+}
+
+.hero .btn-secondary:hover {
+    background: rgba(70, 186, 192, 0.2);
+    border-color: var(--white);
+    transform: translateY(-2px);
 }
 
 /* Animaciones */
@@ -122,21 +130,92 @@
     }
 }
 
-
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .hero-content {
+        gap: 0;
+    }
+    
+    .hero-logo img {
+        max-width: 550px;
+    }
+    
+    .cta-buttons {
+        gap: 1rem;
+        flex-direction: column;
+        align-items: center;
+        margin-top: -2.5rem;
+        transform: translateY(-15px);
+    }
+    
+    .hero .btn {
+        padding: 0.9rem 2.2rem;
+        font-size: 1.1rem;
+        width: 220px;
+    }
+    
+    .hero-image {
+        height: 6rem;
+        bottom: 60px;
+        right: 5px;
+    }
+}
 
 @media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 2.2rem;
-        line-height: 1.1;
+    .hero-card {
+        padding: 50px 1rem;
     }
     
-    .logo-text {
-        font-size: 8rem;
+    .hero-logo img {
+        max-width: 420px;
     }
     
-    .hero-divider {
-        width: 90%;
-        height: 2px;
+    .hero-content {
+        gap: 0;
+    }
+    
+    .cta-buttons {
+        margin-top: -2rem;
+        transform: translateY(-10px);
+    }
+    
+    .hero .btn {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+        width: 200px;
+    }
+    
+    .hero-image {
+        height: 5rem;
+        bottom: 40px;
+        right: 5px;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-logo img {
+        max-width: 350px;
+    }
+    
+    .hero-content {
+        gap: 0;
+    }
+    
+    .cta-buttons {
+        margin-top: -1.5rem;
+        transform: translateY(-8px);
+    }
+    
+    .hero .btn {
+        padding: 0.7rem 1.8rem;
+        font-size: 0.95rem;
+        width: 180px;
+    }
+    
+    .hero-image {
+        height: 4rem;
+        bottom: 30px;
+        right: 5px;
     }
 }
 
@@ -146,7 +225,10 @@
         animation-play-state: paused;
     }
     
-    .floating-element {
+    .hero-logo,
+    .cta-buttons {
         animation: none;
+        opacity: 1;
+        transform: none;
     }
 }
