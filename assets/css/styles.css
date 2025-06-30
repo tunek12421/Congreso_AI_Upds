@@ -17,6 +17,7 @@
 @import url('./components/modals.css');
 @import url('./components/forms.css');
 @import url('./components/animations.css');
+@import url('./components/speaker-modal.css');
 
 /* Sections */
 @import url('./sections/common.css');
