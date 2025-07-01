@@ -252,8 +252,9 @@ class TicketSectionComponent {
         }
     }
     selectTicket(id){
-        if(!window.open("https://clicket.bo/"))
-            window.location.href = "https://clicket.bo";
+        let url = "https://clicket.bo/evento/iicongresointernacionaldeinteligenciaartificial";
+        if(!window.open(url))
+            window.location.href = url;
     }
     /*selectTicket(ticketId) {
         // Remover selección previa

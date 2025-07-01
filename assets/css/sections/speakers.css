@@ -360,7 +360,7 @@
 }
 
 .speaker-name {
-    font-size: 1.2rem;
+    font-size: 1.5rem !important;;
     font-weight: 700;
     margin: 0;
     color: var(--white);
@@ -483,10 +483,6 @@
         align-items: flex-start;
         text-align: left;
         justify-content: center;
-    }
-    
-    .speaker-name {
-        font-size: 1.4rem;
     }
     
     .speaker-title {
