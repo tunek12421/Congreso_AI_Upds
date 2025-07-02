@@ -3,7 +3,7 @@ const info={
     title: "Un Evento Transformador",
     desc:[
         `La revolución tecnológica impulsada por la Inteligencia Artificial (IA) está transformando radicalmente la educación, la industria, las finanzas y la forma de interacción con el  conocimiento.`,
-        `En este contexto, la Universidad Privada Domingo Savio presenta el 2o Congreso Internacional de Inteligencia Artificial 2025, un espacio que se presenta como un espacio multidisciplinario de encuentro, reflexión y difusión de experiencias, investigaciones y desarrollos vinculados al uso de la IA en distintos sectores.`
+        `En este contexto, la Universidad Privada Domingo Savio presenta el 2º Congreso Internacional de Inteligencia Artificial 2025, un espacio que se presenta como un espacio multidisciplinario de encuentro, reflexión y difusión de experiencias, investigaciones y desarrollos vinculados al uso de la IA en distintos sectores.`
     ],
     delay:0.001,
     startDelay:0.5,
