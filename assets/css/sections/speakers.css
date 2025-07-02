@@ -50,19 +50,19 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    border: 2px solid var(--primary-blue);
+    border: 2px solid var(--secondary-color-text);
     background: transparent;
     cursor: pointer;
     transition: var(--transition);
 }
 
 .carousel-indicator.active {
-    background: var(--primary-blue);
+    background: var(--secondary-color-text);
     transform: scale(1.2);
 }
 
 .carousel-indicator:hover {
-    background: var(--light-blue);
+    background: var(--secondary-color-texty);
 }
 
 /* Container del carrusel con flechas laterales */
@@ -73,6 +73,7 @@
     background: var(--dark-background);
     box-shadow: var(--shadow);
     width: 100%;
+    height: 100%; /* Asegura que el contenedor tenga altura definida */
     display: flex;
     align-items: center;
     min-height: 320px; /* Aumentado para mejor visualización */
@@ -142,11 +143,11 @@
 
 /* 🌟 EFECTO ESPECIAL: APARICIÓN GRADUAL DE IZQUIERDA A DERECHA */
 .carousel-container:hover .carousel-prev {
-    animation: slideInLeft 0.3s ease;
+    /*animation: slideInLeft 0.3s ease;*/
 }
 
 .carousel-container:hover .carousel-next {
-    animation: slideInRight 0.3s ease;
+    /*animation: slideInRight 0.3s ease;*/
 }
 
 /* Animaciones para las flechas */
@@ -206,14 +207,15 @@
     opacity: 0;
 }
 
-/* 🎯 TRACK MEJORADO - Sistema de centrado perfecto */
 .carousel-track {
     display: flex;
-    gap: 2rem; /* Gap base para desktop */
-    padding: 2rem 0; /* Solo padding vertical, el horizontal lo maneja JS */
+    gap: 1rem; /* Gap base para desktop */
+    padding: 1rem 1rem; /* Solo padding vertical, el horizontal lo maneja JS */
     width: 100%;
+    height: 100%;
+    min-height: 0; /* Permite que los hijos crezcan correctamente */
     justify-content: flex-start;
-    align-items: center;
+    align-items: center; /* Cambiado de center a stretch para que los hijos ocupen el 100% de la altura */
     box-sizing: border-box;
     /* Permitir que JavaScript controle el posicionamiento horizontal */
 }
@@ -232,10 +234,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 1.5rem;
+    padding: 1rem;
     text-align: left;
     box-sizing: border-box;
-    height: 280px; /* Altura fija para consistencia */
+    height: 270px;
 }
 
 .speaker-card:hover {
@@ -245,15 +247,15 @@
 }
 
 .speaker-avatar {
-    width: 145px;
+    width: 125px;
     height: 145px;
-    margin-right: 1.8rem;
+    margin-right: 1rem;
     margin-bottom: 0;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--gradient-accent);
+    background: var(--white);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     transition: var(--transition);
     flex-shrink: 0;
@@ -267,7 +269,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     transition: var(--transition);
 }
 
@@ -284,7 +285,6 @@
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    margin-bottom: 0.4rem;
 }
 
 .speaker-flag {
@@ -349,18 +349,21 @@
 }
 
 .speaker-info {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     gap: 0.4rem;
-    min-height: 0;
-    padding-right: 0.8rem;
+}
+
+.speaker-info .speaker-topic{
+    font-size: 0.7rem;
+    padding: 0.1rem 0.5rem;
+    margin-bottom: 0px;
 }
 
 .speaker-name {
-    font-size: 1.5rem !important;;
+    font-size: 1.2rem;
     font-weight: 700;
     margin: 0;
     color: var(--white);
@@ -371,9 +374,8 @@
 
 .speaker-title {
     color: #c4d4d4;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     margin: 0;
-    line-height: 1.3;
     max-width: none;
     text-align: left;
     font-weight: 400;
@@ -449,185 +451,76 @@
     line-height: 1.6;
 }
 
-/* Responsive Design Mejorado y Actualizado */
-@media (max-width: 1200px) {
-    .carousel-title {
-        font-size: 1.8rem;
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
-    
-    .carousel-track {
-        gap: 1.5rem;
-        padding: 1.8rem 0; /* Solo padding vertical */
-    }
-    
-    .speaker-card {
-        /* JavaScript controla el ancho dinámicamente (responsive) */
-        flex-direction: row;
-        height: 250px;
-        padding: 1.5rem;
-        text-align: left;
-    }
-    
-    .speaker-avatar {
-        width: 120px;
-        height: 120px;
-        margin-right: 1.5rem;
-        margin-bottom: 0;
-    }
-    
-    .avatar-fallback {
-        font-size: 2.2rem;
-    }
-    
-    .speaker-info {
-        align-items: flex-start;
-        text-align: left;
-        justify-content: center;
-    }
-    
-    .speaker-title {
-        font-size: 1rem;
-        text-align: left;
-        max-width: none;
-    }
-    
-    .social-link {
-        width: 32px;
-        height: 32px;
-        font-size: 0.9rem;
-    }
-}
-
-/* 📱 RESPONSIVE: En móviles mantener flechas visibles para mejor UX */
-@media (max-width: 768px) {
-    .speakers-carousels {
-        gap: 3rem;
-    }
-    
-    .carousel-header {
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-    }
-    
-    .carousel-title {
-        font-size: 1.5rem;
-        text-align: center;
-        width: 100%;
-    }
-    
-    .carousel-indicators {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .carousel-container {
-        min-height: 300px;
-    }
-    
-    .carousel-btn {
+    to {
         opacity: 1;
-        visibility: visible;
-        transform: translateY(-50%) scale(1);
-        width: 45px;
-        height: 45px;
-        font-size: 1rem;
-    }
-    
-    .carousel-prev {
-        left: 0.5rem;
-    }
-    
-    .carousel-next {
-        right: 0.5rem;
-    }
-    
-    /* Desactivar animaciones en móvil para mejor rendimiento */
-    .carousel-container:hover .carousel-prev,
-    .carousel-container:hover .carousel-next {
-        animation: none;
-    }
-    
-    /* Ocultar indicadores sutiles en móvil */
-    .carousel-container::before,
-    .carousel-container::after {
-        display: none;
-    }
-    
-    .carousel-track {
-        gap: 1rem; /* Gap reducido para móvil */
-        padding: 1.5rem 0; /* Solo padding vertical */
-        justify-content: flex-start; /* JS controla el centrado */
-    }
-    
-    .speaker-card {
-        /* JavaScript controla el ancho dinámicamente */
-        padding: 1.2rem;
-        flex-direction: column;
-        text-align: center;
-        height: auto;
-        min-height: 320px; /* Más altura para mejor visualización en móvil */
-        max-height: none;
-    }
-    
-    .speaker-avatar {
-        width: 120px;
-        height: 120px;
-        margin-right: 0;
-        margin-bottom: 1rem;
-    }
-    
-    .avatar-fallback {
-        font-size: 2.5rem;
-    }
-    
-    .speaker-info {
-        align-items: center;
-        text-align: center;
-        padding-right: 0;
-    }
-    
-    .speaker-title {
-        text-align: center;
-        max-width: 200px;
-    }
-    
-    .speaker-name-row {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    
-    .speaker-flag {
-        font-size: 1.4em;
-    }
-    
-    .speaker-name {
-        font-size: 1.1rem;
-        text-align: center;
-    }
-    
-    .speaker-title {
-        font-size: 0.9rem;
-    }
-    
-    .speaker-country {
-        font-size: 0.7rem;
-        padding: 0.25rem 0.6rem;
-    }
-    
-    .social-link {
-        width: 30px;
-        height: 30px;
-        font-size: 0.8rem;
-    }
-    
-    .social-links {
-        justify-content: center;
+        transform: translateY(0);
     }
 }
 
-@media (max-width: 480px) {
+.speaker-card {
+    /*animation: fadeInUp 0.6s ease forwards;*/
+}
+
+/* Estados de hover mejorados */
+.carousel-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transform: scale(0);
+    transition: transform 0.3s ease;
+}
+
+.carousel-btn:hover::before {
+    transform: scale(1);
+}
+
+.speaker-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+}
+
+.speaker-card:hover::before {
+    transform: translateX(100%);
+}
+
+/* ♿ ACCESIBILIDAD: Focus visible para las flechas */
+.carousel-btn:focus,
+.carousel-indicator:focus,
+.btn-view-details:focus {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 2px;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) scale(1);
+}
+
+.social-link:focus {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+
+
+@media (max-width: 600px) {
     .carousel-title {
         font-size: 1.3rem;
     }
@@ -702,568 +595,5 @@
         width: 28px;
         height: 28px;
         font-size: 0.75rem;
-    }
-}
-
-/* Animaciones */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.speaker-card {
-    animation: fadeInUp 0.6s ease forwards;
-}
-
-/* Estados de hover mejorados */
-.carousel-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    transform: scale(0);
-    transition: transform 0.3s ease;
-}
-
-.carousel-btn:hover::before {
-    transform: scale(1);
-}
-
-.speaker-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-    pointer-events: none;
-}
-
-.speaker-card:hover::before {
-    transform: translateX(100%);
-}
-
-/* ♿ ACCESIBILIDAD: Focus visible para las flechas */
-.carousel-btn:focus,
-.carousel-indicator:focus,
-.btn-view-details:focus {
-    outline: 2px solid var(--primary-blue);
-    outline-offset: 2px;
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(-50%) scale(1);
-}
-
-.social-link:focus {
-    outline: 2px solid var(--primary-blue);
-    outline-offset: 2px;
-}
-
-/* 🎨 MODO DE ALTO CONTRASTE */
-@media (prefers-contrast: high) {
-    .speaker-card {
-        border: 2px solid var(--primary-blue);
-    }
-    
-    .carousel-btn {
-        border: 2px solid white;
-        background: var(--primary-blue);
-    }
-    
-    .carousel-container::before,
-    .carousel-container::after {
-        background: white;
-        border: 1px solid var(--primary-blue);
-    }
-    
-    .expertise-tag {
-        border: 1px solid var(--white);
-    }
-}
-
-/* ⚡ MODO DE MOVIMIENTO REDUCIDO */
-@media (prefers-reduced-motion: reduce) {
-    .carousel-track,
-    .speaker-card,
-    .carousel-btn,
-    .modal-content,
-    .speaker-avatar {
-        transition: opacity 0.1s ease;
-    }
-    
-    .carousel-container:hover .carousel-prev,
-    .carousel-container:hover .carousel-next {
-        animation: none;
-    }
-    
-    .carousel-btn:hover:not(:disabled) {
-        transform: translateY(-50%) scale(1);
-    }
-    
-    .speaker-card::before,
-    .carousel-btn::before {
-        display: none;
-    }
-    
-    .speaker-carousel-section {
-        animation: none;
-        opacity: 1;
-        transform: none;
-    }
-    
-    .speaker-card {
-        animation: none;
-    }
-}
-
-/* ===== RESPONSIVE DESIGN COMPLETO PARA TODOS LOS DISPOSITIVOS ===== */
-
-/* Desktop y tablets grandes (1201px+) */
-@media (min-width: 1201px) {
-    .carousel-track {
-        gap: 2rem;
-        padding: 2rem 0; /* Solo padding vertical */
-    }
-    
-    .speaker-card {
-        height: 280px;
-        padding: 1.5rem;
-    }
-}
-
-/* iPad Pro 12.9" (1024px - 1366px) */
-@media (max-width: 1366px) and (min-width: 1024px) {
-    .carousel-track {
-        gap: 1.8rem;
-        padding: 1.8rem 0; /* Solo padding vertical */
-    }
-    
-    .speaker-card {
-        height: 270px;
-        padding: 1.4rem;
-    }
-}
-
-/* iPad standard, iPad mini, Surface (768px - 1023px) */
-@media (max-width: 1023px) and (min-width: 768px) {
-    .carousel-track {
-        gap: 1.5rem;
-        padding: 1.6rem 0; /* Solo padding vertical */
-    }
-    
-    .speaker-card {
-        height: 260px;
-        padding: 1.3rem;
-    }
-    
-    .speaker-avatar {
-        width: 130px;
-        height: 130px;
-    }
-}
-
-/* Kindle Fire HDX (800px x 1280px) en landscape */
-@media (max-width: 800px) and (min-width: 601px) and (orientation: portrait) {
-    .carousel-track {
-        gap: 1.2rem;
-        padding: 1.4rem 0; /* Solo padding vertical */
-    }
-    
-    .speaker-card {
-        flex-direction: column;
-        height: auto;
-        min-height: 280px;
-        text-align: center;
-    }
-    
-    .speaker-avatar {
-        width: 120px;
-        height: 120px;
-        margin-right: 0;
-        margin-bottom: 1rem;
-    }
-    
-    .speaker-info {
-        align-items: center;
-        text-align: center;
-    }
-}
-
-/* Galaxy S20 Ultra, Note 20 Ultra (412px width) */
-@media (max-width: 412px) {
-    .carousel-container {
-        min-height: 300px;
-    }
-    
-    .carousel-track {
-        gap: 0.8rem;
-        padding: 1rem 0; /* Solo padding vertical */
-    }
-    
-    .carousel-btn {
-        width: 42px;
-        height: 42px;
-        font-size: 0.95rem;
-    }
-    
-    .carousel-prev {
-        left: 0.3rem;
-    }
-    
-    .carousel-next {
-        right: 0.3rem;
-    }
-    
-    .speaker-card {
-        /* JavaScript controla el ancho dinámicamente (1 card en móvil) */
-        flex-direction: column;
-        padding: 1.1rem 0.9rem;
-        height: auto;
-        min-height: 270px;
-    }
-    
-    .speaker-avatar {
-        width: 110px;
-        height: 110px;
-    }
-    
-    .speaker-name {
-        font-size: 1.05rem;
-    }
-    
-    .speaker-title {
-        font-size: 0.88rem;
-    }
-}
-
-/* iPhone 12/13 Pro Max, iPhone 11 Pro Max (428px width) */
-@media (max-width: 428px) and (min-width: 413px) {
-    .carousel-track {
-        gap: 0.9rem;
-        padding: 1.1rem 0.9rem;
-    }
-    
-    .speaker-card {
-        min-height: 275px;
-        padding: 1.15rem 0.95rem;
-    }
-    
-    .speaker-avatar {
-        width: 115px;
-        height: 115px;
-    }
-}
-
-/* iPhone 12/13 Pro, iPhone 11 Pro (390px width) */
-@media (max-width: 390px) and (min-width: 376px) {
-    .carousel-track {
-        gap: 0.75rem;
-        padding: 1rem 0.8rem;
-    }
-    
-    .speaker-card {
-        min-height: 265px;
-        padding: 1.1rem 0.85rem;
-    }
-    
-    .speaker-avatar {
-        width: 105px;
-        height: 105px;
-    }
-    
-    .speaker-name {
-        font-size: 1rem;
-    }
-    
-    .speaker-title {
-        font-size: 0.85rem;
-    }
-    
-    .social-link {
-        width: 28px;
-        height: 28px;
-        font-size: 0.75rem;
-    }
-}
-
-/* iPhone 12/13 mini, iPhone SE 2nd gen (375px width) */
-@media (max-width: 375px) and (min-width: 361px) {
-    .carousel-container {
-        min-height: 280px;
-    }
-    
-    .carousel-track {
-        gap: 0.7rem;
-        padding: 0.9rem 0.75rem;
-    }
-    
-    .carousel-btn {
-        width: 38px;
-        height: 38px;
-        font-size: 0.85rem;
-    }
-    
-    .speaker-card {
-        min-height: 260px;
-        padding: 1rem 0.8rem;
-    }
-    
-    .speaker-avatar {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .speaker-name {
-        font-size: 0.95rem;
-    }
-    
-    .speaker-title {
-        font-size: 0.82rem;
-        line-height: 1.2;
-    }
-    
-    .speaker-country {
-        font-size: 0.62rem;
-        padding: 0.2rem 0.5rem;
-    }
-}
-
-/* Galaxy S10/S10+ (360px width) */
-@media (max-width: 360px) and (min-width: 320px) {
-    .carousel-track {
-        gap: 0.6rem;
-        padding: 0.8rem 0.7rem;
-    }
-    
-    .carousel-btn {
-        width: 36px;
-        height: 36px;
-        font-size: 0.8rem;
-    }
-    
-    .carousel-prev {
-        left: 0.2rem;
-    }
-    
-    .carousel-next {
-        right: 0.2rem;
-    }
-    
-    .speaker-card {
-        min-height: 280px; /* Altura optimizada para una sola card */
-        padding: 0.9rem 0.75rem;
-        border-radius: 10px;
-    }
-    
-    .speaker-avatar {
-        width: 110px; /* Tamaño optimizado */
-        height: 110px;
-    }
-    
-    .avatar-fallback {
-        font-size: 1.8rem;
-    }
-    
-    .speaker-name {
-        font-size: 0.9rem;
-        line-height: 1.1;
-    }
-    
-    .speaker-title {
-        font-size: 0.8rem;
-        line-height: 1.15;
-    }
-    
-    .btn-view-details {
-        padding: 0.45rem 0.9rem;
-        font-size: 0.75rem;
-    }
-    
-    .social-link {
-        width: 26px;
-        height: 26px;
-        font-size: 0.7rem;
-    }
-}
-
-/* Dispositivos muy pequeños (menos de 320px) */
-@media (max-width: 319px) {
-    .carousel-container {
-        min-height: 240px;
-    }
-    
-    .carousel-track {
-        gap: 0.5rem;
-        padding: 0.7rem 0.6rem;
-    }
-    
-    .speaker-card {
-        min-height: 260px; /* Altura adecuada para una sola card */
-        padding: 0.8rem 0.7rem;
-    }
-    
-    .speaker-avatar {
-        width: 100px; /* Tamaño balanceado */
-        height: 100px;
-    }
-    
-    .speaker-name {
-        font-size: 0.85rem;
-    }
-    
-    .speaker-title {
-        font-size: 0.75rem;
-    }
-}
-
-/* ===== AJUSTES ESPECÍFICOS POR ORIENTACIÓN ===== */
-
-/* Landscape para móviles */
-@media (max-width: 932px) and (orientation: landscape) {
-    .carousel-container {
-        min-height: 250px;
-    }
-    
-    .speaker-card {
-        flex-direction: row;
-        height: 220px;
-        padding: 1rem;
-    }
-    
-    .speaker-avatar {
-        width: 100px;
-        height: 100px;
-        margin-right: 1rem;
-        margin-bottom: 0;
-    }
-    
-    .speaker-info {
-        align-items: flex-start;
-        text-align: left;
-    }
-    
-    .speaker-name-row {
-        flex-direction: row;
-    }
-    
-    .social-links {
-        justify-content: flex-start;
-    }
-}
-
-/* iPad en modo portrait */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-    .carousel-track {
-        gap: 1.4rem;
-        padding: 1.6rem 0; /* Solo padding vertical */
-    }
-    
-    .speaker-card {
-        height: 260px;
-    }
-}
-
-/* iPad en modo landscape */
-@media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
-    .carousel-track {
-        gap: 1.8rem;
-        padding: 1.8rem 0; /* Solo padding vertical */
-    }
-    
-    .speaker-card {
-        height: 270px;
-    }
-}
-
-/* ===== AJUSTES PARA DENSIDAD DE PÍXELES ===== */
-
-/* Retina displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .speaker-avatar {
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
-    }
-    
-    .speaker-card {
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    }
-}
-
-/* Super Retina displays (iPhone 11 Pro, 12 Pro, 13 Pro) */
-@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
-    .speaker-avatar img {
-        image-rendering: auto;
-    }
-    
-    .social-link {
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-    }
-}
-
-/* ===== AJUSTES ESPECÍFICOS PARA NOTCH/DYNAMIC ISLAND ===== */
-
-/* iPhone con notch/Dynamic Island */
-@supports (padding-top: env(safe-area-inset-top)) {
-    @media (max-width: 428px) {
-        .carousel-container {
-            padding-left: env(safe-area-inset-left);
-            padding-right: env(safe-area-inset-right);
-        }
-    }
-}
-
-/* ===== OPTIMIZACIONES DE RENDIMIENTO PARA MÓVILES ===== */
-
-/* Reducir animaciones en dispositivos móviles para mejor rendimiento */
-@media (max-width: 768px) {
-    .speaker-card {
-        animation-duration: 0.4s;
-    }
-    
-    .speaker-card::before {
-        display: none; /* Eliminar efecto hover complejo en móvil */
-    }
-    
-    .speaker-avatar {
-        transition-duration: 0.2s;
-    }
-}
-
-/* ===== AJUSTES FINALES PARA CASOS EDGE ===== */
-
-/* Galaxy Fold (cuando está cerrado - 280px) */
-@media (max-width: 280px) {
-    .carousel-btn {
-        width: 32px;
-        height: 32px;
-        font-size: 0.7rem;
-    }
-    
-    .carousel-track {
-        gap: 0.4rem;
-        padding: 0.6rem 0.5rem;
-    }
-    
-    .speaker-card {
-        min-height: 220px;
-        padding: 0.7rem 0.6rem;
-    }
-    
-    .speaker-avatar {
-        width: 75px;
-        height: 75px;
     }
 }

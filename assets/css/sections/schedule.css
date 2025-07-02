@@ -370,12 +370,6 @@
     object-fit: cover;
 }
 
-.speaker-name {
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: #ffffff;
-}
-
 .session-speaker:hover .speaker-name {
     color: #001A1A;
 }

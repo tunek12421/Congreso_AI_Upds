@@ -207,8 +207,8 @@ class SpeakerComponent {
             }
             
             // Determinar cuántas cards mostrar según el ancho de pantalla
-            const isMobile = window.innerWidth <= 768;
-            this.slidesToShow = isMobile ? 1 : 2;
+            const isMobile = window.innerWidth <= 700;
+            this.slidesToShow = Math.ceil(window.innerWidth/700);//isMobile ? 3 : 3;
             
             console.log(`🚀 Inicializando carrusel ${type}: ${originalCount} speakers, mostrando ${this.slidesToShow} cards`);
             
@@ -216,6 +216,7 @@ class SpeakerComponent {
             const container = track.parentElement;
             const containerRect = container.getBoundingClientRect();
             const containerWidth = containerRect.width;
+            const containerheight = containerRect.height;
             
             // Obtener estilos del track
             const trackStyles = window.getComputedStyle(track);
@@ -224,15 +225,13 @@ class SpeakerComponent {
             // Ya no hay padding horizontal en el CSS, así que calculamos el ancho completo
             const availableWidth = containerWidth;
             const totalGaps = (this.slidesToShow - 1) * gap;
-            const cardWidth = (availableWidth - totalGaps) / this.slidesToShow;
+            const cardWidth = (availableWidth - totalGaps) / this.slidesToShow - (gap*2/this.slidesToShow);//<- Se agrego este gap para el margen
             
             console.log(`📐 ${type}: container=${containerWidth}px, available=${availableWidth}px, cardWidth=${cardWidth}px, gap=${gap}px`);
             
             // Aplicar anchos a todas las cards
             cards.forEach(card => {
                 card.style.width = `${cardWidth}px`;
-                card.style.minWidth = `${cardWidth}px`;
-                card.style.maxWidth = `${cardWidth}px`;
                 card.style.flexShrink = '0';
                 card.style.boxSizing = 'border-box';
             });
@@ -246,7 +245,7 @@ class SpeakerComponent {
             
             // Para centrar: calcular cuánto espacio sobra y dividir por 2
             const totalVisibleWidth = (this.slidesToShow * cardWidth) + ((this.slidesToShow - 1) * gap);
-            const centerOffset = (containerWidth - totalVisibleWidth) / 2;
+            const centerOffset = (containerWidth - totalVisibleWidth) / 2 - gap; //<- Se agrego este gap para el margen
             
             // Posición base del track
             const baseTranslateX = -(this.currentPosition[type] * cardStep);

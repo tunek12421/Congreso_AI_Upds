@@ -128,7 +128,6 @@
    }
    
    .about-card,
-   .speaker-card,
    .ticket-card {
        padding: 2rem 1.5rem;
    }
@@ -217,7 +216,6 @@
        border: 2px solid currentColor;
    }
    
-   .speaker-card,
    .ticket-card,
    .about-card {
        border: 2px solid var(--primary-blue);
