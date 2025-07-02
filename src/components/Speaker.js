@@ -207,9 +207,8 @@ class SpeakerComponent {
             }
             
             // Determinar cuántas cards mostrar según el ancho de pantalla
-            const isMobile = window.innerWidth <= 700;
-            this.slidesToShow = Math.ceil(window.innerWidth/700);//isMobile ? 3 : 3;
-            
+            this.slidesToShow = Math.ceil((window.innerWidth-200)/500);//isMobile ? 3 : 3;
+            if(this.slideToShow<1)this.slidesToShow=1;
             console.log(`🚀 Inicializando carrusel ${type}: ${originalCount} speakers, mostrando ${this.slidesToShow} cards`);
             
             // Obtener dimensiones del contenedor
@@ -222,10 +221,11 @@ class SpeakerComponent {
             const trackStyles = window.getComputedStyle(track);
             const gap = parseFloat(trackStyles.gap) || 16;
             
+            const mrl = gap; //Margen de los extremos
             // Ya no hay padding horizontal en el CSS, así que calculamos el ancho completo
             const availableWidth = containerWidth;
             const totalGaps = (this.slidesToShow - 1) * gap;
-            const cardWidth = (availableWidth - totalGaps) / this.slidesToShow - (gap*2/this.slidesToShow);//<- Se agrego este gap para el margen
+            const cardWidth = (availableWidth - totalGaps) / this.slidesToShow - (mrl*2/this.slidesToShow);//<- Se agrego este gap para el margen
             
             console.log(`📐 ${type}: container=${containerWidth}px, available=${availableWidth}px, cardWidth=${cardWidth}px, gap=${gap}px`);
             
@@ -245,7 +245,7 @@ class SpeakerComponent {
             
             // Para centrar: calcular cuánto espacio sobra y dividir por 2
             const totalVisibleWidth = (this.slidesToShow * cardWidth) + ((this.slidesToShow - 1) * gap);
-            const centerOffset = (containerWidth - totalVisibleWidth) / 2 - gap; //<- Se agrego este gap para el margen
+            const centerOffset = (containerWidth - totalVisibleWidth) / 2 - mrl; //<- Se agrego este gap para el margen
             
             // Posición base del track
             const baseTranslateX = -(this.currentPosition[type] * cardStep);
