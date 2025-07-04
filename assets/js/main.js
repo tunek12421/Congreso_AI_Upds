@@ -40,7 +40,7 @@ async function initializeApp() {
         
     } catch (error) {
         console.error('❌ Error inicializando aplicación:', error);
-        showGlobalError('Error al cargar la aplicación');
+       // showGlobalError('Error al cargar la aplicación');
     }
 }
 
@@ -424,13 +424,13 @@ function setupErrorHandling() {
     // Global error handler
     window.addEventListener('error', function(e) {
         console.error('❌ Error global:', e.error);
-        showGlobalError('Ha ocurrido un error inesperado');
+      //  showGlobalError('Ha ocurrido un error inesperado');
     });
     
     // Unhandled promise rejections
     window.addEventListener('unhandledrejection', function(e) {
         console.error('❌ Promise rejection:', e.reason);
-        showGlobalError('Error al cargar datos');
+        //showGlobalError('Error al cargar datos');
     });
     
     // Network errors
