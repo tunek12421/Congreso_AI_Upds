@@ -440,3 +440,14 @@
     flex: 1;
     justify-content: center;
 }
+@media (max-width: 450px) {
+    .ticket-group {
+        padding: 1rem 1rem;
+    }
+    .ticket-header{
+        margin-bottom: 1rem;
+    }
+    .ticket-benefits{
+        margin-bottom: 1rem;
+    }
+}
