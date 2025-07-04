@@ -498,3 +498,27 @@
         font-size: 0.75rem;
     }
 }
+
+.speaker-carousel-section .speaker-card .speaker-avatar img[src*="Gabriela-Cano"] { 
+    object-position: center 10% !important; 
+}
+/*
+.speaker-carousel-section .speaker-card .speaker-avatar img[src*="Jefferson-Cabrera"] { 
+    object-position: center 40% !important; 
+}
+
+.speaker-carousel-section .speaker-card .speaker-avatar img[src*="Renata-Cervantes"] { 
+    object-position: center 40% !important; 
+}
+
+.speaker-carousel-section .speaker-card .speaker-avatar img[src*="Angel-Cardozo"] { 
+    object-position: center 40% !important; 
+}
+
+.speaker-carousel-section .speaker-card .speaker-avatar img[src*="Juan-Pablo-Freddi"] { 
+    object-position: center 40% !important; 
+}
+
+.speaker-carousel-section .speaker-card .speaker-avatar img[src*="Simon-Bouché"] { 
+    object-position: center 40% !important; 
+}*/
