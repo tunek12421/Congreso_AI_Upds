@@ -211,3 +211,46 @@ nav {
         transform: none;
     }
 }
+
+/* Efecto LIVE corporativo/ejecutivo */
+.nav-links a[href="#counter"] {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 107, 107, 0.05));
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    text-shadow: 0 0 2px rgba(255, 107, 107, 0.6);
+    animation: corporate-live 3s ease-in-out infinite;
+}
+
+/* Indicador LED profesional */
+.nav-links a[href="#counter"]::before {
+    content: '●';
+    color: var(--live);
+    margin-right: 0.5rem;
+    animation: led-pulse 2s ease-in-out infinite;
+    font-size: 0.8rem;
+}
+
+@keyframes corporate-live {
+    0%, 100% { 
+        box-shadow: 0 0 8px rgba(255, 107, 107, 0.2);
+        border-color: rgba(255, 107, 107, 0.3);
+    }
+    50% { 
+        box-shadow: 0 0 12px rgba(255, 107, 107, 0.4);
+        border-color: rgba(255, 107, 107, 0.5);
+    }
+}
+
+@keyframes led-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* Hover ejecutivo */
+.nav-links a[href="#counter"]:hover {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(255, 107, 107, 0.08));
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
+    transform: translateY(-1px);
+}
