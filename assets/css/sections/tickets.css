@@ -440,7 +440,7 @@
     flex: 1;
     justify-content: center;
 }
-@media (max-width: 450px) {
+@media (max-width: 600px) {
     .ticket-group {
         padding: 1rem 1rem;
     }
