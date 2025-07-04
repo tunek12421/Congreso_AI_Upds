@@ -109,15 +109,17 @@ class SpeakerComponent {
                         ${this.createIndicators(speakers.length, type)}
                     </div>
                 </div>
-                <div class="carousel-container" data-type="${type}">
+                <div class="carousel-card">
                     <button class="carousel-btn carousel-prev" data-type="${type}" aria-label="Anterior">
                         <i class="fas fa-chevron-left"></i>
                     </button>
                     <button class="carousel-btn carousel-next" data-type="${type}" aria-label="Siguiente">
                         <i class="fas fa-chevron-right"></i>
                     </button>
-                    <div class="carousel-track" data-type="${type}">
-                        ${speakersHTML}
+                    <div class="carousel-container" data-type="${type}">
+                        <div class="carousel-track" data-type="${type}">
+                            ${speakersHTML}
+                        </div>
                     </div>
                 </div>
             </div>

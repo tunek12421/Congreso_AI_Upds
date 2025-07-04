@@ -64,7 +64,9 @@
 .carousel-indicator:hover {
     background: var(--secondary-color-texty);
 }
-
+.carousel-card{
+    position: relative;
+}
 /* Container del carrusel con flechas laterales */
 .carousel-container {
     position: relative;
@@ -89,8 +91,8 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%) scale(0.8);
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border: none;
     border-radius: 50%;
     background: var(--gradient-accent);
@@ -105,16 +107,14 @@
     z-index: 10;
     
     /* 🔥 OCULTAR POR DEFECTO */
-    opacity: 0;
-    visibility: hidden;
 }
 
 .carousel-prev {
-    left: 1rem;
+    left: -30px;
 }
 
 .carousel-next {
-    right: 1rem;
+    right: -30px;
 }
 
 /* 🎯 MOSTRAR FLECHAS AL HACER HOVER SOBRE EL CARRUSEL */
@@ -139,72 +139,6 @@
 
 .carousel-btn:active {
     transform: translateY(-50%) scale(0.95);
-}
-
-/* 🌟 EFECTO ESPECIAL: APARICIÓN GRADUAL DE IZQUIERDA A DERECHA */
-.carousel-container:hover .carousel-prev {
-    /*animation: slideInLeft 0.3s ease;*/
-}
-
-.carousel-container:hover .carousel-next {
-    /*animation: slideInRight 0.3s ease;*/
-}
-
-/* Animaciones para las flechas */
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateY(-50%) translateX(-20px) scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(-50%) translateX(0) scale(1);
-    }
-}
-
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateY(-50%) translateX(20px) scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(-50%) translateX(0) scale(1);
-    }
-}
-
-/* 🎯 INDICADORES SUTILES PARA MOSTRAR QUE HAY NAVEGACIÓN */
-.carousel-container::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0.5rem;
-    width: 8px;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transform: translateY(-50%);
-    transition: opacity 0.3s ease;
-    z-index: 5;
-}
-
-.carousel-container::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 0.5rem;
-    width: 8px;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transform: translateY(-50%);
-    transition: opacity 0.3s ease;
-    z-index: 5;
-}
-
-.carousel-container:hover::before,
-.carousel-container:hover::after {
-    opacity: 0;
 }
 
 .carousel-track {
@@ -450,23 +384,6 @@
     margin-bottom: 2rem;
     line-height: 1.6;
 }
-
-/* Animaciones */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.speaker-card {
-    /*animation: fadeInUp 0.6s ease forwards;*/
-}
-
 /* Estados de hover mejorados */
 .carousel-btn::before {
     content: '';
@@ -503,7 +420,6 @@
 }
 
 /* ♿ ACCESIBILIDAD: Focus visible para las flechas */
-.carousel-btn:focus,
 .carousel-indicator:focus,
 .btn-view-details:focus {
     outline: 2px solid var(--primary-blue);
