@@ -172,7 +172,7 @@
     padding: 1rem;
     text-align: left;
     box-sizing: border-box;
-    height: 270px;
+    height: 100%;
 }
 
 .speaker-card:hover {
@@ -436,24 +436,14 @@
 
 
 
-@media (max-width: 600px) {
+@media (max-width: 450px) {
     .carousel-title {
         font-size: 1.3rem;
     }
-    
-    
     .carousel-btn {
         width: 40px;
         height: 40px;
         font-size: 0.9rem;
-    }
-    
-    .carousel-prev {
-        left: 0.25rem;
-    }
-    
-    .carousel-next {
-        right: 0.25rem;
     }
     
     .carousel-indicator {
@@ -462,10 +452,14 @@
     }
     
     .speaker-avatar {
-        width: 104px; /* Más grande para una sola card */
-        height: 120px;
+        width: 78px; /* Más grande para una sola card */
+        height: 90px;
+        margin: 0.5rem;
     }
     
+    .carousel-card {
+        margin: 0px;
+    }
     .avatar-fallback {
         font-size: 2rem;
     }
@@ -485,6 +479,12 @@
     .speaker-country {
         font-size: 0.65rem;
         padding: 0.2rem 0.5rem;
+    }
+    
+    .speaker-card {
+        padding: 0.5rem;
+        flex-direction: column;
+        justify-content: center;
     }
     
     .btn-view-details {

@@ -217,7 +217,6 @@ class SpeakerComponent {
             const container = track.parentElement;
             const containerRect = container.getBoundingClientRect();
             const containerWidth = containerRect.width;
-            const containerheight = containerRect.height;
             
             // Obtener estilos del track
             const trackStyles = window.getComputedStyle(track);
@@ -236,6 +235,9 @@ class SpeakerComponent {
                 card.style.width = `${cardWidth}px`;
                 card.style.flexShrink = '0';
                 card.style.boxSizing = 'border-box';
+                setTimeout(() => {
+                    card.style.height = `${track.offsetHeight-gap*2}px`;
+                }, 500);
             });
             
             // Calcular step de movimiento
