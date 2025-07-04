@@ -224,7 +224,6 @@
 .speaker-flag {
     font-size: 1.3em;
     line-height: 1;
-    filter: brightness(1.1) saturate(1.2);
     flex-shrink: 0;
 }
 
@@ -426,7 +425,7 @@
     outline-offset: 2px;
     opacity: 1;
     visibility: visible;
-    transform: translateY(-50%) scale(1);
+    transform: scale(1);
 }
 
 .social-link:focus {

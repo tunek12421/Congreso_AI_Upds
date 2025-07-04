@@ -728,12 +728,13 @@ class SpeakerComponent {
                         <h3>Biografía</h3>
                         <p>${speaker.bio}</p>
                     </div>
-                    <div class="speaker-expertise">
+                    ${speaker.expertise.length?
+                    `<div class="speaker-expertise">
                         <h3>Áreas de Expertise</h3>
                         <div class="expertise-tags">
                             ${speaker.expertise.map(skill => `<span class="expertise-tag">${skill}</span>`).join('')}
                         </div>
-                    </div>
+                    </div>`:""}
                     ${sessions.length > 0 ? `
                         <div class="speaker-sessions">
                             <h3>Participación en el Evento</h3>
@@ -742,12 +743,13 @@ class SpeakerComponent {
                             </div>
                         </div>
                     ` : ''}
-                    <div class="speaker-social">
+                    ${Object.keys(speaker.social).length?
+                    `<div class="speaker-social">
                         <h3>Contacto</h3>
                         <div class="social-links">
                             ${this.createSocialLinks(speaker.social || {})}
                         </div>
-                    </div>
+                    </div>`:""}
                 </div>
             </div>
         `;

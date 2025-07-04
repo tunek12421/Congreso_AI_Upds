@@ -88,8 +88,7 @@
 }
 
 .modal-body h3 {
-    color: var(--primary-blue);
-    margin: 2rem 0 1rem 0;
+    margin: 1rem 0rem;
     font-size: 1.3rem;
 }
 

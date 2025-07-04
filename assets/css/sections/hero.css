@@ -79,7 +79,7 @@
     justify-content: center;
     flex-wrap: wrap;
     animation: fadeIn 1s ease-out 0.3s both;
-    margin-top: -3rem;
+    margin-top: 1rem;
     transform: translateY(-20px);
     position: relative;
     z-index: 3;

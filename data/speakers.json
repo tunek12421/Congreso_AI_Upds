@@ -5,33 +5,24 @@
       "name": "Jefferson Cabrera Amaiquema",
       "title": "Docente-Investigador Acreditado SENESCYT, Fundador y Director de JLA Ediciones",
       "country": "Ecuador",
-      "flag": "<img src=\"https://flagcdn.com/ec.svg\" width=\"30\" alt=\"Bandera Ecuador\">",
-      "expertise": ["IA en Educación", "Machine Learning", "Innovación Educativa", "Análisis de Datos", "Dirección de Proyectos"],
+      "flag": "<img src=\"https://flagcdn.com/ec.svg\" width=\"30\" alt=\"Ec\">",
+      "expertise": [],
       "bio": "Docente-Investigador Acreditado SENESCYT (Ec), Lattes (Br) y artista. Fundador y director de JLA Ediciones (GYE/FLO), Gerente general de marca y editor en jefe de la revista científica multidisciplinar YUYAY, además es miembro de diferentes consejos editoriales y científicos para editoriales y revistas indexadas de México, Colombia, Puerto Rico y Bolivia. Su línea de investigación y trabajo creativo le han llevado a desempeñar cargos jerárquicos superiores y posicionar marcas a nivel local (EC) y regional exponiendo sus resultados y obras en varias muestras colectivas internacionales (BR, MX, COL, PER, U.S.A). Docente Titular Tiempo Completo del Instituto Superior Tecnológico Bolivariano de Tecnología (ITB-Ecuador) y docente invitado de la Escuela Internacional de Alta Gestión y Postgrado de la Universidad Privada Domingo Savio (Bolivia). Ha trabajado políticas públicas, dirección de proyectos, planes de cooperación e innovación desde las culturas, la educación y las tecnologías, docente autor de contenidos para formación regular, editor de programas académicos y formativos para escolaridad inconclusa y necesidades educativas específicas asociadas o no a discapacidades; inteligencia artificial, machine learning, innovación y aplicación en entornos educativos de IA. Actualmente cursa el doctorado en Dirección de Proyectos por la Universidad de Investigación e Innovación de México (UIIX)",
       "photo": "assets/images/speakers/Jefferson-Cabrera.png",
       "topic": "La IA como estrategia para la personalización educativa y análisis de datos en la educación",
-      "social": {
-        "linkedin": "",
-        "twitter": "",
-        "email": ""
-      },
-      "sessions": []
+      "social": {}
     },
     {
       "id": 2,
       "name": "Renata Cervantes Áviles",
       "title": "Licenciada en Artes Visuales, Directora General y Creativa de JLA S.A.S.",
       "country": "Ecuador",
-      "flag": "<img src=\"https://flagcdn.com/ec.svg\" width=\"30\" alt=\"Bandera Ecuador\">",
-      "expertise": ["IA en Diseño", "Diagramación Digital", "Artes Visuales", "Comunicación Visual", "Desarrollo Académico"],
+      "flag": "<img src=\"https://flagcdn.com/ec.svg\" width=\"30\" alt=\"Ec\">",
+      "expertise": [],
       "bio": "Licenciada en artes visuales, docente e investigadora. Directora General y creativa de JLA S.A.S.; Deputy Editor in Chief de YUYAY (ISSN: 2953-6685 e-ISSN: 2953-6677) en donde coordina indexaciones y el seguimiento a la firma de declaratorias internacionales. Apasionada a la pintura, la fotografía y la maquetación editorial, ha expuesto sus propuestas visuales nivel nacional (EC) y editados proyectos editoriales en Ecuador, México y Colombia. La creatividad, imaginación y la comunicación son sus habilidades más destacadas. Ha participado en ponencias regionales en temas de manejo de recursos digitales para impresión, pedagogías desde las creatividades y prácticas con necesidades educativas específicas.",
       "photo": "assets/images/speakers/Renata-Cervantes.png",
       "topic": "Esquema visual de diagramación de productos con IA en el desarrollo académico",
-      "social": {
-        "linkedin": "",
-        "twitter": "",
-        "email": ""
-      },
+      "social": {},
       "sessions": []
     },
     {
@@ -40,15 +31,11 @@
       "title": "Ingeniera Industrial y de Sistemas",
       "country": "Bolivia",
       "flag": "<img src=\"https://flagcdn.com/bo.svg\" width=\"30\" alt=\"Bandera Bolivia\">",
-      "expertise": ["IA Empresarial", "Productividad", "Transformación Digital", "eCommerce", "Supply Chain", "Liderazgo"],
+      "expertise": [],
       "bio": "Ingeniera Industrial y de Sistemas con más de 10 años liderando equipos multidisciplinarios y proyectos en consumo masivo, retail, eCommerce y tecnología. Como empresaria, aplica en su propio negocio principios de productividad e innovación basados en transformación digital e inteligencia artificial. Gabriela combina estrategia comercial y gestión de productos digitales para impulsar la eficiencia operativa y mejorar la experiencia del cliente. Especializada en gestión empresarial, supply chain, retail, liderazgo y soluciones con IA, aporta una visión integral y tangible al mundo corporativo. Su enfoque práctico y orientado a resultados la convierte en una referente para organizaciones que buscan optimizar recursos y enfocarse en lo estratégico.",
       "photo": "assets/images/speakers/Gabriela-Cano.jpg",
       "topic": "Cómo la Inteligencia Artificial Está Revolucionando la Productividad en las Empresas",
-      "social": {
-        "linkedin": "",
-        "twitter": "",
-        "email": ""
-      },
+      "social": {},
       "sessions": []
     },
     {
@@ -57,16 +44,12 @@
       "title": "Gerente de Soluciones IT, AI y Cloud en Huawei",
       "country": "Bolivia",
       "flag": "<img src=\"https://flagcdn.com/bo.svg\" width=\"30\" alt=\"Bandera Bolivia\">",
-      "expertise": ["Cloud Computing", "Inteligencia Artificial", "Infraestructura Tecnológica", "Integración de Sistemas", "Soluciones IT"],
+      "expertise": [],
       "bio": "Profesional con más de 25 años de experiencia en Tecnología de la Información, especializado en servicios en la nube, integración de sistemas e infraestructura tecnológica. Actualmente se desempeña como Gerente de Soluciones IT, AI y Cloud en Huawei. Ha ocupado cargos directivos en empresas como YPFB y ENTEL en Bolivia, y ha trabajado en EE. UU. como ingeniero de software y administrador de sistemas. Es Ingeniero Electrónico con maestrías en Ingeniería Eléctrica (EE. UU.) y Administración de Empresas (España), además de contar con múltiples certificaciones internacionales. Ha sido también instructor para ISTEC-OEA en la University of South Florida.",
       "photo": "assets/images/speakers/Angel-Cardozo.jpg",
       "topic": "",
       "company": "Huawei",
-      "social": {
-        "linkedin": "",
-        "twitter": "",
-        "email": ""
-      },
+      "social": {},
       "sessions": []
     },
     {
@@ -75,16 +58,12 @@
       "title": "Consultor en Marketing Digital, Automatización e Inteligencia Artificial",
       "country": "Argentina",
       "flag": "<img src=\"https://flagcdn.com/ar.svg\" width=\"30\" alt=\"Bandera Argentina\">",
-      "expertise": ["Marketing Digital", "Automatización", "Inteligencia Artificial", "Transformación Digital", "Comunicación Estratégica"],
+      "expertise": [],
       "bio": "Juan Pablo Freddi es consultor en marketing digital, automatización e inteligencia artificial con más de 20 años de experiencia asesorando a empresas, gobiernos y universidades en toda Iberoamérica. Fundador de la consultora Comunicar Bien, lidera proyectos de transformación digital enfocados en fortalecer la presencia online, automatizar procesos y desarrollar equipos con autonomía. Es embajador en Argentina del movimiento global Actitudes 2.0 y conferencista internacional en temas como IA aplicada, automatización con enfoque humano y comunicación estratégica. Ha trabajado en países como Argentina, Bolivia, Chile, Colombia, México y España, y ha sido docente de posgrado en instituciones como la Universidad del Valle (Bolivia). Su formación incluye una Licenciatura en Comunicación Social, programas ejecutivos en MIT e IE University, y múltiples certificaciones en plataformas digitales. Promueve una filosofía profesional centrada en el uso consciente y humano de la tecnología para generar impacto sostenible y confianza.",
       "photo": "assets/images/speakers/Juan-Pablo-Freddi.jpg",
       "topic": "",
       "company": "Comunicar Bien",
-      "social": {
-        "linkedin": "",
-        "twitter": "",
-        "email": ""
-      },
+      "social": {},
       "sessions": []
     },
     {
@@ -93,16 +72,12 @@
       "title": "Especialista en Futuro del Trabajo e Inclusión Financiera",
       "country": "Argentina",
       "flag": "<img src=\"https://flagcdn.com/ar.svg\" width=\"30\" alt=\"Bandera Argentina\">",
-      "expertise": ["Fintech", "Inclusión Financiera", "Big Data", "Investigación Operativa", "Gestión de Proyectos Tecnológicos"],
+      "expertise": [],
       "bio": "Profesional enfocado en construir el futuro del trabajo, promoviendo la inclusión financiera y una compensación justa para colaboradores del conocimiento a nivel global. En los últimos cinco años ha liderado y colaborado en proyectos en cinco países de América Latina y Estados Unidos, especializándose en gestión de proyectos con equipos tecnológicos en áreas como banca, big data e investigación operativa. Apasionado por desarrollar soluciones que impulsen un modelo laboral más flexible, eficiente y con impacto real en la vida de las personas.",
       "photo": "assets/images/speakers/Simon-Bouché.jpg",
       "topic": "Casos de uso: e-commerce, freelancers, remesas, Takecard",
       "company": "Takenos",
-      "social": {
-        "linkedin": "",
-        "twitter": "",
-        "email": ""
-      },
+      "social": {},
       "sessions": []
     }
   ],
