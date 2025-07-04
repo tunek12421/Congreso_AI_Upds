@@ -141,6 +141,34 @@ class SpeakerComponent {
         return indicators;
     }
 
+    createTopicHTML(topic) {
+        if (!topic) return '';
+        
+        // Si el topic contiene comas, convertirlo en lista de puntos
+        if (topic.includes(',')) {
+            const topics = topic.split(',').map(t => t.trim()).filter(t => t.length > 0);
+            const topicsList = topics.map(t => `<li>• ${t}</li>`).join('');
+            return `<div class="speaker-topic-list"><strong>Temas:</strong><ul style="margin: 0.2rem 0; padding-left: 1rem; list-style: none;">${topicsList}</ul></div>`;
+        } else {
+            // Si es un solo tema, mostrarlo normal
+            return `<p class="speaker-topic"><strong>Tema:</strong> ${topic}</p>`;
+        }
+    }
+
+    createTopicHTMLForModal(topic) {
+        if (!topic) return '';
+        
+        // Si el topic contiene comas, convertirlo en lista de puntos
+        if (topic.includes(',')) {
+            const topics = topic.split(',').map(t => t.trim()).filter(t => t.length > 0);
+            const topicsList = topics.map(t => `<li>${t}</li>`).join('');
+            return `<ul style="list-style-type: disc; padding-left: 1.5rem; margin: 0.5rem 0;">${topicsList}</ul>`;
+        } else {
+            // Si es un solo tema, mostrarlo normal
+            return `<p>${topic}</p>`;
+        }
+    }
+
     createSpeakerCard(speaker) {
         const socialLinks = this.createSocialLinks(speaker.social || {});
         const isMobile = window.innerWidth <= 768;
@@ -168,7 +196,7 @@ class SpeakerComponent {
                         <span class="speaker-flag">${speaker.flag || '🌎'}</span>
                     </div>
                     <p class="speaker-title">${speaker.title}</p>
-                    ${speaker.topic ? `<p class="speaker-topic"><strong>Tema:</strong> ${speaker.topic}</p>` : ''}
+                    ${speaker.topic ? this.createTopicHTML(speaker.topic) : ''}
                     ${speaker.company ? `<p class="speaker-company"><i class="fas fa-building"></i> ${speaker.company}</p>` : ''}
                     <div class="social-links">
                         ${socialLinks}
@@ -722,8 +750,8 @@ class SpeakerComponent {
                 <div class="modal-body">
                     ${speaker.topic ? `
                         <div class="speaker-topic">
-                            <h3>Tema</h3>
-                            <p>${speaker.topic}</p>
+                            <h3>Tema${speaker.topic.includes(',') ? 's' : ''}</h3>
+                            ${this.createTopicHTMLForModal(speaker.topic)}
                         </div>
                     ` : ''}
                     <div class="speaker-bio-full">
