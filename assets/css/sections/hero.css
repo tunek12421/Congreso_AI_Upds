@@ -141,80 +141,17 @@
     }
     
     .cta-buttons {
-        gap: 1rem;
-        flex-direction: column;
-        align-items: center;
-        margin-top: -2.5rem;
-        transform: translateY(-15px);
+        gap: 0.5rem;
     }
     
     .hero .btn {
-        padding: 0.9rem 2.2rem;
+        padding: 0.5rem 1rem;
         font-size: 1.1rem;
-        width: 220px;
-    }
-    
-    .hero-image {
-        height: 6rem;
-        bottom: 60px;
-        right: 5px;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-card {
-        padding: 50px 1rem;
-    }
-    
-    .hero-logo img {
-        max-width: 420px;
-    }
-    
-    .hero-content {
-        gap: 0;
-    }
-    
-    .cta-buttons {
-        margin-top: -2rem;
-        transform: translateY(-10px);
-    }
-    
-    .hero .btn {
-        padding: 0.8rem 2rem;
-        font-size: 1rem;
-        width: 200px;
     }
     
     .hero-image {
         height: 5rem;
-        bottom: 40px;
-        right: 5px;
-    }
-}
-
-@media (max-width: 360px) {
-    .hero-logo img {
-        max-width: 350px;
-    }
-    
-    .hero-content {
-        gap: 0;
-    }
-    
-    .cta-buttons {
-        margin-top: -1.5rem;
-        transform: translateY(-8px);
-    }
-    
-    .hero .btn {
-        padding: 0.7rem 1.8rem;
-        font-size: 0.95rem;
-        width: 180px;
-    }
-    
-    .hero-image {
-        height: 4rem;
-        bottom: 30px;
+        bottom: 70px;
         right: 5px;
     }
 }
