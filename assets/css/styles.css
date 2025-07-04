@@ -18,6 +18,8 @@
 @import url('./components/forms.css');
 @import url('./components/animations.css');
 @import url('./components/speaker-modal.css');
+@import url('./components/webinar-modals.css');
+@import url('./components/chatbot.css');
 
 /* Sections */
 @import url('./sections/common.css');
