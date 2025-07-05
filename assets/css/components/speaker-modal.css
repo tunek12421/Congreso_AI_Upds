@@ -280,26 +280,33 @@
 /* 🎯 RESPONSIVE PARA MODAL */
 @media (max-width: 768px) {
     .modal-content {
-        width: 95%;
-        margin: 1rem;
-        border: 1px solid var(--primary-color); /* Borde más sutil en móvil */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        margin: 0;
+        border-radius: 0;
+        transform: none;
+        overflow-y: auto;
     }
     
     .modal-header {
         flex-direction: column;
         text-align: center;
-        padding: 1.5rem;
+        padding: 1rem;
     }
     
     .speaker-avatar-large {
         width: 80px;
         height: 80px;
         font-size: 1.5rem;
-        border-width: 2px;
     }
     
     .modal-body {
-        padding: 1.5rem;
+        padding: 1rem;
     }
     
     .modal-close {
@@ -324,11 +331,6 @@
 }
 
 @media (max-width: 480px) {
-    .modal-content {
-        width: 98%;
-        margin: 0.5rem;
-    }
-    
     .modal-header {
         padding: 1rem;
     }
@@ -409,5 +411,19 @@
     to {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Animación específica para móviles */
+@media (max-width: 768px) {
+    @keyframes modalFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 }
