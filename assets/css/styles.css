@@ -38,11 +38,15 @@
 
 /* ===== GLOBAL STYLES ===== */
 .container {
-     max-width: 98%;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
+@media (max-width: 450px) {
+    .container {
+        padding: 0 1rem;
+    }
+}
 .fade-in {
     opacity: 0;
     transform: translateY(30px);

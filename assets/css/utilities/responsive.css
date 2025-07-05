@@ -98,10 +98,7 @@
    }
 }
 
-@media (max-width: 480px) {
-   .container {
-       padding: 0 1rem;
-   }
+@media (max-width: 600px) {
    
    .hero-card h1 {
        font-size: 2rem;
