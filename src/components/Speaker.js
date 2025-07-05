@@ -171,12 +171,10 @@ class SpeakerComponent {
 
     createSpeakerCard(speaker) {
         const socialLinks = this.createSocialLinks(speaker.social || {});
-        const isMobile = window.innerWidth <= 768;
         const speakerId = speaker.originalId || speaker.id; // Usar originalId si está disponible
-        const cardTitle = isMobile ? `title="Toca para ver detalles de ${speaker.name}"` : '';
 
         return `
-            <div class="speaker-card" data-speaker-id="${speakerId}" data-unique-id="${speaker.uniqueId || speaker.id}" ${cardTitle}>
+            <div class="speaker-card" data-speaker-id="${speakerId}" data-unique-id="${speaker.uniqueId || speaker.id}">
                 <div class="speaker-avatar">
                     ${speaker.photo ? 
                         `<img src="${speaker.photo}" alt="${speaker.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -237,8 +235,8 @@ class SpeakerComponent {
             }
             
             // Determinar cuántas cards mostrar según el ancho de pantalla
-            this.slidesToShow = Math.ceil((window.innerWidth-200)/500);//isMobile ? 3 : 3;
-            if(this.slideToShow<1)this.slidesToShow=1;
+            this.slidesToShow = Math.ceil((window.innerWidth-200)/500);
+            if(this.slidesToShow<1)this.slidesToShow=1;
             console.log(`🚀 Inicializando carrusel ${type}: ${originalCount} speakers, mostrando ${this.slidesToShow} cards`);
             
             // Obtener dimensiones del contenedor
@@ -309,11 +307,6 @@ class SpeakerComponent {
     }
 
     bindEvents() {
-        // Detectar si es un dispositivo táctil
-        const isTouchDevice = ('ontouchstart' in window) || 
-                            (navigator.maxTouchPoints > 0) || 
-                            (navigator.msMaxTouchPoints > 0);
-        
         this.container.addEventListener('click', (e) => {
             if (e.target.closest('.btn-view-details')) {
                 const speakerId = parseInt(e.target.closest('.btn-view-details').dataset.speakerId);
@@ -365,17 +358,20 @@ class SpeakerComponent {
             let startX = 0;
             let currentX = 0;
             let isDragging = false;
+            let startedOnCard = false;
             const type = carousel.dataset.type;
 
             carousel.addEventListener('touchstart', (e) => {
                 startX = e.touches[0].clientX;
+                // Verificar si el toque inició en una card
+                startedOnCard = e.target.closest('.speaker-card') !== null;
                 isDragging = true;
                 this.pauseAutoPlay();
                 this.lastInteractionType = 'TOUCH';
             });
 
             carousel.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
+                if (!isDragging || startedOnCard) return;
                 currentX = e.touches[0].clientX;
                 e.preventDefault();
             });
@@ -384,51 +380,29 @@ class SpeakerComponent {
                 if (!isDragging) return;
                 isDragging = false;
                 
-                const diffX = startX - currentX;
-                const threshold = 60;
-                
-                if (Math.abs(diffX) > threshold) {
-                    if (diffX > 0) {
-                        this.manualSlide(type, 'next');
+                // Solo procesar swipe si NO empezó en una card
+                if (!startedOnCard) {
+                    const diffX = startX - currentX;
+                    const threshold = 60;
+                    
+                    if (Math.abs(diffX) > threshold) {
+                        if (diffX > 0) {
+                            this.manualSlide(type, 'next');
+                        } else {
+                            this.manualSlide(type, 'prev');
+                        }
                     } else {
-                        this.manualSlide(type, 'prev');
+                        this.scheduleAutoPlayResume(1000);
                     }
                 } else {
+                    // Si empezó en una card, solo reanudar autoplay
                     this.scheduleAutoPlayResume(1000);
                 }
+                
+                // Reset para próximo toque
+                startedOnCard = false;
             });
         });
-        
-        // Mejorar respuesta táctil en cards de speakers
-        const isTouchDevice = ('ontouchstart' in window) || 
-                            (navigator.maxTouchPoints > 0) || 
-                            (navigator.msMaxTouchPoints > 0);
-                            
-        if (isTouchDevice) {
-            // Añadir evento táctil directo para mejor respuesta
-            this.container.addEventListener('touchend', (e) => {
-                const card = e.target.closest('.speaker-card');
-                const button = e.target.closest('.btn-view-details');
-                const socialLink = e.target.closest('.social-link');
-                
-                // Si se tocó el botón, manejarlo
-                if (button) {
-                    e.preventDefault();
-                    const speakerId = parseInt(button.dataset.speakerId);
-                    if (speakerId) {
-                        this.showSpeakerModal(speakerId);
-                    }
-                }
-                // Si se tocó la card pero no el botón ni social links
-                else if (card && !socialLink && window.innerWidth <= 768) {
-                    e.preventDefault();
-                    const speakerId = parseInt(card.dataset.speakerId);
-                    if (speakerId) {
-                        this.showSpeakerModal(speakerId);
-                    }
-                }
-            }, { passive: false });
-        }
     }
 
     manualSlide(type, direction) {
