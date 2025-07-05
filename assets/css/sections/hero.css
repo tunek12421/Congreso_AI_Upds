@@ -1,6 +1,6 @@
 /* ===== SECCIÓN HERO ===== */
 .hero {
-    height: 100vh;
+    height: calc(100vh - 64px);
     padding: 0px;
 }
 
@@ -10,9 +10,9 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 70px 2rem;
+    padding: 2rem 2rem;
     overflow: hidden;
-    height: 100%;
+    height: calc(100% - 64px);
 }
 
 /* Logo UPDS */
@@ -20,7 +20,7 @@
     position: absolute;
     z-index: 3;
     height: 8rem;
-    bottom: 80px;
+    bottom: 10px;
     right: 10px;
 }
 
@@ -30,7 +30,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100% - 64px);
+    height: 100%;
     object-fit: cover;
     z-index: 0;
 }
@@ -151,7 +151,7 @@
     
     .hero-image {
         height: 5rem;
-        bottom: 70px;
+        bottom: 10px;
         right: 5px;
     }
 }

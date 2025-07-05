@@ -1,6 +1,6 @@
 
 .logos {
-  position:absolute;
+  position:relative;
   width: 100%;
   overflow: hidden;
   bottom: 0px;
@@ -49,6 +49,6 @@
 
 .logo_items img{
   height: 40px;
-  margin: 12px;
+  margin: 0.8rem;
   margin-left: 5rem;
 }
