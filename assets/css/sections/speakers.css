@@ -522,25 +522,25 @@
 
 
 .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Jefferson-Cabrera"] { 
-    transform: translate(5px, 40px) scale(1.5) !important;
+    transform: translate(5px, 45px) scale(1.5) !important;
     object-fit: cover !important;
 }
 
 /* Regla alternativa con mayor especificidad */
 .speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Jefferson-Cabrera"] { 
-    transform: translate(5px, 40px) scale(1.5) !important;
+    transform: translate(5px, 45px) scale(1.5) !important;
     object-fit: cover !important;
 }
 
 /* Ajuste específico para móvil */
 @media (max-width: 768px) {
     .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Jefferson-Cabrera"] { 
-        transform: translate(5px, 25px) scale(1.5) !important;
+        transform: translate(5px, 30px) scale(1.5) !important;
         object-fit: cover !important;
     }
     
     .speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Jefferson-Cabrera"] { 
-        transform: translate(5px, 25px) scale(1.5) !important;
+        transform: translate(5px, 30px) scale(1.5) !important;
         object-fit: cover !important;
     }
 }
