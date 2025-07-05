@@ -518,14 +518,45 @@
     }
 }
 
-.speaker-carousel-section .speaker-card .speaker-avatar img[src*="Gabriela-Cano"] { 
-    object-position: center 10% !important; 
-}
-/*
+
+
+
 .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Jefferson-Cabrera"] { 
-    object-position: center 40% !important; 
+    transform: translate(5px, 45px) scale(1.5) !important;
+    object-fit: cover !important;
 }
 
+/* Regla alternativa con mayor especificidad */
+.speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Jefferson-Cabrera"] { 
+    transform: translate(5px, 45px) scale(1.5) !important;
+    object-fit: cover !important;
+}
+
+/* Ajuste específico para móvil */
+@media (max-width: 768px) {
+    .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Jefferson-Cabrera"] { 
+        transform: translate(5px, 30px) scale(1.5) !important;
+        object-fit: cover !important;
+    }
+    
+    .speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Jefferson-Cabrera"] { 
+        transform: translate(5px, 30px) scale(1.5) !important;
+        object-fit: cover !important;
+    }
+}
+
+.speaker-carousel-section .speaker-card .speaker-avatar img[src*="Gabriela-Cano"] { 
+    transform: translate(0px, 10px) !important;
+    object-fit: cover !important;
+}
+
+/* Regla alternativa con mayor especificidad */
+.speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Gabriela-Cano"] { 
+    transform: translate(0px, 10px) !important;
+    object-fit: cover !important;
+}
+
+/*
 .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Renata-Cervantes"] { 
     object-position: center 40% !important; 
 }
