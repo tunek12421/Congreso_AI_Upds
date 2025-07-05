@@ -81,7 +81,7 @@ const observer = new IntersectionObserver(
 async function aboutLoop(){
     while(true){
         if(actived) await start();
-        else await sleep(info.changeDelay);
+        else await sleep(1);
     }
 }
 async function speak(parent, text, name="p", delay=info.delay){
