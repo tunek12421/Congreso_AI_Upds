@@ -60,11 +60,14 @@ nav {
 .nav-links a {
     text-decoration: none;
     color: var(--text-primary);
-    font-weight: 500;
-    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-weight: 600; /* MEJORADO: Aumentado de 500 */
+    font-size: clamp(1rem, 2vw, 1.1rem); /* MEJORADO: Aumentado de 0.9rem */
     transition: var(--transition);
     position: relative;
     white-space: nowrap;
+    /* MEJORADO: Agregado padding y border-radius para hover */
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
 }
 
 .nav-links li a:focus {
@@ -75,7 +78,9 @@ nav {
 
 .nav-links a:hover {
     color: var(--text-primary-hover);
-    transform: translateY(-1px);
+    transform: translateY(-2px); /* MEJORADO: Aumentado de -1px */
+    /* MEJORADO: Agregado background en hover */
+    background: rgba(70, 186, 192, 0.1);
 }
 
 .nav-links a::after {
@@ -84,13 +89,20 @@ nav {
     bottom: -5px;
     left: 0;
     width: 0;
-    height: 2px;
+    height: 3px; /* MEJORADO: Aumentado de 2px */
     background: var(--text-primary-hover);
     transition: width 0.3s ease;
 }
 
 .nav-links a:hover::after {
     width: 100%;
+}
+
+/* MEJORADO: Estado activo para navegación */
+.nav-links a.active {
+    background: rgba(70, 186, 192, 0.15);
+    border-radius: 8px;
+    color: var(--text-primary-hover);
 }
 
 .mobile-menu-btn {
@@ -253,4 +265,35 @@ nav {
     background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(255, 107, 107, 0.08));
     box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
     transform: translateY(-1px);
+}
+
+/* MEJORADO: Mejor contraste en header con fondo */
+.header-color .nav-links a {
+    color: var(--white);
+}
+
+.header-color .nav-links a:hover {
+    color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* MEJORADO: Mobile menu con mejor legibilidad */
+@media (max-width: 767px) {
+    .nav-links a {
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        display: block;
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid rgba(70, 186, 192, 0.1);
+    }
+    
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-links a:hover {
+        background: rgba(70, 186, 192, 0.2);
+        transform: translateX(5px);
+    }
 }

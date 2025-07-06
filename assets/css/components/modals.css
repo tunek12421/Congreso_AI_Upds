@@ -34,20 +34,25 @@
     right: 1rem;
     background: none;
     border: none;
-    font-size: 1.5rem;
+    /* MEJORADO: Tamaño aumentado */
+    font-size: 1.8rem; /* Cambiado de 1.5rem */
     color: var(--dark-background-text);
     cursor: pointer;
     transition: var(--transition);
-    width: 40px;
-    height: 40px;
+    /* MEJORADO: Tamaño del botón aumentado */
+    width: 45px;  /* Cambiado de 40px */
+    height: 45px; /* Cambiado de 40px */
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    /* MEJORADO: Agregado box-shadow */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 .modal-close:hover {
-    background: var(--main-background);
+    /* MEJORADO: Background más visible */
+    background: rgba(70, 186, 192, 0.15); /* Cambiado de var(--main-background) */
     color: var(--primary-blue);
 }
 
@@ -108,7 +113,8 @@
 }
 
 .session-item {
-    background: var(--main-background);
+    /* MEJORADO: Background más visible */
+    background: rgba(70, 186, 192, 0.15); /* Cambiado de var(--main-background) */
     padding: 1rem;
     border-radius: 10px;
     border-left: 4px solid var(--light-blue);
@@ -207,4 +213,84 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+/* MEJORADO: Modal content con mejor padding y max-width */
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--white);
+    border-radius: 20px;
+    /* MEJORADO: Padding aumentado */
+    padding: 2.5rem; /* Cambiado de 2rem */
+    /* MEJORADO: Max-width aumentado */
+    max-width: 700px; /* Cambiado de 600px */
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-hover);
+}
+
+/* MEJORADO: Scroll personalizado */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color-hover);
+}
+
+/* MEJORADO: Responsive mejorado */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+        max-height: 90vh;
+        /* MEJORADO: Mejor padding en móvil */
+        padding: 2rem 1.5rem;
+    }
+    
+    .modal-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .speaker-avatar-large {
+        margin: 0 auto;
+    }
+    
+    .modal-close {
+        /* Mantener tamaño legible en móvil */
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+}
+
+/* MEJORADO: Animación de entrada */
+.modal-content {
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
 }

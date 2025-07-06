@@ -40,7 +40,8 @@
 .ticket-card {
     background: var(--dark-background);
     border-radius: 20px;
-    padding: 2rem;
+    /* MEJORADO: Padding aumentado */
+    padding: 2.5rem; /* Cambiado de 2rem */
     box-shadow: var(--shadow);
     transition: var(--transition);
     position: relative;
@@ -109,7 +110,8 @@
     border-radius: 20px;
     background: var(--dark-background-hover);
     border: 3px solid var(--dark-background-text);
-    padding: 3rem 1rem;
+    /* MEJORADO: Padding ajustado */
+    padding: 2.5rem 1.5rem; /* Cambiado de 3rem 1rem */
     margin-bottom: 0.5rem;
 }
 .currency {
@@ -118,7 +120,8 @@
 }
 
 .amount {
-    font-size: 5rem;
+    /* MEJORADO: Font-size ajustado */
+    font-size: 4rem; /* Cambiado de 5rem */
     font-weight: 800;
     color: var(--secondary-color-text);
 }
@@ -244,10 +247,12 @@
     background: var(--primary-color);
     color: var(--primary-color-text);
     border: none;
-    padding: 1rem;
+    /* MEJORADO: Padding aumentado */
+    padding: 1.2rem 1.8rem; /* Cambiado de 1rem */
     border-radius: 25px;
     font-weight: 600;
-    font-size: 1.2rem;
+    /* MEJORADO: Font-size ajustado */
+    font-size: 1.1rem; /* Cambiado de 1.2rem */
     cursor: pointer;
     transition: var(--transition);
     display: flex;
@@ -259,7 +264,8 @@
 
 .btn-select-ticket:hover:not(.disabled) {
     background: var(--primary-color-hover);
-    transform: translateY(-2px);
+    /* MEJORADO: Transform más pronunciado */
+    transform: translateY(-5px) scale(1.02); /* Cambiado de translateY(-2px) */
 }
 
 .btn-select-ticket.disabled {
@@ -440,14 +446,35 @@
     flex: 1;
     justify-content: center;
 }
+
+/* MEJORADO: Ajustes para mejor legibilidad en cards */
+.ticket-card {
+    border: 1px solid rgba(70, 186, 192, 0.2);
+}
+
+.ticket-card:hover {
+    border-color: rgba(70, 186, 192, 0.4);
+}
+
+/* MEJORADO: Responsive ajustado */
 @media (max-width: 600px) {
     .ticket-group {
-        padding: 1rem 1rem;
+        /* MEJORADO: Mejor padding en móvil */
+        padding: 1.5rem 1rem; /* Ajustado de 1rem 1rem */
     }
     .ticket-header{
-        margin-bottom: 1rem;
+        /* MEJORADO: Ajuste de espaciado */
+        margin-bottom: 1.5rem; /* Ajustado de 1rem */
     }
     .ticket-benefits{
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem; /* Ajustado de 1rem */
+    }
+    .amount {
+        font-size: 3rem; /* Ya estaba bien */
+    }
+    /* MEJORADO: Font size para descripción en móvil */
+    .ticket-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
     }
 }

@@ -13,7 +13,8 @@
     --dark-background: linear-gradient(120deg, #001a1a 0%, #000a0a 100%);
     --dark-background-hover: linear-gradient(160deg, #001313 0%, #000000 100%);
     
-    --dark-background-text: #9cb3b3;
+    /* MEJORADO: Mayor contraste para legibilidad */
+    --dark-background-text: #b8d4d4; /* Cambiado de #9cb3b3 */
 
 
     --background-color-1: #014b55;
@@ -46,19 +47,19 @@
     --warning: #fdcb6e;
     --error: #e17055;
     
-    /* Sombras */
-    --shadow: 0 20px 60px rgba(30, 60, 114, 0.2);
-    --shadow-hover: 0 30px 80px rgba(30, 60, 114, 0.45);
+    /* MEJORADO: Sombras más pronunciadas para mejor definición */
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Cambiado de rgba(30, 60, 114, 0.2) */
+    --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.4); /* Cambiado de rgba(30, 60, 114, 0.45) */
     
-    /* Tipografía */
+    /* MEJORADO: Tipografía con mejor legibilidad */
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --line-height: 1.6;
+    --line-height: 1.7; /* Cambiado de 1.6 */
     
-    /* Espaciado */
+    /* MEJORADO: Espaciado más generoso */
     --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 2rem;
-    --spacing-lg: 4rem;
+    --spacing-sm: 1.25rem; /* Cambiado de 1rem */
+    --spacing-md: 2.5rem; /* Cambiado de 2rem */
+    --spacing-lg: 5rem; /* Cambiado de 4rem */
     --spacing-xl: 8rem;
     
     /* Bordes */
@@ -66,10 +67,10 @@
     --border-radius-sm: 10px;
     --border-radius-lg: 25px;
     
-    /* Transiciones */
-    --transition: all 0.3s ease;
-    --transition-fast: all 0.15s ease;
-    --transition-slow: all 0.6s ease;
+    /* MEJORADO: Transiciones más suaves con mejor easing */
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Cambiado de all 0.3s ease */
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 
     --responsive-min-width: 850px;
 }

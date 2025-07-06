@@ -3,7 +3,7 @@
     text-align: center;
     font-size: clamp(1.5rem, 5vw, 2rem);
     font-weight: 700;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem; /* MEJORADO: Cambiado de 2rem */
     background: var(--primary-color);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -11,14 +11,14 @@
 }
 
 .hero h1 {
-    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-size: clamp(2.5rem, 8vw, 4.5rem); /* MEJORADO: Reducido máximo de 5rem */
     font-weight: 800;
     margin-bottom: 1rem;
     background: linear-gradient(135deg, var(--white) 0%, rgba(255,255,255,0.8) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    text-shadow: 0 4px 20px rgba(0,0,0,0.1), 0 2px 10px rgba(0,0,0,0.3); /* MEJORADO: Agregado shadow adicional */
     animation: slideInUp 1s ease-out;
     user-select: none;
 }
@@ -27,18 +27,73 @@
     font-size: clamp(1.2rem, 4vw, 1.8rem);
     margin-bottom: 2rem;
     color: rgba(255,255,255,0.9);
-    font-weight: 300;
+    font-weight: 400; /* MEJORADO: Cambiado de 300 */
     animation: slideInUp 1s ease-out 0.2s both;
 }
 
 .card-title {
     font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem; /* MEJORADO: Cambiado de 1rem */
     color: var(--primary-blue);
 }
 
 .card-text {
     color: var(--dark-background-text);
-    line-height: 1.7;
+    line-height: 1.8; /* MEJORADO: Cambiado de 1.7 */
+}
+
+/* MEJORADO: Nuevas reglas para mejor legibilidad */
+p {
+    letter-spacing: 0.02em;
+    margin-bottom: 1.2rem;
+    line-height: 1.8;
+}
+
+/* MEJORADO: Font-weight mejorado para textos en fondos oscuros */
+section {
+    font-weight: 500; /* Base weight para mejor legibilidad en fondos oscuros */
+}
+
+section p,
+section li,
+section span {
+    font-weight: 500;
+}
+
+section h1,
+section h2,
+section h3,
+section h4 {
+    font-weight: 700;
+}
+
+/* MEJORADO: Jerarquía tipográfica consistente */
+h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 800;
+}
+
+h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+}
+
+h3 {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 600;
+}
+
+h4 {
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    font-weight: 600;
+}
+
+body {
+    font-size: 1.1rem; /* MEJORADO: Base aumentada de 1rem */
+}
+
+small,
+.small-text {
+    font-size: 0.95rem; /* MEJORADO: Aumentado de 0.9rem */
 }
