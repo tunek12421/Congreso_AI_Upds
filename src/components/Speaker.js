@@ -235,10 +235,10 @@ class SpeakerComponent {
                 console.warn(`⚠️ No hay cards para ${type}`);
                 return;
             }
-            
             // Determinar cuántas cards mostrar según el ancho de pantalla
-            this.slidesToShow = Math.ceil((window.innerWidth-200)/500);//isMobile ? 3 : 3;
-            if(this.slideToShow<1)this.slidesToShow=1;
+            this.slidesToShow = Math.ceil((window.innerWidth-200)/500);
+            if(this.slidesToShow<1)this.slidesToShow=1;
+            if(this.slidesToShow>originalCount)this.slidesToShow=originalCount;
             console.log(`🚀 Inicializando carrusel ${type}: ${originalCount} speakers, mostrando ${this.slidesToShow} cards`);
             
             // Obtener dimensiones del contenedor

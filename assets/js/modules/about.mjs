@@ -100,7 +100,6 @@ async function start(index=intervalIndex){
     await sleep(info.startDelay);
     //Borrar todo
     about.innerHTML="";
-    console.log("Index: ",index);
     let content = info.desc[index];
     for(const item of content){
         let textType="p";
