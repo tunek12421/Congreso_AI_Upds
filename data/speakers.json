@@ -40,14 +40,14 @@
     },
     {
       "id": 4,
-      "name": "Arnildo Cardozo Daza",
+      "name": "Angel Cardozo Daza",
       "title": "Gerente de Soluciones IT, AI y Cloud en Huawei",
       "country": "Bolivia",
       "flag": "<img src=\"https://flagcdn.com/bo.svg\" width=\"30\" alt=\"Bandera Bolivia\">",
       "expertise": [],
       "bio": "Profesional con más de 25 años de experiencia en Tecnología de la Información, especializado en servicios en la nube, integración de sistemas e infraestructura tecnológica. Actualmente se desempeña como Gerente de Soluciones IT, AI y Cloud en Huawei. Ha ocupado cargos directivos en empresas como YPFB y ENTEL en Bolivia, y ha trabajado en EE. UU. como ingeniero de software y administrador de sistemas. Es Ingeniero Electrónico con maestrías en Ingeniería Eléctrica (EE. UU.) y Administración de Empresas (España), además de contar con múltiples certificaciones internacionales. Ha sido también instructor para ISTEC-OEA en la University of South Florida.",
       "photo": "assets/images/speakers/Angel-Cardozo.jpg",
-      "topic": "Inteligencia Artificial en los ojos de la sociedad, Qué es la Inteligencia Artificial,Claves para la adopción de la Inteligencia Artificial,DeepSeek revolucionando el uso de la IA,Modelos de IA para la Industria.",
+      "topic": "Inteligencia Artificial en los ojos de la sociedad, Qué es la Inteligencia Artificial, Claves para la adopción de la Inteligencia Artificial, DeepSeek revolucionando el uso de la IA, Modelos de IA para la Industria.",
       "company": "Huawei",
       "social": {},
       "sessions": []
@@ -61,7 +61,7 @@
       "expertise": [],
       "bio": "Juan Pablo Freddi es consultor en marketing digital, automatización e inteligencia artificial con más de 20 años de experiencia asesorando a empresas, gobiernos y universidades en toda Iberoamérica. Fundador de la consultora Comunicar Bien, lidera proyectos de transformación digital enfocados en fortalecer la presencia online, automatizar procesos y desarrollar equipos con autonomía. Es embajador en Argentina del movimiento global Actitudes 2.0 y conferencista internacional en temas como IA aplicada, automatización con enfoque humano y comunicación estratégica. Ha trabajado en países como Argentina, Bolivia, Chile, Colombia, México y España, y ha sido docente de posgrado en instituciones como la Universidad del Valle (Bolivia). Su formación incluye una Licenciatura en Comunicación Social, programas ejecutivos en MIT e IE University, y múltiples certificaciones en plataformas digitales. Promueve una filosofía profesional centrada en el uso consciente y humano de la tecnología para generar impacto sostenible y confianza.",
       "photo": "assets/images/speakers/Juan-Pablo-Freddi.jpg",
-      "topic": "",
+      "topic": "IA aplicada al Marketing Digital y Automatización con enfoque humano",
       "company": "Comunicar Bien",
       "social": {},
       "sessions": []
@@ -79,12 +79,66 @@
       "company": "Takenos",
       "social": {},
       "sessions": []
+    },
+    {
+      "id": 7,
+      "name": "Juan Jesús Balcázar Vega",
+      "title": "Ingeniero en Informática, Especialista en Transformación Digital e IA",
+      "country": "Perú",
+      "flag": "<img src=\"https://flagcdn.com/pe.svg\" width=\"30\" alt=\"Bandera Perú\">",
+      "expertise": [],
+      "bio": "Juan Jesús Balcázar, ingeniero en informática con más de 14 años de experiencia liderando proyectos de tecnología e innovación en la región. Me especializo en transformación digital, automatización, inteligencia artificial y gestión de servicios de TI, diseñando soluciones eficientes y sostenibles para organizaciones en constante evolución. A lo largo de mi carrera he trabajado con arquitecturas complejas, integraciones estratégicas y equipos multidisciplinarios, siempre enfocado en generar valor real y medible.",
+      "photo": "assets/images/speakers/Foto-Juan-Balcazar.png",
+      "topic": "Inteligencia Artificial sin Fronteras: Oportunidades, Riesgos y el Futuro que Estamos Creando",
+      "social": {},
+      "sessions": []
+    },
+    {
+      "id": 8,
+      "name": "Carlos Olivera Terrazas",
+      "title": "Arquitecto de Software y Emprendedor",
+      "country": "Bolivia",
+      "flag": "<img src=\"https://flagcdn.com/bo.svg\" width=\"30\" alt=\"Bandera Bolivia\">",
+      "expertise": [],
+      "bio": "Carlos Olivera Terrazas es un reconocido arquitecto de software y emprendedor boliviano con más de 20 años de experiencia en el sector tecnológico. Ha fundado y liderado diversas startups, destacando por su participación en la primera empresa boliviana en pasar por una ronda de inversión de capital de riesgo. Ha ejercido como CTO en varias compañías nacionales e internacionales, liderando procesos de transformación digital, diseño de arquitecturas escalables y adopción de tecnologías innovadoras. Fue Director Ejecutivo de AGETIC Bolivia, donde impulsó la estrategia digital del Estado durante la pandemia. Actualmente es CTO en DATEC LATAM y docente de posgrado, combinando liderazgo técnico con formación de nuevos talentos.",
+      "photo": "assets/images/speakers/cARLOS-oLIVERA.jpg",
+      "topic": "IA como eje estratégico para la evolución corporativa y políticas públicas",
+      "company": "DATEC LATAM",
+      "social": {},
+      "sessions": []
+    },
+    {
+      "id": 9,
+      "name": "José María Paz",
+      "title": "DS, AI & RPA Solutions Manager",
+      "country": "Bolivia",
+      "flag": "<img src=\"https://flagcdn.com/bo.svg\" width=\"30\" alt=\"Bandera Bolivia\">",
+      "expertise": [],
+      "bio": "José María Paz es un profesional boliviano con amplia experiencia en ciencia de datos, inteligencia artificial y automatización de procesos (RPA). Actualmente se desempeña como DS, AI & RPA Solutions Manager en DATEC LATAM, donde ha liderado equipos multidisciplinarios y ha establecido alianzas estratégicas con empresas como H2O, Google y Databricks para desarrollar soluciones tecnológicas de alto impacto en Bolivia y América Latina. Cuenta con una sólida trayectoria en banca, consultoría y análisis de datos aplicados al deporte, especialmente en fútbol, trabajando con instituciones como BCP, Houston Dash y Carnival Analytics. También ha contribuido a instituciones públicas como la UIF y AGETIC, desarrollando modelos predictivos y herramientas de análisis estratégico.",
+      "photo": "assets/images/speakers/JOSE-MARIA-PAZ.jpg",
+      "topic": "IA como eje estratégico para la evolución corporativa y políticas públicas",
+      "company": "DATEC LATAM",
+      "social": {},
+      "sessions": []
+    },
+    {
+      "id": 10,
+      "name": "Francisco Mayorga",
+      "title": "Economista, Académico y Novelista",
+      "country": "Nicaragua",
+      "flag": "<img src=\"https://flagcdn.com/ni.svg\" width=\"30\" alt=\"Bandera Nicaragua\">",
+      "expertise": [],
+      "bio": "Economista, académico y novelista nicaragüense con una destacada trayectoria en el ámbito financiero, académico y literario. Fue presidente del Banco Central de Nicaragua, profesor del INCAE por más de 20 años, y rector de la Universidad Privada Boliviana (UPB). Ha liderado reformas económicas clave, fundado instituciones financieras y promovido la inteligencia artificial en América Latina a través de la Red RIAL. Es autor de varias novelas históricas y ha representado a su país ante organismos internacionales como el Banco Mundial y el BID.",
+      "photo": "assets/images/speakers/FRANCISCO-MAYORGA.jpg",
+      "topic": "Inteligencia Artificial y su impacto en la economía y educación latinoamericana",
+      "social": {},
+      "sessions": []
     }
   ],
-  "featured_speakers": [1, 4, 5],
-  "keynote_speakers": [1, 4],
-  "international_speakers": [1, 2, 5, 6],
-  "national_speakers": [3, 4],
+  "featured_speakers": [1, 4, 5, 7, 8],
+  "keynote_speakers": [1, 4, 7, 8, 10],
+  "international_speakers": [1, 2, 5, 6, 7, 10],
+  "national_speakers": [3, 4, 8, 9],
   "categories": {
     "international": "Ponentes Internacionales",
     "national": "Ponentes Nacionales"
@@ -118,6 +172,11 @@
     "Inclusión Financiera",
     "Big Data",
     "Investigación Operativa",
-    "Gestión de Proyectos Tecnológicos"
+    "Gestión de Proyectos Tecnológicos",
+    "RPA (Robotic Process Automation)",
+    "Arquitectura de Software",
+    "Políticas Públicas Digitales",
+    "Economía Digital",
+    "IA en Finanzas"
   ]
 }
