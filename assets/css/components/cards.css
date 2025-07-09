@@ -1,1 +1,146 @@
-/* ===== TARJETAS Y CARDS ===== */
+/* ===== TARJETAS Y CARDS ===== *//* ===== TARJETAS Y CARDS ===== */
+
+/* NUEVO: Card base styles para consistencia */
+.card {
+    background: var(--dark-background);
+    border: 1px solid rgba(70, 186, 192, 0.2);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(70, 186, 192, 0.4);
+}
+
+/* MEJORADO: Aplicar estilos a todas las cards existentes */
+.about-card, 
+.speaker-card, 
+.ticket-card, 
+.stat-card {
+    border: 1px solid rgba(70, 186, 192, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.about-card:hover, 
+.speaker-card:hover, 
+.ticket-card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* MEJORADO: Estilos específicos para diferentes tipos de cards */
+.about-card {
+    background: var(--dark-background);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--primary-color), transparent, var(--primary-color));
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+}
+
+.about-card:hover::before {
+    opacity: 0.3;
+}
+
+/* MEJORADO: Card headers */
+.card-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(70, 186, 192, 0.2);
+}
+
+/* MEJORADO: Card content spacing */
+.card-content {
+    line-height: 1.8;
+}
+
+.card-content p {
+    margin-bottom: 1rem;
+    color: var(--dark-background-text);
+}
+
+/* MEJORADO: Card footer si es necesario */
+.card-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(70, 186, 192, 0.2);
+}
+
+/* MEJORADO: Cards en grid con mejor spacing */
+.cards-grid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+/* MEJORADO: Card badges */
+.card-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* MEJORADO: Interactive cards */
+.card-interactive {
+    cursor: pointer;
+    user-select: none;
+}
+
+.card-interactive:active {
+    transform: scale(0.98);
+}
+
+/* MEJORADO: Card loading state */
+.card.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.card.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    to {
+        left: 100%;
+    }
+}
+
+/* MEJORADO: Responsive cards */
+@media (max-width: 768px) {
+    .card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .cards-grid {
+        gap: 1.5rem;
+    }
+}

@@ -1,4 +1,7 @@
 /* ===== ANIMACIONES ===== */
+
+/* MEJORADO: Duraciones ajustadas a 0.4s y easing mejorado */
+
 @keyframes slideInUp {
     from {
         opacity: 0;
@@ -73,4 +76,192 @@
     33% {box-shadow: 15px 0 #ffffff, -15px 0 rgba(255, 255, 255, 0.133);background: rgba(255, 255, 255, 0.133)}
     66% {box-shadow: 15px 0 rgba(255, 255, 255, 0.133),-15px 0 #ffffff; background: rgba(255, 255, 255, 0.133)}
     100%{box-shadow: 15px 0 rgba(255, 255, 255, 0.133),-15px 0 #ffffff; background: #ffffff }
+}
+
+/* MEJORADO: Animaciones con duraciones y easing actualizados */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    /* MEJORADO: Duración y easing */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Cambiado de ease */
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scale-in {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scale-in.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* MEJORADO: Animación de pulso más suave */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* MEJORADO: Animación de shake más sutil */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* MEJORADO: Bounce más natural */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+.bounce {
+    animation: bounce 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* MEJORADO: Animaciones para hover */
+.hover-lift {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+}
+
+.hover-grow {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-grow:hover {
+    transform: scale(1.05);
+}
+
+/* MEJORADO: Stagger animations */
+.stagger-fade > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stagger-fade.visible > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stagger-fade.visible > *:nth-child(1) { transition-delay: 0.1s; }
+.stagger-fade.visible > *:nth-child(2) { transition-delay: 0.2s; }
+.stagger-fade.visible > *:nth-child(3) { transition-delay: 0.3s; }
+.stagger-fade.visible > *:nth-child(4) { transition-delay: 0.4s; }
+.stagger-fade.visible > *:nth-child(5) { transition-delay: 0.5s; }
+
+/* MEJORADO: Skeleton loading animation */
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.skeleton-loader {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+/* MEJORADO: Smooth appear animation */
+@keyframes smoothAppear {
+    from {
+        opacity: 0;
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+.smooth-appear {
+    animation: smoothAppear 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* MEJORADO: Soporte para reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    /* Mantener opacidad para elementos visibles */
+    .fade-in,
+    .slide-in-left,
+    .slide-in-right,
+    .scale-in,
+    .smooth-appear {
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
+    
+    /* Desactivar animaciones específicas */
+    .loading::before,
+    .loader,
+    .pulse,
+    .bounce,
+    .skeleton-loader {
+        animation: none;
+    }
+}
+
+/* MEJORADO: Performance optimizations */
+.will-animate {
+    will-change: transform, opacity;
+}
+
+.animation-done {
+    will-change: auto;
+}
+
+/* MEJORADO: GPU acceleration para animaciones suaves */
+.gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
 }

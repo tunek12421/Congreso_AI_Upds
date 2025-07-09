@@ -1,25 +1,32 @@
 /* ===== FORMULARIOS ===== */
 input, textarea, select {
     font-family: inherit;
-    border: 2px solid var(--main-background);
+    /* MEJORADO: Border más visible */
+    border: 2px solid rgba(70, 186, 192, 0.3); /* Cambiado de var(--main-background) */
     border-radius: var(--border-radius-sm);
     padding: 0.75rem 1rem;
     transition: var(--transition);
-    background: var(--dark-background);
+    /* MEJORADO: Background con sutil transparencia */
+    background: rgba(255, 255, 255, 0.05); /* Cambiado de var(--dark-background) */
     color: var(--dark-background-text);
+    /* MEJORADO: Altura mínima agregada */
+    min-height: 48px;
+    box-sizing: border-box;
 }
 
 input:focus, textarea:focus, select:focus {
     outline: none;
     border-color: var(--light-blue);
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+    /* MEJORADO: Box shadow más amplia */
+    box-shadow: 0 0 0 4px rgba(70, 186, 192, 0.15); /* Cambiado de 3px y color ajustado */
 }
 
 label {
     display: block;
     margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: var(--dark-background-text);
+    font-weight: 600; /* MANTENER */
+    /* MEJORADO: Color más legible */
+    color: var(--white); /* Cambiado de var(--dark-background-text) */
 }
 
 .form-group {
@@ -36,4 +43,126 @@ label {
     color: var(--success);
     font-size: 0.8rem;
     margin-top: 0.25rem;
+}
+
+/* MEJORADO: Estilos adicionales para mejor usabilidad */
+input::placeholder,
+textarea::placeholder {
+    color: rgba(184, 212, 212, 0.6); /* Color más sutil para placeholders */
+    opacity: 1; /* Firefox fix */
+}
+
+/* MEJORADO: Estados hover para inputs */
+input:hover:not(:focus),
+textarea:hover:not(:focus),
+select:hover:not(:focus) {
+    border-color: rgba(70, 186, 192, 0.5);
+}
+
+/* MEJORADO: Textarea específicos */
+textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+/* MEJORADO: Select mejorado */
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2346bac0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    padding-right: 2.5rem;
+}
+
+/* MEJORADO: Checkbox y Radio buttons */
+input[type="checkbox"],
+input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    min-height: auto;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+/* MEJORADO: File input */
+input[type="file"] {
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    margin-right: 1rem;
+    transition: var(--transition);
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+    background: var(--primary-color-hover);
+}
+
+/* MEJORADO: Disabled state */
+input:disabled,
+textarea:disabled,
+select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* MEJORADO: Form validation states */
+input:valid:not(:placeholder-shown),
+textarea:valid:not(:placeholder-shown) {
+    border-color: var(--success);
+}
+
+input:invalid:not(:placeholder-shown),
+textarea:invalid:not(:placeholder-shown) {
+    border-color: var(--error);
+}
+
+/* MEJORADO: Fieldset y legend */
+fieldset {
+    border: 2px solid rgba(70, 186, 192, 0.2);
+    border-radius: var(--border-radius-sm);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+legend {
+    color: var(--primary-color);
+    font-weight: 600;
+    padding: 0 0.5rem;
+}
+
+/* MEJORADO: Form buttons group */
+.form-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: flex-end;
+}
+
+.form-buttons .btn {
+    min-width: 120px;
+}
+
+/* MEJORADO: Responsive */
+@media (max-width: 768px) {
+    .form-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .form-buttons .btn {
+        width: 100%;
+    }
 }
