@@ -573,3 +573,106 @@
 .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Simon-Bouché"] { 
     object-position: center 40% !important; 
 }*/
+
+
+.speaker-carousel-section .speaker-card .speaker-avatar img[src*="Juan-Balcazar"] { 
+    transform: translate(15px, 25px) scale(1.4) !important;
+    object-fit: cover !important;
+}
+
+.speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Juan-Balcazar"] { 
+    transform: translate(15px, 25px) scale(1.4) !important;
+    object-fit: cover !important;
+}
+
+
+@media (max-width: 768px) {
+    .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Juan-Balcazar"] { 
+        transform: translate(5px, 12px) scale(1.3) !important;
+        object-fit: cover !important;
+    }
+    
+    .speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Juan-Balcazar"] { 
+        transform: translate(5px, 12px) scale(1.3) !important;
+        object-fit: cover !important;
+    }
+}
+
+
+
+.speaker-carousel-section .speaker-card .speaker-avatar img[src*="FRANCISCO-MAYORGA"] { 
+    transform: translate(-8px, 12px) scale(1) !important;
+    object-fit: cover !important;
+}
+
+.speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="FRANCISCO-MAYORGA"] { 
+    transform: translate(-8px, 12px) scale(1) !important;
+    object-fit: cover !important;
+}
+
+
+/* Ajuste específico para móvil */
+@media (max-width: 768px) {
+
+        .speaker-carousel-section .speaker-card .speaker-avatar img[src*="FRANCISCO-MAYORGA"] { 
+        transform: translate(-6px, 8px) scale(1) !important;
+        object-fit: cover !important;
+    }
+    
+    .speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="FRANCISCO-MAYORGA"] { 
+        transform: translate(-6px, 8px) scale(1) !important;
+        object-fit: cover !important;
+    }
+    
+}
+
+
+
+
+
+.speaker-carousel-section .speaker-card .speaker-avatar img[src*="cARLOS-oLIVERA"] { 
+    transform: translate(25px, 25px) scale(1.1) !important;
+    object-fit: cover !important;
+}
+
+.speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="cARLOS-oLIVERA"] { 
+    transform: translate(25px, 25px) scale(1.1) !important;
+    object-fit: cover !important;
+}
+
+
+@media (max-width: 768px) {
+    .speaker-carousel-section .speaker-card .speaker-avatar img[src*="cARLOS-oLIVERA"] { 
+        transform: translate(18px, 12px) scale(1.15) !important;
+        object-fit: cover !important;
+    }
+    
+    .speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="cARLOS-oLIVERA"] { 
+        transform: translate(18px, 12px) scale(1.15) !important;
+        object-fit: cover !important;
+    }
+}
+
+
+.speaker-carousel-section .speaker-card .speaker-avatar img[src*="JOSE-MARIA-PAZ"] { 
+    transform: translate(-8px, 0px) scale(0.95) !important;
+    object-fit: cover !important;
+}
+
+.speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="JOSE-MARIA-PAZ"] { 
+    transform: translate(-8px, 0px) scale(0.95) !important;
+    object-fit: cover !important;
+}
+
+/* Ajuste específico para móvil */
+@media (max-width: 768px) {
+    .speaker-carousel-section .speaker-card .speaker-avatar img[src*="JOSE-MARIA-PAZ"] { 
+        transform: translate(-6px, 0px) scale(0.95) !important;
+        object-fit: cover !important;
+    }
+    
+    .speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="JOSE-MARIA-PAZ"] { 
+        transform: translate(-6px, 0px) scale(0.95) !important;
+        object-fit: cover !important;
+    }
+}
