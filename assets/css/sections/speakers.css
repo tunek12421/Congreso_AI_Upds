@@ -676,3 +676,26 @@
         object-fit: cover !important;
     }
 }
+
+.speaker-carousel-section .speaker-card .speaker-avatar img[src*="Mariana-Aviles-Rojas"] { 
+    transform: translate(0px, 70px) scale(1.8) !important;
+    object-fit: cover !important;
+}
+
+.speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Mariana-Aviles-Rojas"] { 
+    transform: translate(0px, 70px) scale(1.8) !important;
+    object-fit: cover !important;
+}
+
+/* Ajuste específico para móvil */
+@media (max-width: 768px) {
+    .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Mariana-Aviles-Rojas"] { 
+        transform: translate(0px, 40px) scale(1.8) !important;
+        object-fit: cover !important;
+    }
+    
+    .speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Mariana-Aviles-Rojas"] { 
+        transform: translate(0px, 40px) scale(1.8) !important;
+        object-fit: cover !important;
+    }
+}

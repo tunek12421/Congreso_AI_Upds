@@ -52,3 +52,24 @@
   margin: 0.8rem;
   margin-left: 5rem;
 }
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 768px) {
+  .logos:before, .logos:after {
+    width: 20px;
+  }
+
+  .logo_items img {
+    height: 35px;
+    margin: 0.6rem;
+    margin-left: 2rem; /* Reduce margin to prevent images going off-screen */
+  }
+}
+
+@media (max-width: 480px) {
+  .logo_items img {
+    height: 30px;
+    margin: 0.4rem;
+    margin-left: 1rem; /* Further reduce margin for very small screens */
+  }
+}

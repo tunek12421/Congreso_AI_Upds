@@ -81,19 +81,6 @@
       "sessions": []
     },
     {
-      "id": 7,
-      "name": "Juan Jesús Balcázar Vega",
-      "title": "Ingeniero en Informática, Especialista en Transformación Digital e IA",
-      "country": "Perú",
-      "flag": "<img src=\"https://flagcdn.com/pe.svg\" width=\"30\" alt=\"Bandera Perú\">",
-      "expertise": [],
-      "bio": "Juan Jesús Balcázar, ingeniero en informática con más de 14 años de experiencia liderando proyectos de tecnología e innovación en la región. Me especializo en transformación digital, automatización, inteligencia artificial y gestión de servicios de TI, diseñando soluciones eficientes y sostenibles para organizaciones en constante evolución. A lo largo de mi carrera he trabajado con arquitecturas complejas, integraciones estratégicas y equipos multidisciplinarios, siempre enfocado en generar valor real y medible.",
-      "photo": "assets/images/speakers/Foto-Juan-Balcazar.png",
-      "topic": "Inteligencia Artificial sin Fronteras: Oportunidades, Riesgos y el Futuro que Estamos Creando",
-      "social": {},
-      "sessions": []
-    },
-    {
       "id": 8,
       "name": "Carlos Olivera Terrazas",
       "title": "Arquitecto de Software y Emprendedor",
@@ -133,12 +120,26 @@
       "topic": "Inteligencia Artificial y su impacto en la economía y educación latinoamericana",
       "social": {},
       "sessions": []
+    },
+    {
+      "id": 11,
+      "name": "Mariana Aviles Rojas",
+      "title": "Abogada Digital, especializada en Derecho de Nuevas Tecnologías y Propiedad Intelectual",
+      "country": "Bolivia",
+      "flag": "<img src=\"https://flagcdn.com/bo.svg\" width=\"30\" alt=\"Bandera Bolivia\">",
+      "expertise": [],
+      "bio": "Abogada Digital, especializada en Derecho de Nuevas Tecnologías y Propiedad Intelectual. Es socia fundadora de LEGALIZA.TECH, una firma legal con enfoque innovador que se dedica al asesoramiento de startups y empresas tecnológicas. Crea programas académicos sobre tecnología y es docente apasionada en pregrado y postgrado, en universidades como la Católica, la Unifranz y la San Simón, entre otras. Su enfoque combina la innovación con el compromiso de formar profesionales preparados para la era digital.",
+      "photo": "assets/images/speakers/Mariana-Aviles-Rojas.png",
+      "topic": "",
+      "company": "LEGALIZA.TECH",
+      "social": {},
+      "sessions": []
     }
   ],
-  "featured_speakers": [1, 4, 5, 7, 8],
-  "keynote_speakers": [1, 4, 7, 8, 10],
-  "international_speakers": [1, 2, 5, 6, 7, 10],
-  "national_speakers": [3, 4, 8, 9],
+  "featured_speakers": [1, 4, 5, 8],
+  "keynote_speakers": [1, 4, 8, 10],
+  "international_speakers": [1, 2, 5, 6, 10],
+  "national_speakers": [3, 4, 8, 9, 11],
   "categories": {
     "international": "Ponentes Internacionales",
     "national": "Ponentes Nacionales"
