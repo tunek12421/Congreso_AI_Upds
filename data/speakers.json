@@ -134,12 +134,26 @@
       "company": "LEGALIZA.TECH",
       "social": {},
       "sessions": []
+    },
+    {
+      "id": 12,
+      "name": "Santiago Sarabia Saenz",
+      "title": "CEO & Co-founder",
+      "country": "Bolivia",
+      "flag": "<img src=\"https://flagcdn.com/bo.svg\" width=\"30\" alt=\"Bandera Bolivia\">",
+      "expertise": [],
+      "bio": "Santiago Sarabia con experiencia de mas de 8 años como programador en empresas como Rappi, Domu AI, Squads Ventures. Posterior a ellos cofundó Boring Ventures con Gaston Rocha y se logró trabajar con empresas reconocidas como Quantum Motors, CIES (Clinica Sexual Reproductiva), Comteco, desarrollando más de 30 proyectos tanto de manera nacional como internacional",
+      "photo": "assets/images/speakers/Santiago_Sarabia.png",
+      "topic": "De idea a producto en 45 minutos",
+      "company": "Boring Ventures",
+      "social": {},
+      "sessions": []
     }
   ],
   "featured_speakers": [1, 4, 5, 8],
   "keynote_speakers": [1, 4, 8, 10],
   "international_speakers": [1, 2, 5, 6, 10],
-  "national_speakers": [3, 4, 8, 9, 11],
+  "national_speakers": [3, 4, 8, 9, 11, 12],
   "categories": {
     "international": "Ponentes Internacionales",
     "national": "Ponentes Nacionales"
