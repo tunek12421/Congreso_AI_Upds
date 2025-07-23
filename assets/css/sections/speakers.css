@@ -699,3 +699,49 @@
         object-fit: cover !important;
     }
 }
+
+.speaker-carousel-section .speaker-card .speaker-avatar img[src*="Santiago_Sarabia"] { 
+    transform: translate(0px, 5px) scale(1.0) !important;
+    object-fit: cover !important;
+}
+
+.speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Santiago_Sarabia"] { 
+    transform: translate(0px, 5px) scale(1.0) !important;
+    object-fit: cover !important;
+}
+
+/* Ajuste específico para móvil */
+@media (max-width: 768px) {
+    .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Santiago_Sarabia"] { 
+        transform: translate(0px, 4px) scale(1.0) !important;
+        object-fit: cover !important;
+    }
+    
+    .speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Santiago_Sarabia"] { 
+        transform: translate(0px, 4px) scale(1.0) !important;
+        object-fit: cover !important;
+    }
+}
+
+.speaker-carousel-section .speaker-card .speaker-avatar img[src*="Angel-Cardozo"] { 
+    transform: translate(0px, 6px) scale(1.0) !important;
+    object-fit: cover !important;
+}
+
+.speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Angel-Cardozo"] { 
+    transform: translate(0px, 6px) scale(1.0) !important;
+    object-fit: cover !important;
+}
+
+/* Ajuste específico para móvil */
+@media (max-width: 768px) {
+    .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Angel-Cardozo"] { 
+        transform: translate(0px, 4px) scale(1.0) !important;
+        object-fit: cover !important;
+    }
+    
+    .speakers .speaker-carousel-section .speaker-card .speaker-avatar img[src*="Angel-Cardozo"] { 
+        transform: translate(0px, 4px) scale(1.0) !important;
+        object-fit: cover !important;
+    }
+}
