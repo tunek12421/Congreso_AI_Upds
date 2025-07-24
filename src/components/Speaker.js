@@ -657,8 +657,12 @@ class SpeakerComponent {
         
         this.resumeTimeout = setTimeout(() => {
             //  VERIFICAR QUE NO HAY MODAL ABIERTO ANTES DE REANUDAR
-            if (!document.querySelector('.speaker-modal.active')) {
+            const activeModal = document.querySelector('.speaker-modal.active');
+            if (!activeModal || !activeModal.classList.contains('active')) {
                 this.startAutoPlay();
+            } else {
+                // Si aún hay modal activo, intentar de nuevo en 500ms
+                this.scheduleAutoPlayResume(500);
             }
             this.resumeTimeout = null;
         }, delay);
@@ -764,12 +768,12 @@ class SpeakerComponent {
     bindModalEvents(modal) {
         const closeModal = () => {
             modal.classList.remove('active');
+            //  REANUDAR AUTOPLAY INMEDIATAMENTE AL CERRAR MODAL
+            this.scheduleAutoPlayResume(1000); // 1 segundo de gracia antes de reanudar
             setTimeout(() => {
                 if (modal.parentElement) {
                     document.body.removeChild(modal);
                 }
-                //  REANUDAR AUTOPLAY DESPUÉS DE CERRAR MODAL
-                this.scheduleAutoPlayResume(1000); // 1 segundo de gracia antes de reanudar
             }, 300);
         };
 
@@ -794,8 +798,10 @@ class SpeakerComponent {
                 if (mutation.type === 'childList' && !document.body.contains(modal)) {
                     document.removeEventListener('keydown', handleKeydown);
                     observer.disconnect();
-                    // Reanudar autoplay por seguridad
-                    this.scheduleAutoPlayResume(500);
+                    // Reanudar autoplay por seguridad sin verificar modal activo
+                    setTimeout(() => {
+                        this.startAutoPlay();
+                    }, 500);
                 }
             });
         });
